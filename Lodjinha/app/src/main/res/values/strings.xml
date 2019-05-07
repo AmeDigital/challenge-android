@@ -1,0 +1,28 @@
+<resources xmlns:tools="http://schemas.android.com/tools"
+           tools:ignore="ExtraTranslation">
+
+    <string name="application.name">a Lodjinha</string>
+
+    <!-- MENU -->
+    <string name="drawer.title">a Lodjinha</string>
+
+    <string name="title.home">Home</string>
+    <string name="title.about.drawer">Sobre o aplicativo</string>
+    <string name="title.about">sobre</string>
+
+    <!-- FRAGMENT HOME-->
+    <string name="home.category">Categorias</string>
+    <string name="home.best_sellers">Mais Vendidos</string>
+
+    <!-- FRAGMENT PRODUCT DETAIL-->
+    <string name="product_detail.reserve">Reserva</string>
+    <string name="product_detail.reserve.successful">Produto reservado com sucesso.</string>
+    <string name="product_detail.reserve.failed">Ocorreu um erro ao efetuar a reserva.</string>
+
+    <!-- FRAGMENT ABOUT-->
+    <string name="about.created_by">Samuel Freitas</string>
+    <string name="about.created_in">3 de Maio de 2019</string>
+
+    <!-- COMMON-->
+    <string name="dialog.loading">Carregando</string>
+</resources>

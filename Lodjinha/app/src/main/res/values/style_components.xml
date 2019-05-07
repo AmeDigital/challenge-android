@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ButtonPrimary" parent="Theme.AppCompat.Light">
+        <item name="colorButtonNormal">@color/primary</item>
+        <item name="colorControlHighlight">@color/primary_dark</item>
+        <item name="android:textColor">@color/material_white</item>
+    </style>
+
+    <style name="ButtonInstall" parent="ButtonPrimary"/>
+
+    <style name="AppProgressBar" parent="Theme.AppCompat.Light">
+        <item name="colorButtonNormal">@color/primary</item>
+        <item name="colorControlHighlight">@color/primary_dark</item>
+    </style>
+
+    <!---->
+
+    <style name="appbar_expanded" parent="@android:style/TextAppearance.Medium">
+        <!--<item name="android:textSize">48sp</item>-->
+        <item name="android:textColor">@android:color/transparent</item>
+        <!--<item name="android:textStyle">bold</item>-->
+    </style>
+
+    <style name="appbar_collapsed" parent="@android:style/TextAppearance.Medium">
+        <!--<item name="android:textSize">12sp</item>-->
+        <item name="android:textColor">@color/material_white</item>
+    </style>
+
+</resources>
