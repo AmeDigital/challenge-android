@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">@color/warm_purple</color>
+    <color name="primary_dark">@color/material_purple900</color>
+    <color name="primary_light">@color/material_lightblue100</color>
+    <color name="accent">@color/tomato</color>
+
+    <color name="primary_text">#2d3142</color>
+    <color name="secondary_text">@color/greyish</color>
+    <color name="icons">@color/material_white</color>
+    <color name="divider">@color/material_grey400</color>
+
+
+    <color name="warm_purple">#5e2a84</color>
+    <color name="greyish">#aaaaaa</color>
+    <color name="tomato">#f15025</color>
+    <color name="dark">#2d3142</color>
+    <color name="greyish_brown">#4a4a4a</color>
+    <color name="white">#d5d5d5</color>
+    <color name="white_two">#fcfcfc</color>
+</resources>

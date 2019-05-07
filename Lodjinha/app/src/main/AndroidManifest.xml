@@ -1,0 +1,37 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          package="br.com.sf.lojinha">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application android:allowBackup="true"
+                 android:label="@string/application.name"
+                 android:icon="@drawable/ic_launcher"
+                 android:roundIcon="@drawable/ic_launcher"
+                 android:supportsRtl="true"
+                 android:name="br.com.sf.lojinha.app.ApplicationController"
+                 android:theme="@style/AppTheme"
+                 tools:replace="android:icon,android:label"
+                 tools:overrideLibrary="com.lucasurbas.guidelinescompat.lib,com.pnikosis:materialish-progress">
+
+        <activity
+                android:name="br.com.sf.lojinha.ui.splash.SplashActivity"
+                android:label="@string/application.name"
+                android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <activity
+                android:name=".ui.main.MainActivity"
+                android:label="@string/application.name"
+                android:screenOrientation="portrait"
+                android:theme="@style/AppTheme.NoActionBar"/>
+
+        <meta-data android:name="preloaded_fonts" android:resource="@array/preloaded_fonts"/>
+
+    </application>
+</manifest>
