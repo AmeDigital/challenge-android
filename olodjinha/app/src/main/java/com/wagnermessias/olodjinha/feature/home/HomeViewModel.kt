@@ -3,15 +3,15 @@ package com.wagnermessias.olodjinha.feature.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.wagnermessias.olodjinha.core.base.BaseViewModel
-import com.wagnermessias.olodjinha.core.interactor.BannerInteractor
-import com.wagnermessias.olodjinha.core.interactor.CategoryInteractor
-import com.wagnermessias.olodjinha.core.interactor.ProductInteractor
+import com.wagnermessias.olodjinha.core.interactor.LoadBannerInteractor
+import com.wagnermessias.olodjinha.core.interactor.LoadBestSellersInteractor
+import com.wagnermessias.olodjinha.core.interactor.LoadCategoryInteractor
 import kotlinx.coroutines.launch
 
 class HomeViewModel(
-    private val bannerInteractor: BannerInteractor,
-    private val categoryInteractor: CategoryInteractor,
-    private val productInteractor: ProductInteractor
+    private val loadBannerInteractor: LoadBannerInteractor,
+    private val loadCategoryInteractor: LoadCategoryInteractor,
+    private val loadBestSellersInteractor: LoadBestSellersInteractor
 
 ) : BaseViewModel() {
     private val state = MutableLiveData<HomeViewState>()
@@ -20,7 +20,7 @@ class HomeViewModel(
     fun loadBanners() {
         launch {
             try {
-                val responseBanners = bannerInteractor.getBanners()
+                val responseBanners = loadBannerInteractor.execute()
 
                 if (responseBanners.isSuccessful) {
                     state.value = responseBanners.body()?.let {
@@ -39,7 +39,7 @@ class HomeViewModel(
     fun loadCategories() {
         launch {
             try {
-                val responseCategories = categoryInteractor.getCategories()
+                val responseCategories = loadCategoryInteractor.execute()
 
                 if (responseCategories.isSuccessful) {
                     state.value = responseCategories.body()?.let {
@@ -58,7 +58,7 @@ class HomeViewModel(
     fun loadBestSellers() {
         launch {
             try {
-                val responseProducts = productInteractor.getBestSellers()
+                val responseProducts = loadBestSellersInteractor.execute()
 
                 if (responseProducts.isSuccessful) {
                     state.value = responseProducts.body()?.let {

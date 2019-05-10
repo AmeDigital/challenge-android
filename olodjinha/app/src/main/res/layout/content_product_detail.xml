@@ -7,7 +7,7 @@
         tools:showIn="@layout/product_detail_activity"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".feature.products.ProductDetailActivity">
+        tools:context=".feature.products.detail.ProductDetailActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

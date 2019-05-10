@@ -23,8 +23,8 @@ import com.wagnermessias.olodjinha.core.extensions.OnItemClickListener
 import com.wagnermessias.olodjinha.core.extensions.addOnItemClickListener
 import com.wagnermessias.olodjinha.core.model.*
 import com.wagnermessias.olodjinha.feature.about.AboutActivity
-import com.wagnermessias.olodjinha.feature.products.ProductByCategoryActivity
-import com.wagnermessias.olodjinha.feature.products.ProductDetailActivity
+import com.wagnermessias.olodjinha.feature.products.bycategory.ProductByCategoryActivity
+import com.wagnermessias.olodjinha.feature.products.detail.ProductDetailActivity
 import com.wagnermessias.olodjinha.feature.products.ProductsAdapter
 import kotlinx.android.synthetic.main.home_content.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -58,7 +58,8 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun initListeners() {
         rvCategories.addOnItemClickListener(object : OnItemClickListener {
             override fun onItemClicked(position: Int, view: View) {
-                startActivity(ProductByCategoryActivity.newInstance(context,
+                startActivity(
+                    ProductByCategoryActivity.newInstance(context,
                                                                     categoriesList[position]))
             }
         })

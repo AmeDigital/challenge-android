@@ -4,10 +4,10 @@ import com.wagnermessias.olodjinha.core.data.CategoryRepository
 import com.wagnermessias.olodjinha.core.model.Categories
 import retrofit2.Response
 
-class CategoryInteractor(
+class LoadCategoryInteractor(
     private val repository: CategoryRepository
 ){
-    suspend fun getCategories(): Response<Categories> {
+    suspend fun execute(): Response<Categories> {
         val call = repository.getCategories()
         return call.await()
     }

@@ -17,7 +17,7 @@
                   android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-                android:name=".feature.products.ProductDetailActivity"
+                android:name=".feature.products.detail.ProductDetailActivity"
                 android:label="@string/title_activity_product_detail"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
@@ -27,7 +27,7 @@
                 <!--android:theme="@style/AppTheme.NoActionBar">-->
         <!--</activity>-->
         <activity
-                android:name=".feature.products.ProductByCategoryActivity"
+                android:name=".feature.products.bycategory.ProductByCategoryActivity"
                 android:label="@string/title_activity_product_by_category"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>

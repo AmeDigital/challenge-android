@@ -4,17 +4,11 @@ import com.wagnermessias.olodjinha.core.data.BannerRepository
 import com.wagnermessias.olodjinha.core.model.Banners
 import retrofit2.Response
 
-class BannerInteractor(
+class LoadBannerInteractor(
     private val repository: BannerRepository
 ){
-    suspend fun getBanners(): Response<Banners> {
+    suspend fun execute(): Response<Banners> {
         val call = repository.execute()
         return call.await()
-
-//        return if (response.isSuccessful) {
-//            response.body()
-//        } else {
-//            null
-//        }
     }
 }

@@ -5,8 +5,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.wagnermessias.olodjinha.R
-import com.wagnermessias.olodjinha.core.model.Product
-import com.wagnermessias.olodjinha.feature.products.ProductDetailActivity
 import kotlinx.android.synthetic.main.about_activity.*
 
 class AboutActivity : AppCompatActivity() {

@@ -2,6 +2,7 @@ package com.wagnermessias.olodjinha.core
 
 import android.app.Application
 import com.wagnermessias.olodjinha.core.di.homeModule
+import com.wagnermessias.olodjinha.core.di.productsDetailModule
 import com.wagnermessias.olodjinha.core.di.productsModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -15,7 +16,7 @@ class ALodjinhaApplication : Application() {
             startKoin{
                 androidLogger()
                 androidContext(this@ALodjinhaApplication)
-                modules(homeModule, productsModule)
+                modules(homeModule, productsModule,productsDetailModule)
             }
         }
 

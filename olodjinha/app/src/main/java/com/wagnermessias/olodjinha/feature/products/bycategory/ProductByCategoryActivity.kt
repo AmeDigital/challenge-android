@@ -1,4 +1,4 @@
-package com.wagnermessias.olodjinha.feature.products
+package com.wagnermessias.olodjinha.feature.products.bycategory
 
 import android.content.Context
 import android.content.Intent
@@ -14,6 +14,8 @@ import com.wagnermessias.olodjinha.core.extensions.OnItemClickListener
 import com.wagnermessias.olodjinha.core.extensions.addOnItemClickListener
 import com.wagnermessias.olodjinha.core.model.Category
 import com.wagnermessias.olodjinha.core.model.Product
+import com.wagnermessias.olodjinha.feature.products.ProductsAdapter
+import com.wagnermessias.olodjinha.feature.products.detail.ProductDetailActivity
 import kotlinx.android.synthetic.main.content_product_by_category.*
 import kotlinx.android.synthetic.main.product_by_category_activity.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -27,7 +29,7 @@ class ProductByCategoryActivity : AppCompatActivity() {
         linearLayoutManager.findLastVisibleItemPosition()
     private lateinit var scrollListener: RecyclerView.OnScrollListener
 
-    private val productsViewModel: ProductsViewModel by viewModel()
+    private val productsByCategoryViewModel: ProductsByCategoryViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +38,6 @@ class ProductByCategoryActivity : AppCompatActivity() {
         observeViewModel()
         initListeners()
         initProductsByCategory(intent.extras)
-
     }
 
     private fun setupViews() {
@@ -46,9 +47,9 @@ class ProductByCategoryActivity : AppCompatActivity() {
     }
 
     private fun observeViewModel() {
-        productsViewModel.viewState.observe(this, Observer {
+        productsByCategoryViewModel.byCategoryViewState.observe(this, Observer {
             when (it) {
-                is ProductsViewState.ProductsList -> setProducts(it.products)
+                is ProductsByCategoryViewState.ProductsByCategoryList -> setProducts(it.products)
             }
         })
     }
@@ -64,7 +65,7 @@ class ProductByCategoryActivity : AppCompatActivity() {
 
     private fun loadProductsByCategory(idCategory: Int) {
         val firstOffset = 0
-        productsViewModel.loadProductsByCategory(idCategory, firstOffset)
+        productsByCategoryViewModel.loadProductsByCategory(idCategory, firstOffset)
     }
 
 
@@ -100,7 +101,7 @@ class ProductByCategoryActivity : AppCompatActivity() {
                     showProgress(true)
                     Log.d("MyTAG", "Load new list")
                     Log.d("MyTAG", "last total: " + totalItemCount)
-                    productsViewModel.loadProductsByCategory(categoryId, totalItemCount)
+                    productsByCategoryViewModel.loadProductsByCategory(categoryId, totalItemCount)
                     //rv_products_by_category.removeOnScrollListener(scrollListener)
                 }
             }

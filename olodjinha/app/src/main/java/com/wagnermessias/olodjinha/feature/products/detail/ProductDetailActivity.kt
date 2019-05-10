@@ -1,4 +1,4 @@
-package com.wagnermessias.olodjinha.feature.products
+package com.wagnermessias.olodjinha.feature.products.detail
 
 import android.content.Context
 import android.content.Intent
@@ -12,10 +12,11 @@ import androidx.core.text.HtmlCompat
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.google.android.material.appbar.AppBarLayout
-import com.google.android.material.snackbar.Snackbar
 import com.wagnermessias.olodjinha.R
 import com.wagnermessias.olodjinha.core.extensions.toCurrency
 import com.wagnermessias.olodjinha.core.model.Product
+import com.wagnermessias.olodjinha.feature.products.bycategory.ProductsByCategoryViewModel
+import com.wagnermessias.olodjinha.feature.products.bycategory.ProductsByCategoryViewState
 import kotlinx.android.synthetic.main.content_product_detail.*
 import kotlinx.android.synthetic.main.product_detail_activity.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -24,7 +25,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class ProductDetailActivity : AppCompatActivity() {
 
     private lateinit var product: Product
-    private val productsViewModel: ProductsViewModel by viewModel()
+    private val productsDetailViewModel: ProductsDetailViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,9 +38,9 @@ class ProductDetailActivity : AppCompatActivity() {
     }
 
     private fun observeViewModel() {
-        productsViewModel.viewState.observe(this, Observer {
+        productsDetailViewModel.detailViewState.observe(this, Observer {
             when (it) {
-                is ProductsViewState.ReservationProduct -> showSuccessReservation()
+                is ProductsDetailViewState.ReservationProduct -> showSuccessReservation()
             }
         })
     }
@@ -66,7 +67,7 @@ class ProductDetailActivity : AppCompatActivity() {
     }
 
     private fun initProductsData(bundle: Bundle) {
-        val productNew = bundle.getSerializable(ProductDetailActivity.PRODUCT_INFO) as Product
+        val productNew = bundle.getSerializable(PRODUCT_INFO) as Product
         productNew.apply {
             product = this
             setProductDetail(this)
@@ -109,7 +110,7 @@ class ProductDetailActivity : AppCompatActivity() {
         })
 
         fab.setOnClickListener { view ->
-            productsViewModel.reservationProducts(product.id)
+            productsDetailViewModel.reservationProducts(product.id)
             showProgressAndDisableFab(true)
         }
 
