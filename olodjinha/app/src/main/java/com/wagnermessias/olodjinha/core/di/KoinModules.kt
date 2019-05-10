@@ -1,0 +1,47 @@
+package com.wagnermessias.olodjinha.core.di
+
+import com.wagnermessias.olodjinha.core.data.BannerRepository
+import com.wagnermessias.olodjinha.core.data.CategoryRepository
+import com.wagnermessias.olodjinha.core.data.RetrofitService
+import com.wagnermessias.olodjinha.core.data.remote.ALodjinhaApi
+import com.wagnermessias.olodjinha.core.data.ProductRepository
+import com.wagnermessias.olodjinha.core.interactor.BannerInteractor
+import com.wagnermessias.olodjinha.core.interactor.CategoryInteractor
+import com.wagnermessias.olodjinha.core.interactor.ProductInteractor
+import com.wagnermessias.olodjinha.feature.home.HomeViewModel
+import com.wagnermessias.olodjinha.feature.products.ProductsViewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
+
+import org.koin.dsl.module
+
+val homeModule = module {
+
+    single { RetrofitService.retrofit().create<ALodjinhaApi>(ALodjinhaApi::class.java) }
+    factory { BannerRepository(get()) }
+    factory { BannerInteractor(get()) }
+    factory { CategoryRepository(get()) }
+    factory { CategoryInteractor(get()) }
+    factory { ProductRepository(get()) }
+    factory { ProductInteractor(get()) }
+    viewModel { HomeViewModel(get(),get(),get()) }
+}
+
+val productsModule = module {
+
+    viewModel { ProductsViewModel(get()) }
+}
+
+//val loginModule = module {
+//    single { BankPreferences(get()) }
+//    single { RetrofitService.retrofit().create<BankApi>(BankApi::class.java) }
+//    factory { UserRepository(get(), get()) }
+//    factory { UserInteractor(get()) }
+//    factory { LoginHelper() }
+//    viewModel { LoginViewModel(get(), get()) }
+//}
+
+//val StatementsModule = module {
+//    factory { StatementsRepository(get()) }
+//    factory { StatementsInteractor(get()) }
+//    viewModel { StatementsViewModel(get()) }
+//}

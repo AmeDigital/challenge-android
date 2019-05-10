@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/default_background"
+        android:id="@+id/home_content">
+
+    <androidx.viewpager.widget.ViewPager
+            android:id="@+id/bannersPager"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/banners_height"
+            android:layout_marginTop="?attr/actionBarSize"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/categoryText"/>
+
+    <com.viewpagerindicator.CirclePageIndicator
+            android:id="@+id/indicator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            app:centered="true"
+            app:fillColor="@color/colorAccent"
+            app:pageColor="@color/default_white"
+            app:snap="false"
+            app:layout_constraintBottom_toBottomOf="@+id/bannersPager"
+            android:layout_marginBottom="@dimen/margin_default_small"/>
+
+    <TextView
+            android:text="@string/categorias_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/categoryText"
+            android:gravity="left"
+            android:typeface="normal"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_diver_sessao"
+            android:padding="@dimen/padding_default_small"
+            android:background="@color/default_white"
+            android:layout_marginBottom="@dimen/divider_min"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/indicator"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/categories_list"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/categories_list"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/recyclerview_category_height"
+            tools:listitem="@layout/category_item"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/categoryText"
+            app:layout_constraintBottom_toTopOf="@+id/BestSellersText"/>
+
+    <TextView
+            android:text="@string/bestsellers_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/BestSellersText"
+            android:gravity="left"
+            android:typeface="normal"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_diver_sessao"
+            android:padding="@dimen/padding_default_small"
+            android:background="@color/default_white"
+            android:layout_marginBottom="@dimen/divider_min"
+            android:layout_marginTop="@dimen/divider_min"
+            app:layout_constraintBottom_toTopOf="@+id/products_list"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/categories_list"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/products_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/product_item"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/divider_min"
+            app:layout_constraintTop_toBottomOf="@+id/BestSellersText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+    <ProgressBar
+            android:id="@+id/progress_home"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
