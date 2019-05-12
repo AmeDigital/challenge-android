@@ -22,15 +22,15 @@ val homeModule = module {
     factory { LoadBannerInteractor(get()) }
     factory { LoadCategoryInteractor(get()) }
     factory { LoadBestSellersInteractor(get()) }
-    viewModel { HomeViewModel(get(),get(),get()) }
+    viewModel { HomeViewModel(get(), get(), get()) }
 }
 
 val productsModule = module {
-    factory { LoadProductByCategoryInteractor(get())}
+    factory { LoadProductByCategoryInteractor(get()) }
     viewModel { ProductsByCategoryViewModel(get()) }
 }
 
 val productsDetailModule = module {
-    factory {ReservationProductInteractor(get())}
+    factory { ReservationProductInteractor(get()) }
     viewModel { ProductsDetailViewModel(get()) }
 }

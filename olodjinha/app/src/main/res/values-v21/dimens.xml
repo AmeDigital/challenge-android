@@ -4,4 +4,5 @@
     <dimen name="item_product_width">90dp</dimen>
     <dimen name="margin_default_4">4dp</dimen>
     <dimen name="divider_min">1dp</dimen>
+    <dimen name="default_radius_big">8dp</dimen>
 </resources>

@@ -1,22 +1,20 @@
 package com.wagnermessias.olodjinha.feature.products
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.text.HtmlCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.wagnermessias.olodjinha.R
 import com.wagnermessias.olodjinha.core.extensions.toCurrency
 import com.wagnermessias.olodjinha.core.model.Product
 
-import android.content.Context
-import androidx.core.text.HtmlCompat
-
-
-internal class ProductsAdapter( val  products: ArrayList<Product>, val context: Context)
-    : RecyclerView.Adapter<ProductsAdapter.ViewHolder>() {
+internal class ProductsAdapter(val products: ArrayList<Product>, val context: Context) :
+    RecyclerView.Adapter<ProductsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -36,9 +34,15 @@ internal class ProductsAdapter( val  products: ArrayList<Product>, val context: 
                     .into(this)
             }
             name.text = products[position].name
-            val priceformated = String.format(context.getResources().getString(R.string.price_from), products[position].priceFrom.toCurrency())
-            priceFrom.text = HtmlCompat.fromHtml( priceformated, HtmlCompat.FROM_HTML_MODE_LEGACY)
-            pricePer.text = String.format(context.getResources().getString(R.string.price_per),products[position].pricePer.toCurrency())
+            val priceformated = String.format(
+                context.getResources().getString(R.string.price_from),
+                products[position].priceFrom.toCurrency()
+            )
+            priceFrom.text = HtmlCompat.fromHtml(priceformated, HtmlCompat.FROM_HTML_MODE_LEGACY)
+            pricePer.text = String.format(
+                context.getResources().getString(R.string.price_per),
+                products[position].pricePer.toCurrency()
+            )
         }
     }
 

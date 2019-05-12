@@ -6,7 +6,10 @@ import com.wagnermessias.olodjinha.core.model.Products
 import com.wagnermessias.olodjinha.core.model.ReservationResponse
 import kotlinx.coroutines.Deferred
 import retrofit2.Response
-import retrofit2.http.*
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface ALodjinhaApi {
     companion object {

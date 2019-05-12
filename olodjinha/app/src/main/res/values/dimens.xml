@@ -41,4 +41,5 @@
     <dimen name="arrow_width">20dp</dimen>
     <dimen name="guide_100">100dp</dimen>
     <dimen name="divider_min">1dp</dimen>
+    <dimen name="default_radius_big">8dp</dimen>
 </resources>

@@ -7,6 +7,7 @@ import com.wagnermessias.olodjinha.core.interactor.LoadBannerInteractor
 import com.wagnermessias.olodjinha.core.interactor.LoadBestSellersInteractor
 import com.wagnermessias.olodjinha.core.interactor.LoadCategoryInteractor
 import kotlinx.coroutines.launch
+import java.io.IOException
 
 class HomeViewModel(
     private val loadBannerInteractor: LoadBannerInteractor,
@@ -27,11 +28,10 @@ class HomeViewModel(
                         HomeViewState.BannersList(it)
                     }
                 } else {
-                    reportError()
+                    state.value = HomeViewState.ServerErrorBanners
                 }
-
-            } catch (e: Exception) {
-                reportError()
+            } catch (e: IOException) {
+                state.value = HomeViewState.NetworkError
             }
         }
     }
@@ -42,15 +42,15 @@ class HomeViewModel(
                 val responseCategories = loadCategoryInteractor.execute()
 
                 if (responseCategories.isSuccessful) {
-                    state.value = responseCategories.body()?.let {
-                        HomeViewState.CategoriesList(it)
+                    responseCategories.body()?.let {
+                        state.value = HomeViewState.CategoriesList(it)
                     }
                 } else {
-                    reportError()
+                    state.value = HomeViewState.ServerErrorCategories
                 }
 
-            } catch (e: Exception) {
-                reportError()
+            } catch (e: IOException) {
+                state.value = HomeViewState.NetworkError
             }
         }
     }
@@ -61,20 +61,18 @@ class HomeViewModel(
                 val responseProducts = loadBestSellersInteractor.execute()
 
                 if (responseProducts.isSuccessful) {
-                    state.value = responseProducts.body()?.let {
-                        HomeViewState.ProductsList(it)
+
+                    responseProducts.body()?.let {
+                        state.value = HomeViewState.ProductsList(it)
                     }
                 } else {
-                    reportError()
+                    state.value = HomeViewState.ServerErrorBestSellers
                 }
 
-            } catch (e: Exception) {
-                reportError()
+            } catch (e: IOException) {
+                state.value = HomeViewState.NetworkError
             }
         }
     }
 
-    private fun reportError() {
-        state.value = HomeViewState.ShowErro(true)
-    }
 }

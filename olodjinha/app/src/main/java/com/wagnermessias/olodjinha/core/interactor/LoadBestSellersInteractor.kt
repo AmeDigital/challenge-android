@@ -6,7 +6,7 @@ import retrofit2.Response
 
 class LoadBestSellersInteractor(
     private val repository: ProductRepository
-){
+) {
     suspend fun execute(): Response<Products> {
         val call = repository.getBestSellers()
         return call.await()

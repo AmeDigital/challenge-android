@@ -6,7 +6,7 @@ import retrofit2.Response
 
 class LoadCategoryInteractor(
     private val repository: CategoryRepository
-){
+) {
     suspend fun execute(): Response<Categories> {
         val call = repository.getCategories()
         return call.await()

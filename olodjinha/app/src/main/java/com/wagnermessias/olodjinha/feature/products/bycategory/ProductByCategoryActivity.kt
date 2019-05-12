@@ -3,13 +3,12 @@ package com.wagnermessias.olodjinha.feature.products.bycategory
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.wagnermessias.olodjinha.R
+import com.wagnermessias.olodjinha.core.base.BaseActivity
 import com.wagnermessias.olodjinha.core.extensions.OnItemClickListener
 import com.wagnermessias.olodjinha.core.extensions.addOnItemClickListener
 import com.wagnermessias.olodjinha.core.model.Category
@@ -20,13 +19,13 @@ import kotlinx.android.synthetic.main.content_product_by_category.*
 import kotlinx.android.synthetic.main.product_by_category_activity.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ProductByCategoryActivity : AppCompatActivity() {
+class ProductByCategoryActivity : BaseActivity() {
 
-    private var productsList: ArrayList<Product> = ArrayList()
+    private val firstOffset = 0
     private var categoryId: Int = 0
+    private var productsList: ArrayList<Product> = ArrayList()
     private lateinit var linearLayoutManager: LinearLayoutManager
-    private val lastVisibleItemPosition: Int get() =
-        linearLayoutManager.findLastVisibleItemPosition()
+    private val lastVisibleItemPosition: Int get() = linearLayoutManager.findLastVisibleItemPosition()
     private lateinit var scrollListener: RecyclerView.OnScrollListener
 
     private val productsByCategoryViewModel: ProductsByCategoryViewModel by viewModel()
@@ -50,8 +49,15 @@ class ProductByCategoryActivity : AppCompatActivity() {
         productsByCategoryViewModel.byCategoryViewState.observe(this, Observer {
             when (it) {
                 is ProductsByCategoryViewState.ProductsByCategoryList -> setProducts(it.products)
+                is ProductsByCategoryViewState.NetworkError -> showErrorAndTryAgain(R.string.alert_error_network)
+                is ProductsByCategoryViewState.ServerError -> showErrorAndTryAgain(R.string.alert_error_server)
+                is ProductsByCategoryViewState.EmptyList -> showEmptyList()
             }
         })
+    }
+
+    private fun showEmptyList() {
+        text_no_product_found.visibility = View.VISIBLE
     }
 
     private fun initProductsByCategory(bundle: Bundle) {
@@ -59,15 +65,9 @@ class ProductByCategoryActivity : AppCompatActivity() {
         category.apply {
             categoryId = this.id
             title_category.text = this.description
-            loadProductsByCategory(this.id)
+            productsByCategoryViewModel.loadProductsByCategory(this.id, firstOffset)
         }
     }
-
-    private fun loadProductsByCategory(idCategory: Int) {
-        val firstOffset = 0
-        productsByCategoryViewModel.loadProductsByCategory(idCategory, firstOffset)
-    }
-
 
     private fun initListeners() {
         rv_products_by_category.addOnItemClickListener(object : OnItemClickListener {
@@ -75,6 +75,11 @@ class ProductByCategoryActivity : AppCompatActivity() {
                 startActivity(ProductDetailActivity.newInstance(this@ProductByCategoryActivity, productsList[position]))
             }
         })
+
+        button_try_again.setOnClickListener {
+            it.visibility = View.GONE
+            productsByCategoryViewModel.loadProductsByCategory(categoryId, firstOffset)
+        }
 
         toolbar_category.setNavigationOnClickListener {
             finish()
@@ -99,8 +104,6 @@ class ProductByCategoryActivity : AppCompatActivity() {
                 val totalItemCount = recyclerView.layoutManager?.itemCount
                 if (totalItemCount == lastVisibleItemPosition + 1) {
                     showProgress(true)
-                    Log.d("MyTAG", "Load new list")
-                    Log.d("MyTAG", "last total: " + totalItemCount)
                     productsByCategoryViewModel.loadProductsByCategory(categoryId, totalItemCount)
                     //rv_products_by_category.removeOnScrollListener(scrollListener)
                 }
@@ -111,6 +114,11 @@ class ProductByCategoryActivity : AppCompatActivity() {
 
     private fun showProgress(show: Boolean) {
         progress_category.visibility = if (show) View.VISIBLE else View.GONE
+    }
+
+    private fun showErrorAndTryAgain(idMenssage: Int) {
+        showAlertDialog(idMenssage)
+        button_try_again.visibility = View.VISIBLE
     }
 
     companion object {

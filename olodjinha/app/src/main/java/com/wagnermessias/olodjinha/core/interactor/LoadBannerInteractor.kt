@@ -6,7 +6,7 @@ import retrofit2.Response
 
 class LoadBannerInteractor(
     private val repository: BannerRepository
-){
+) {
     suspend fun execute(): Response<Banners> {
         val call = repository.execute()
         return call.await()

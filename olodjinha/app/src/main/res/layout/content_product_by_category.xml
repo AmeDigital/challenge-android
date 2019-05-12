@@ -22,6 +22,37 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
+    <TextView
+            android:id="@+id/text_no_product_found"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/no_produtcs_found"
+            android:gravity="center"
+            app:fontFamily="@font/roboto_bold"
+            android:textColor="@color/default_greyish_brown"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="@dimen/margin_default"/>
+
+    <Button android:id="@+id/button_try_again"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:text="@string/tentar_novamente"
+            android:textColor="@color/default_white"
+            android:paddingStart="@dimen/padding_default_small"
+            android:paddingEnd="@dimen/padding_default_small"
+            android:background="@drawable/background_purple"
+            android:gravity="center"
+            app:fontFamily="@font/roboto_bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="@dimen/margin_default"/>
+
     <ProgressBar
             android:id="@+id/progress_category"
             style="?android:attr/progressBarStyle"

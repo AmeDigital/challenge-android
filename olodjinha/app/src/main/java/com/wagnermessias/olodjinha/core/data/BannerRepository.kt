@@ -7,10 +7,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Response
 
-class BannerRepository (
+class BannerRepository(
     private val aLodjinhaApi: ALodjinhaApi
-){
-    suspend fun execute(): Deferred<Response<Banners>> = withContext(Dispatchers.IO){
+) {
+    suspend fun execute(): Deferred<Response<Banners>> = withContext(Dispatchers.IO) {
         aLodjinhaApi.getBanners()
     }
 }

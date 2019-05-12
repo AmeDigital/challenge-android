@@ -6,7 +6,7 @@ import retrofit2.Response
 
 class ReservationProductInteractor(
     private val repository: ProductRepository
-){
+) {
     suspend fun execute(productId: Int): Response<ReservationResponse> {
         val call = repository.reservationProduct(productId)
         return call.await()

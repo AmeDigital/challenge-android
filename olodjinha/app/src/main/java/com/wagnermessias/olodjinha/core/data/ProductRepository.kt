@@ -8,20 +8,22 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Response
 
-class ProductRepository (
+class ProductRepository(
     private val aLodjinhaApi: ALodjinhaApi
-){
-    private val limit_query_product  = 20
+) {
+    private val limit_query_product = 20
 
-    suspend fun getBestSellers(): Deferred<Response<Products>> = withContext(Dispatchers.IO){
+    suspend fun getBestSellers(): Deferred<Response<Products>> = withContext(Dispatchers.IO) {
         aLodjinhaApi.getProductsBestSellers()
     }
 
-    suspend fun getProductsByCategory(categoryId: Int, offset: Int): Deferred<Response<Products>> = withContext(Dispatchers.IO){
-        aLodjinhaApi.getProductsByCategory(categoryId,offset,limit_query_product)
-    }
+    suspend fun getProductsByCategory(categoryId: Int, offset: Int): Deferred<Response<Products>> =
+        withContext(Dispatchers.IO) {
+            aLodjinhaApi.getProductsByCategory(categoryId, offset, limit_query_product)
+        }
 
-    suspend fun reservationProduct(productId: Int): Deferred<Response<ReservationResponse>> = withContext(Dispatchers.IO){
-        aLodjinhaApi.reservationProduct(productId)
-    }
+    suspend fun reservationProduct(productId: Int): Deferred<Response<ReservationResponse>> =
+        withContext(Dispatchers.IO) {
+            aLodjinhaApi.reservationProduct(productId)
+        }
 }

@@ -4,25 +4,21 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.text.HtmlCompat
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.google.android.material.appbar.AppBarLayout
 import com.wagnermessias.olodjinha.R
+import com.wagnermessias.olodjinha.core.base.BaseActivity
 import com.wagnermessias.olodjinha.core.extensions.toCurrency
 import com.wagnermessias.olodjinha.core.model.Product
-import com.wagnermessias.olodjinha.feature.products.bycategory.ProductsByCategoryViewModel
-import com.wagnermessias.olodjinha.feature.products.bycategory.ProductsByCategoryViewState
 import kotlinx.android.synthetic.main.content_product_detail.*
 import kotlinx.android.synthetic.main.product_detail_activity.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
-class ProductDetailActivity : AppCompatActivity() {
+class ProductDetailActivity : BaseActivity() {
 
     private lateinit var product: Product
     private val productsDetailViewModel: ProductsDetailViewModel by viewModel()
@@ -41,8 +37,16 @@ class ProductDetailActivity : AppCompatActivity() {
         productsDetailViewModel.detailViewState.observe(this, Observer {
             when (it) {
                 is ProductsDetailViewState.ReservationProduct -> showSuccessReservation()
+                is ProductsDetailViewState.ServerError -> showAlertDialog(R.string.alert_error_server)
+                is ProductsDetailViewState.NetworkError -> showAlertDialog(R.string.alert_error_network)
+                is ProductsDetailViewState.ReservationError -> ShowError(it.value)
             }
         })
+    }
+
+    private fun ShowError(menssage: String) {
+        progress_detail.visibility = View.GONE
+        showAlertDialog(menssage)
     }
 
     private fun showSuccessReservation() {
@@ -50,7 +54,7 @@ class ProductDetailActivity : AppCompatActivity() {
         AlertDialog.Builder(this).apply {
             setCancelable(false)
             setMessage(getString(R.string.reservation_alert_msg_success))
-            setPositiveButton(getString(R.string.reservation_alert_button_ok)) { dialog, which ->
+            setPositiveButton(getString(R.string.reservation_alert_button_ok)) { dialog, _ ->
                 dialog.dismiss()
                 finish()
             }
@@ -62,7 +66,7 @@ class ProductDetailActivity : AppCompatActivity() {
         setSupportActionBar(toolbar_produc_detail)
         toolbar_layout.title = product.category.description
         toolbar_layout.setCollapsedTitleTextColor(
-            ContextCompat.getColor(this@ProductDetailActivity,R.color.default_white)
+            ContextCompat.getColor(this@ProductDetailActivity, R.color.default_white)
         )
     }
 
@@ -82,7 +86,7 @@ class ProductDetailActivity : AppCompatActivity() {
                 .placeholder(R.drawable.ic_placeholder)
                 .into(image_product_detail)
             setExpandedTitleColor(
-                ContextCompat.getColor(context,R.color.default_black)
+                ContextCompat.getColor(context, R.color.default_black)
             )
         }
 
@@ -100,16 +104,21 @@ class ProductDetailActivity : AppCompatActivity() {
     private fun initListeners() {
         app_bar.addOnOffsetChangedListener(object : AppBarLayout.OnOffsetChangedListener {
             override fun onOffsetChanged(appBarLayout: AppBarLayout?, verticalOffset: Int) {
-                if (Math.abs(verticalOffset) - appBarLayout!!.getTotalScrollRange() == 0) {
+                if (Math.abs(verticalOffset) - appBarLayout!!.totalScrollRange == 0) {
                     toolbar_layout.title = product.category.description
-                    toolbar_layout.setCollapsedTitleTextColor(ContextCompat.getColor(this@ProductDetailActivity,R.color.default_white_two))
+                    toolbar_layout.setCollapsedTitleTextColor(
+                        ContextCompat.getColor(
+                            this@ProductDetailActivity,
+                            R.color.default_white_two
+                        )
+                    )
                 } else {
                     toolbar_layout.title = ""
                 }
             }
         })
 
-        fab.setOnClickListener { view ->
+        fab.setOnClickListener {
             productsDetailViewModel.reservationProducts(product.id)
             showProgressAndDisableFab(true)
         }
@@ -122,10 +131,6 @@ class ProductDetailActivity : AppCompatActivity() {
     private fun showProgressAndDisableFab(show: Boolean) {
         fab.isEnabled = !show
         progress_detail.visibility = if (show) View.VISIBLE else View.GONE
-    }
-
-    private fun showError(){
-       Toast.makeText(this@ProductDetailActivity,"erro",Toast.LENGTH_LONG).show()
     }
 
     companion object {

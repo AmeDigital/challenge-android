@@ -6,6 +6,7 @@ import com.wagnermessias.olodjinha.core.base.BaseViewModel
 import com.wagnermessias.olodjinha.core.interactor.LoadProductByCategoryInteractor
 import com.wagnermessias.olodjinha.core.model.Product
 import kotlinx.coroutines.launch
+import java.io.IOException
 
 class ProductsByCategoryViewModel(
     private val loadProductByCategoryInteractor: LoadProductByCategoryInteractor
@@ -15,33 +16,30 @@ class ProductsByCategoryViewModel(
     private val state = MutableLiveData<ProductsByCategoryViewState>()
     val byCategoryViewState: LiveData<ProductsByCategoryViewState> = state
 
-    fun loadProductsByCategory(categoryId:Int,offset: Int) {
+    fun loadProductsByCategory(categoryId: Int, offset: Int) {
         launch {
             try {
-                val responseProducts = loadProductByCategoryInteractor.execute(categoryId,offset)
+                val responseProducts = loadProductByCategoryInteractor.execute(categoryId, offset)
 
                 if (responseProducts.isSuccessful) {
 
                     val newProducts = responseProducts.body()?.list
 
-                    if (newProducts != null) {
+                    if (newProducts != null && newProducts.size > 0) {
                         lastProducts.addAll(newProducts)
                     }
-                    state.value =
-                        ProductsByCategoryViewState.ProductsByCategoryList(
-                            lastProducts
-                        )
-                } else {
-                    reportError()
-                }
 
-            } catch (e: Exception) {
-                reportError()
+                    if (lastProducts.size > 0) {
+                        state.value = ProductsByCategoryViewState.ProductsByCategoryList(lastProducts)
+                    } else {
+                        state.value = ProductsByCategoryViewState.EmptyList
+                    }
+                } else {
+                    state.value = ProductsByCategoryViewState.ServerError
+                }
+            } catch (error: IOException) {
+                state.value = ProductsByCategoryViewState.NetworkError
             }
         }
-    }
-
-    private fun reportError() {
-        state.value = ProductsByCategoryViewState.ShowErro(true)
     }
 }

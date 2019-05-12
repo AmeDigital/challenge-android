@@ -1,53 +1,45 @@
 package com.wagnermessias.olodjinha.feature.home
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
+import androidx.appcompat.app.AlertDialog
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.navigation.NavigationView
 import com.viewpagerindicator.CirclePageIndicator
 import com.wagnermessias.olodjinha.R
+import com.wagnermessias.olodjinha.core.base.BaseActivity
 import com.wagnermessias.olodjinha.core.extensions.OnItemClickListener
 import com.wagnermessias.olodjinha.core.extensions.addOnItemClickListener
 import com.wagnermessias.olodjinha.core.model.*
 import com.wagnermessias.olodjinha.feature.about.AboutActivity
+import com.wagnermessias.olodjinha.feature.products.ProductsAdapter
 import com.wagnermessias.olodjinha.feature.products.bycategory.ProductByCategoryActivity
 import com.wagnermessias.olodjinha.feature.products.detail.ProductDetailActivity
-import com.wagnermessias.olodjinha.feature.products.ProductsAdapter
+import kotlinx.android.synthetic.main.home_app_bar.*
 import kotlinx.android.synthetic.main.home_content.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class HomeActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-    private lateinit var bannersPager: ViewPager
-    private lateinit var rvCategories: RecyclerView
-    private lateinit var rvProducts: RecyclerView
-
-    private lateinit var context: Context
 
     private lateinit var categoriesList: List<Category>
+    private var productsList: ArrayList<Product> = ArrayList()
 
     private val homeViewModel: HomeViewModel by viewModel()
 
-    private var productsList: ArrayList<Product> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.home_activity)
-        context = this
         setupViews()
         showProgress(true)
         observeViewModel()
@@ -56,17 +48,20 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun initListeners() {
-        rvCategories.addOnItemClickListener(object : OnItemClickListener {
+        categories_list.addOnItemClickListener(object : OnItemClickListener {
             override fun onItemClicked(position: Int, view: View) {
                 startActivity(
-                    ProductByCategoryActivity.newInstance(context,
-                                                                    categoriesList[position]))
+                    ProductByCategoryActivity.newInstance(
+                        this@HomeActivity,
+                        categoriesList[position]
+                    )
+                )
             }
         })
 
-        rvProducts.addOnItemClickListener(object : OnItemClickListener {
+        products_list.addOnItemClickListener(object : OnItemClickListener {
             override fun onItemClicked(position: Int, view: View) {
-                startActivity(ProductDetailActivity.newInstance(this@HomeActivity,                            productsList[position]))
+                startActivity(ProductDetailActivity.newInstance(this@HomeActivity, productsList[position]))
             }
         })
     }
@@ -83,24 +78,21 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 is HomeViewState.BannersList -> setBanners(it.banners)
                 is HomeViewState.CategoriesList -> setCategories(it.categories)
                 is HomeViewState.ProductsList -> setProducts(it.products)
+                is HomeViewState.ServerErrorBanners -> showDialogErros(R.string.alert_error_server)
+                is HomeViewState.NetworkError -> showDialogErros(R.string.alert_error_network)
             }
         })
     }
 
     private fun setupViews() {
+        categories_list.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        products_list.layoutManager = LinearLayoutManager(this)
 
-        bannersPager = findViewById(R.id.bannersPager)
-        rvCategories = findViewById(R.id.categories_list)
-        rvProducts = findViewById(R.id.products_list)
-        rvCategories.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        rvProducts.layoutManager = LinearLayoutManager(this)
-
-        val toolbar: Toolbar = findViewById(R.id.toolbar_home)
 
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
         val toggle = ActionBarDrawerToggle(
-            this, drawerLayout, toolbar,
+            this, drawerLayout, toolbar_home,
             R.string.navigation_drawer_open,
             R.string.navigation_drawer_close
         )
@@ -116,23 +108,27 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         pageIndicatorView.setViewPager(bannersPager)
         bannersPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {}
-            override fun onPageScrolled(position: Int,
-                                        positionOffset: Float,
-                                        positionOffsetPixels: Int) {}
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+            }
+
             override fun onPageSelected(position: Int) {
-                Toast.makeText(context,"Test",Toast.LENGTH_SHORT).show()
+                //Toast.makeText(context,"Test",Toast.LENGTH_SHORT).show()
             }
         })
     }
 
     private fun setCategories(categories: Categories) {
-        rvCategories.adapter = CategoriesAdapter(categories.list)
+        categories_list.adapter = CategoriesAdapter(categories.list)
         categoriesList = categories.list
     }
 
     private fun setProducts(products: Products) {
         productsList = products.list
-        rvProducts.adapter = ProductsAdapter(products.list, this)
+        products_list.adapter = ProductsAdapter(products.list, this)
         showProgress(false)
     }
 
@@ -146,9 +142,23 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
         return true
+    }
+
+    fun showDialogErros(stringId: Int) {
+        AlertDialog.Builder(this).apply {
+            setCancelable(false)
+            setMessage(getString(stringId))
+            setPositiveButton(getString(R.string.alert_try_again)) { dialog, _ ->
+                dialog.dismiss()
+                loadData()
+            }
+            setNegativeButton(getString(R.string.alert_cancel)) { dialog, _ ->
+                finish()
+            }
+            create().show()
+        }
     }
 
     private fun showProgress(show: Boolean) {
@@ -160,10 +170,10 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         when (item.itemId) {
             R.id.nav_home -> {
                 finish()
-                startActivity(Intent(context, HomeActivity::class.java))
+                startActivity(Intent(this@HomeActivity, HomeActivity::class.java))
             }
             R.id.nav_about -> {
-                startActivity(Intent(context, AboutActivity::class.java))
+                startActivity(AboutActivity.newInstance(this@HomeActivity))
             }
         }
 

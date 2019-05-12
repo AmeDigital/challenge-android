@@ -6,12 +6,9 @@ import java.io.Serializable
 class Category(
     @SerializedName("id")
     val id: Int,
-
     @SerializedName("urlImagem")
     val urlImage: String,
-
     @SerializedName("descricao")
     val description
     : String
-
 ): Serializable

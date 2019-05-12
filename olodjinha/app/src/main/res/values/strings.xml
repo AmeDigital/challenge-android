@@ -112,4 +112,10 @@
     <string name="image_product">Imagem do produto</string>
     <string name="reservation_alert_msg_success">Produto reservado com Sucesso</string>
     <string name="reservation_alert_button_ok">OK</string>
+    <string name="alert_error_network">Sem conexão com a internet </string>
+    <string name="alert_error_server">Erro no servidor </string>
+    <string name="no_produtcs_found">Nenhum produto foi encontrado</string>
+    <string name="tentar_novamente">Try again</string>
+    <string name="alert_try_again">Tentar novamente</string>
+    <string name="alert_cancel">Sair</string>
 </resources>

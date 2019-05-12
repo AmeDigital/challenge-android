@@ -4,18 +4,17 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.wagnermessias.olodjinha.core.base.BaseViewModel
 import com.wagnermessias.olodjinha.core.interactor.ReservationProductInteractor
-import com.wagnermessias.olodjinha.core.model.Product
 import kotlinx.coroutines.launch
+import java.io.IOException
 
 class ProductsDetailViewModel(
     private val reservationProduct: ReservationProductInteractor
 
 ) : BaseViewModel() {
-    private val lastProducts: ArrayList<Product> = ArrayList()
     private val state = MutableLiveData<ProductsDetailViewState>()
     val detailViewState: LiveData<ProductsDetailViewState> = state
 
-    fun reservationProducts(productId:Int) {
+    fun reservationProducts(productId: Int) {
         launch {
             try {
                 val responseProducts = reservationProduct.execute(productId)
@@ -24,25 +23,20 @@ class ProductsDetailViewModel(
 
                     val response = responseProducts.body()
 
-                    if (response != null && response.result.equals("success")) {
-                        state.value =
-                            ProductsDetailViewState.ReservationProduct(
-                                response
-                            )
-                    }else{
-                        reportError()
+                    if (response != null) {
+
+                        if (response.result.equals("success")) {
+                            state.value = ProductsDetailViewState.ReservationProduct(response)
+                        } else {
+                            state.value = ProductsDetailViewState.ReservationError(response.mensagem)
+                        }
                     }
                 } else {
-                    reportError()
+                    state.value = ProductsDetailViewState.ServerError
                 }
-
-            } catch (e: Exception) {
-                reportError()
+            } catch (e: IOException) {
+                state.value = ProductsDetailViewState.NetworkError
             }
         }
-    }
-
-    private fun reportError() {
-        state.value = ProductsDetailViewState.ShowErro(true)
     }
 }

@@ -30,9 +30,6 @@ internal class CategoriesAdapter(private val categories: List<Category>)
                     .centerCrop()
                     .placeholder(R.drawable.ic_placeholder)
                     .into(this)
-//                setOnClickListener {
-//                    //Toast.makeText(context, "Você clicou na imagem: " + (position + 1), Toast.LENGTH_LONG).show()
-//                }
             }
         }
     }

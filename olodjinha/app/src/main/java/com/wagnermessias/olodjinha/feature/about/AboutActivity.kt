@@ -2,12 +2,12 @@ package com.wagnermessias.olodjinha.feature.about
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.wagnermessias.olodjinha.R
+import com.wagnermessias.olodjinha.core.base.BaseActivity
 import kotlinx.android.synthetic.main.about_activity.*
 
-class AboutActivity : AppCompatActivity() {
+class AboutActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,8 +16,6 @@ class AboutActivity : AppCompatActivity() {
     }
 
     private fun initListeners() {
-
-
         toolbar_about.setNavigationOnClickListener {
             finish()
         }

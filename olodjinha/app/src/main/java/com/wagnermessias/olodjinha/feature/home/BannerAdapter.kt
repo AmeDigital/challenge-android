@@ -1,6 +1,5 @@
 package com.wagnermessias.olodjinha.feature.home
 
-//import com.bumptech.glide.Glide
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,7 +25,7 @@ class BannerAdapter(private val banners: List<Banner>) : PagerAdapter() {
                 .centerCrop()
                 .into(this)
             setOnClickListener {
-                //Toast.makeText(context, "Você clicou na imagem: " + (position + 1), Toast.LENGTH_LONG).show()
+                //Toast.makeText(context, "Você clicou na imagem, Toast.LENGTH_LONG).show()
             }
         }
         container.addView(view)

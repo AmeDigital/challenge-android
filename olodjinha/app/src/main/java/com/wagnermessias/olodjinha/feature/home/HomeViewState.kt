@@ -8,5 +8,8 @@ sealed class HomeViewState {
     data class BannersList(val banners: Banners): HomeViewState()
     data class CategoriesList(val categories: Categories): HomeViewState()
     data class ProductsList(val products: Products): HomeViewState()
-    data class ShowErro(val value: Boolean ): HomeViewState()
+    object ServerErrorBanners : HomeViewState()
+    object ServerErrorCategories : HomeViewState()
+    object ServerErrorBestSellers : HomeViewState()
+    object NetworkError : HomeViewState()
 }
