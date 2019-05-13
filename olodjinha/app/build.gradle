@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply from: './detekt.gradle'
+
 android {
     packagingOptions {
         exclude 'META-INF/atomicfu.kotlin_module'
