@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#5e2a84</color>
+    <color name="colorPrimaryDark">#5e2a84</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="default_tomato">#f15025</color>
+    <color name="default_greyish">#aaaaaa</color>
+    <color name="default_greyish_brown">#4a4a4a</color>
+    <color name="default_background">#fafafa</color>
+    <color name="default_dark">#2d3142</color>
+    <color name="default_white">#FFFFFF</color>
+    <color name="default_white_two">#d5d5d5</color>
+    <color name="default_black">#000000</color>
+
+</resources>

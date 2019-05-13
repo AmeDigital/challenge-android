@@ -1,0 +1,45 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="nav_header_height">176dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="default_padding">8dp</dimen>
+    <dimen name="default_margin">16dp</dimen>
+    <dimen name="item_category_size">50dp</dimen>
+    <dimen name="item_category_width">90dp</dimen>
+    <dimen name="item_category_height">100dp</dimen>
+    <dimen name="item_product_height">100dp</dimen>
+    <dimen name="image_item_category">45dp</dimen>
+    <dimen name="category_desc">13sp</dimen>
+    <dimen name="product_desc">18sp</dimen>
+    <dimen name="app_bar_height">240dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+    <dimen name="logo_menu">24sp</dimen>
+    <dimen name="margin_default">16dp</dimen>
+    <dimen name="circle_logo_menu">60dp</dimen>
+    <dimen name="margin_default_small">8dp</dimen>
+    <dimen name="padding_default_small">4dp</dimen>
+    <dimen name="default_radius">4dp</dimen>
+    <dimen name="text_diver_sessao">17sp</dimen>
+    <dimen name="price_from">12sp</dimen>
+    <dimen name="title_toolbar_size">22sp</dimen>
+    <dimen name="logo_about">64sp</dimen>
+    <dimen name="develop_name">14sp</dimen>
+    <dimen name="date_development">12sp</dimen>
+    <dimen name="margin_bottom_about">35dp</dimen>
+    <dimen name="margin_default_min">2dp</dimen>
+    <dimen name="price_per">20sp</dimen>
+    <dimen name="logo_bar">24dp</dimen>
+    <dimen name="banners_height">100dp</dimen>
+    <dimen name="recyclerview_category_height">100dp</dimen>
+    <dimen name="item_product_width">90dp</dimen>
+    <dimen name="margin_top_price">22dp</dimen>
+    <dimen name="price_per_size">20sp</dimen>
+    <dimen name="margin_default_4">4dp</dimen>
+    <dimen name="arrow_width">20dp</dimen>
+    <dimen name="guide_100">100dp</dimen>
+    <dimen name="divider_min">1dp</dimen>
+    <dimen name="default_radius_big">8dp</dimen>
+</resources>

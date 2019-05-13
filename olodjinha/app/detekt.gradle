@@ -1,0 +1,22 @@
+apply plugin: "io.gitlab.arturbosch.detekt"
+
+detekt {
+    config = files("$projectDir/detekt/detekt-config.yml")
+    filters = ".*test.*,.*/resources/.*,.*/tmp/.*"
+    parallel = true
+    //baseline = file("$projectDir/baseline.xml")
+
+    reports {
+        xml {
+            enabled = true
+            destination = file("$rootDir/detekt.xml")
+        }
+        html {
+            enabled = true
+            destination = file("$rootDir/detekt.html")
+        }
+    }
+}
+
+
+

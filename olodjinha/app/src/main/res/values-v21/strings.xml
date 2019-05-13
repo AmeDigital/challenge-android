@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="developer">Wagner Messias Cavalcanti</string>
+    <string name="logo_app">Logo marca da Lodjinha</string>
+    <string name="title_about">Sobre</string>
+    <string name="image_product">Imagem do produto</string>
+    <string name="no_produtcs_found">Nenhum produto foi encontrado</string>
+    <string name="tentar_novamente">try_again</string>
+</resources>
