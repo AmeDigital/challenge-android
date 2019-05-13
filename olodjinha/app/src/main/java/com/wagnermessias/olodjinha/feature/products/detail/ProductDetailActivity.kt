@@ -21,7 +21,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class ProductDetailActivity : BaseActivity() {
 
     private lateinit var product: Product
-    private val productsDetailViewModel: ProductsDetailViewModel by viewModel()
+    private val productDetailViewModel: ProductDetailViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,12 +34,12 @@ class ProductDetailActivity : BaseActivity() {
     }
 
     private fun observeViewModel() {
-        productsDetailViewModel.detailViewState.observe(this, Observer {
+        productDetailViewModel.detailViewState.observe(this, Observer {
             when (it) {
-                is ProductsDetailViewState.ReservationProduct -> showSuccessReservation()
-                is ProductsDetailViewState.ServerError -> showAlertDialog(R.string.alert_error_server)
-                is ProductsDetailViewState.NetworkError -> showAlertDialog(R.string.alert_error_network)
-                is ProductsDetailViewState.ReservationError -> ShowError(it.value)
+                is ProductDetailViewState.ReservationProduct -> showSuccessReservation()
+                is ProductDetailViewState.ServerError -> showAlertDialog(R.string.alert_error_server)
+                is ProductDetailViewState.NetworkError -> showAlertDialog(R.string.alert_error_network)
+                is ProductDetailViewState.ReservationError -> ShowError(it.value)
             }
         })
     }
@@ -119,7 +119,7 @@ class ProductDetailActivity : BaseActivity() {
         })
 
         fab.setOnClickListener {
-            productsDetailViewModel.reservationProducts(product.id)
+            productDetailViewModel.reservationProducts(product.id)
             showProgressAndDisableFab(true)
         }
 

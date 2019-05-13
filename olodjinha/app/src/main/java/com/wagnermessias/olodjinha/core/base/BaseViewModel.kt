@@ -1,19 +1,19 @@
 package com.wagnermessias.olodjinha.core.base
 
 import androidx.lifecycle.ViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.cancelChildren
+import kotlinx.coroutines.*
 
-abstract class BaseViewModel: ViewModel(), CoroutineScope {
+abstract class BaseViewModel(mainDispatcher: CoroutineDispatcher): ViewModel(), CoroutineScope {
     override val coroutineContext = Dispatchers.Main
 
-    private val viewModelJob = SupervisorJob()
+    private val job = SupervisorJob()
+
+    protected val scope = CoroutineScope(mainDispatcher + job)
+
 
     override fun onCleared() {
         super.onCleared()
-        viewModelJob.cancelChildren()
+        job.cancelChildren()
     }
 
 }

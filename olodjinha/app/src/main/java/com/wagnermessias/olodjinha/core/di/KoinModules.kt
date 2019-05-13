@@ -8,7 +8,7 @@ import com.wagnermessias.olodjinha.core.data.ProductRepository
 import com.wagnermessias.olodjinha.core.interactor.*
 import com.wagnermessias.olodjinha.feature.home.HomeViewModel
 import com.wagnermessias.olodjinha.feature.products.bycategory.ProductsByCategoryViewModel
-import com.wagnermessias.olodjinha.feature.products.detail.ProductsDetailViewModel
+import com.wagnermessias.olodjinha.feature.products.detail.ProductDetailViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 
 import org.koin.dsl.module
@@ -32,5 +32,5 @@ val productsModule = module {
 
 val productsDetailModule = module {
     factory { ReservationProductInteractor(get()) }
-    viewModel { ProductsDetailViewModel(get()) }
+    viewModel { ProductDetailViewModel(get()) }
 }
