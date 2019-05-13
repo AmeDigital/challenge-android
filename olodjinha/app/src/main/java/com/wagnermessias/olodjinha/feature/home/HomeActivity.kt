@@ -18,13 +18,20 @@ import com.wagnermessias.olodjinha.R
 import com.wagnermessias.olodjinha.core.base.BaseActivity
 import com.wagnermessias.olodjinha.core.extensions.OnItemClickListener
 import com.wagnermessias.olodjinha.core.extensions.addOnItemClickListener
-import com.wagnermessias.olodjinha.core.model.*
+import com.wagnermessias.olodjinha.core.model.Category
+import com.wagnermessias.olodjinha.core.model.Product
+import com.wagnermessias.olodjinha.core.model.Banners
+import com.wagnermessias.olodjinha.core.model.Products
+import com.wagnermessias.olodjinha.core.model.Categories
 import com.wagnermessias.olodjinha.feature.about.AboutActivity
 import com.wagnermessias.olodjinha.feature.products.ProductsAdapter
 import com.wagnermessias.olodjinha.feature.products.bycategory.ProductByCategoryActivity
 import com.wagnermessias.olodjinha.feature.products.detail.ProductDetailActivity
-import kotlinx.android.synthetic.main.home_app_bar.*
-import kotlinx.android.synthetic.main.home_content.*
+import kotlinx.android.synthetic.main.home_app_bar.toolbar_home
+import kotlinx.android.synthetic.main.home_content.categories_list
+import kotlinx.android.synthetic.main.home_content.products_list
+import kotlinx.android.synthetic.main.home_content.bannersPager
+import kotlinx.android.synthetic.main.home_content.progress_home
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 

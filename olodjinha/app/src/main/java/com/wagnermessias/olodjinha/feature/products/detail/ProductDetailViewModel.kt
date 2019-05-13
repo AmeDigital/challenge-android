@@ -17,7 +17,7 @@ class ProductDetailViewModel(
     val detailViewState: LiveData<ProductDetailViewState> = state
 
     fun reservationProducts(productId: Int) {
-        launch {
+        scope.launch {
             try {
                 val responseProducts = reservationProduct.execute(productId)
 

@@ -39,12 +39,12 @@ class ProductDetailActivity : BaseActivity() {
                 is ProductDetailViewState.ReservationProduct -> showSuccessReservation()
                 is ProductDetailViewState.ServerError -> showAlertDialog(R.string.alert_error_server)
                 is ProductDetailViewState.NetworkError -> showAlertDialog(R.string.alert_error_network)
-                is ProductDetailViewState.ReservationError -> ShowError(it.value)
+                is ProductDetailViewState.ReservationError -> showError(it.value)
             }
         })
     }
 
-    private fun ShowError(menssage: String) {
+    private fun showError(menssage: String) {
         progress_detail.visibility = View.GONE
         showAlertDialog(menssage)
     }

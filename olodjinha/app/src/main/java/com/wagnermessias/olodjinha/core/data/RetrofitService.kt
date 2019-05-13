@@ -2,7 +2,6 @@ package com.wagnermessias.olodjinha.core.data
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -20,11 +19,6 @@ internal class RetrofitService {
         }
 
         private val client: OkHttpClient = OkHttpClient.Builder().apply {
-            if (true) {
-                val interceptor = HttpLoggingInterceptor()
-                interceptor.level = HttpLoggingInterceptor.Level.BODY
-                this.addInterceptor(interceptor)
-            }
         }.build()
     }
 }
