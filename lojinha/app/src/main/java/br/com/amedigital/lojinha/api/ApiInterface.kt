@@ -5,6 +5,7 @@ import com.br.cinesky.model.BannerResponse
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 
 interface ApiInterface {
@@ -16,7 +17,7 @@ interface ApiInterface {
     fun getCategoria(): Observable<CategoriaResponse>
 
     @GET("/produto")
-    fun getProduto(): Observable<List<ProdutoResponse>>
+    fun getProduto(@Query("categoriaId") id: String): Observable<ProdutoResponse>
 
     @GET("/produto/maisvendidos")
     fun getMaisVendidos(): Observable<MaisVendidoResponse>

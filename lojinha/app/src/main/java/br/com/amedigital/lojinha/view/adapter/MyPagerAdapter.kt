@@ -8,13 +8,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.Toast
 import br.com.amedigital.lojinha.R
 import br.com.amedigital.lojinha.model.Banner
-import br.com.amedigital.lojinha.view.HomeFragment
+import br.com.amedigital.lojinha.view.fragment.HomeFragment
 import com.br.cinesky.model.BannerResponse
 import com.br.cinesky.model.Datum
-import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 
 

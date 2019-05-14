@@ -10,7 +10,7 @@ import android.widget.TextView
 import br.com.amedigital.lojinha.R
 import br.com.amedigital.lojinha.model.Categoria
 import br.com.amedigital.lojinha.model.CategoriaResponse
-import br.com.amedigital.lojinha.view.HomeFragment
+import br.com.amedigital.lojinha.view.fragment.HomeFragment
 import com.squareup.picasso.Picasso
 
 class CategoryAdapter(
@@ -43,7 +43,7 @@ class CategoryAdapter(
             .into(viewHolder.thumbNail)
 
         viewHolder.view.setOnClickListener {
-
+            homeFragment.open(categorys,position)
 
         }
     }

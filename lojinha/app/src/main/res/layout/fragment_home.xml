@@ -10,13 +10,14 @@
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".view.HomeFragment">
+            tools:context=".view.fragment.HomeFragment">
 
 
         <RelativeLayout
                 android:id="@+id/linViewPager"
                 android:layout_width="match_parent"
-                android:layout_height="150dp">
+                android:layout_height="150dp"
+                android:visibility="gone">
 
             <android.support.v4.view.ViewPager
                     android:id="@+id/vpComponent"
@@ -68,6 +69,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/colorWhite"
+                android:visibility="invisible"
                 android:layout_below="@+id/title"/>
 
         <android.support.v7.widget.RecyclerView
@@ -84,6 +86,7 @@
                 android:layout_height="1dp"
                 android:background="@color/colorWhite"
                 android:layout_marginTop="16dp"
+                android:visibility="invisible"
                 android:layout_below="@+id/recyclerCategories"/>
 
         <TextView

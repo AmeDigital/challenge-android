@@ -11,11 +11,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import br.com.amedigital.lojinha.R
 import br.com.amedigital.lojinha.model.Categoria
-import br.com.amedigital.lojinha.model.CategoriaResponse
 import br.com.amedigital.lojinha.model.MaisVendido
 import br.com.amedigital.lojinha.model.MaisVendidoResponse
-import br.com.amedigital.lojinha.view.HomeFragment
-import br.com.amedigital.lojinha.view.ProductDetailActivity
+import br.com.amedigital.lojinha.model.Produto
+import br.com.amedigital.lojinha.view.fragment.HomeFragment
+import br.com.amedigital.lojinha.view.activity.ProductDetailActivity
 import com.squareup.picasso.Picasso
 
 class BestSellersAdapter(
@@ -37,7 +37,7 @@ class BestSellersAdapter(
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        var maisVendido: MaisVendido = categoryList.data!![position]
+        var maisVendido: Produto = categoryList.data!![position]
         var context: Context = viewHolder.view.context
 
         viewHolder.setData(maisVendido)
@@ -70,7 +70,7 @@ class BestSellersAdapter(
         var nomeProduto: TextView = view.findViewById(R.id.tvProductName)
         var precoDe: TextView = view.findViewById(R.id.rbPriceDe)
         var precoPor: TextView = view.findViewById(R.id.rbPricePor)
-        fun setData(maisVendido: MaisVendido) {
+        fun setData(maisVendido: Produto) {
             nomeProduto.text = maisVendido.nome +" "+ maisVendido.descricao
 
         }

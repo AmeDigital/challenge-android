@@ -2,6 +2,12 @@ package br.com.amedigital.lojinha.model
 
 import java.io.Serializable
 
-class Produto(id: Int, nome: String, urlImagem: String,
-              descricao: String, precoDe: Double, precoPor: Double,
-              categorias: List<CategoriaResponse>): Serializable
+class Produto(
+    var id: Int? = null,
+    val nome: String? = null,
+    val urlImagem: String? = null,
+    val descricao: String? = null,
+    val precoDe: Double? = null,
+    val precoPor: Double? = null,
+    val categoria: Categoria? = null
+) : Serializable
