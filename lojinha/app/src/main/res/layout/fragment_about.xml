@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.AboutFragment">
+
+    <ImageView
+            android:id="@+id/iconDrawer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_above="@+id/titleAbout"
+            android:src="@drawable/logo_sobre"/>
+
+    <TextView
+            android:id="@+id/titleAbout"
+            android:fontFamily="@font/pacifico_regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:textSize="64sp"
+            android:text="a Lojinha"
+            android:textColor="@color/colorGreyishBrow"/>
+
+    <TextView
+            android:id="@+id/myName"
+            android:fontFamily="@font/roboto_medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_above="@+id/date"
+            android:textSize="14sp"
+            android:layout_marginBottom="10dp"
+            android:text="Wesley Farias Góes"
+            android:textColor="@color/colorGreyishBrow"/>
+    <TextView
+            android:id="@+id/date"
+            android:fontFamily="@font/roboto_light"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp"
+            android:textSize="12sp"
+            android:text="13 de maio de 2019"
+            android:textColor="@color/colorGreyishBrow"/>
+</RelativeLayout>

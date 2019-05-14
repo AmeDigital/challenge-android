@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">aLojinha</string>
+
+    <string name="navigation_drawer_open">Menu gaveta aberto</string>
+    <string name="navigation_drawer_close">Menu gaveta fechado</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="categoria">Categoria</string>
+    <string name="maisvendidos">Mais vendidos</string>
+    <string name="preco_de">De:</string>
+    <string name="preco_por">Por</string>
+    <string name="url_submarino">https://www.submarino.com.br</string>
+
+</resources>

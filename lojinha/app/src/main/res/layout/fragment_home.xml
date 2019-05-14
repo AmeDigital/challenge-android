@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:fillViewport="true">
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".view.HomeFragment">
+
+
+        <RelativeLayout
+                android:id="@+id/linViewPager"
+                android:layout_width="match_parent"
+                android:layout_height="150dp">
+
+            <android.support.v4.view.ViewPager
+                    android:id="@+id/vpComponent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|bottom"
+                    android:clipToPadding="false"
+                    tools:listitem="@layout/page_layout"/>
+
+            <com.rd.PageIndicatorView
+                    android:id="@+id/vpIndicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/margin_8_dp"
+                    android:layout_marginTop="@dimen/margin_8_dp"
+                    android:layout_marginEnd="@dimen/margin_8_dp"
+                    android:layout_marginBottom="@dimen/margin_8_dp"
+                    android:shadowColor="@color/colorWarmPurple"
+                    app:piv_animationType="color"
+                    app:piv_dynamicCount="true"
+                    android:elevation="16dp"
+                    app:piv_padding="12dp"
+                    app:piv_radius="5dp"
+                    app:piv_selectedColor="@color/colorGreyishBrow"
+                    app:piv_unselectedColor="@color/colorWarmPurple"/>
+        </RelativeLayout>
+
+
+        <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Categoria"
+                android:textColor="@color/colorPrimaryDark"
+                android:fontFamily="@font/roboto_regular"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:layout_marginStart="@dimen/margin_8_dp"
+                android:layout_marginEnd="@dimen/margin_8_dp"
+                android:layout_marginTop="@dimen/margin_8_dp"
+                android:layout_marginBottom="@dimen/margin_8_dp"
+                android:layout_below="@+id/linViewPager"/>
+
+        <View
+                android:id="@+id/viewLineOne"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorWhite"
+                android:layout_below="@+id/title"/>
+
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerCategories"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_below="@+id/viewLineOne"/>
+
+        <View
+                android:id="@+id/viewLineTwo"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorWhite"
+                android:layout_marginTop="16dp"
+                android:layout_below="@+id/recyclerCategories"/>
+
+        <TextView
+                android:id="@+id/tvMaisVendidos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimaryDark"
+                android:fontFamily="@font/roboto_regular"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:layout_marginStart="@dimen/margin_8_dp"
+                android:layout_marginEnd="@dimen/margin_8_dp"
+                android:layout_marginTop="@dimen/margin_8_dp"
+                android:layout_marginBottom="@dimen/margin_8_dp"
+                android:layout_below="@+id/viewLineTwo"/>
+
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerMaisVendidos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_below="@+id/tvMaisVendidos"
+                tools:listitem="@layout/best_sellers_item_layout"/>
+
+
+    </RelativeLayout>
+</android.support.v4.widget.NestedScrollView>
