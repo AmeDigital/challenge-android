@@ -12,11 +12,9 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".view.activity.ProductDetailListActivity"
-                  android:parentActivityName=".view.activity.MainActivity">
+        <activity android:name=".view.activity.ProductDetailListActivity">
         </activity>
-        <activity android:name=".view.activity.ProductDetailActivity"
-                  android:parentActivityName=".view.activity.MainActivity">
+        <activity android:name=".view.activity.ProductDetailActivity">
         </activity>
         <activity
                 android:name=".view.activity.MainActivity"

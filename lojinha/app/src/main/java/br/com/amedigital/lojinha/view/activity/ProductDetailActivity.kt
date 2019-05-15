@@ -1,24 +1,29 @@
 package br.com.amedigital.lojinha.view.activity
 
 import android.app.AlertDialog
+import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.graphics.PorterDuff
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
+import android.view.MenuItem
 import android.view.View
-import br.com.amedigital.lojinha.R
-import br.com.amedigital.lojinha.model.MaisVendido
+import br.com.amedigital.lojinha.api.response.ResultResponse
 import br.com.amedigital.lojinha.model.Produto
+import br.com.amedigital.lojinha.viewmodel.ProductListViewModel
 import com.br.cinesky.base.BaseActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_product_detail.*
-import kotlinx.android.synthetic.main.activity_product_detail.fab
 import kotlinx.android.synthetic.main.activity_product_detail_list.*
 import java.util.*
 
+
 class ProductDetailActivity : BaseActivity() {
     private lateinit var maisVendido: Produto
+    private lateinit var viewModel: ProductListViewModel
 
     companion object {
         private const val PRODUCT: String = "PRODUCT"
@@ -31,29 +36,35 @@ class ProductDetailActivity : BaseActivity() {
     }
 
     override fun getRootLayoutId(): Int {
-        return R.layout.activity_product_detail
+        return br.com.amedigital.lojinha.R.layout.activity_product_detail
     }
 
     override fun setupView(savedInstanceState: Bundle?) {
         intent.extras?.let {
             maisVendido = it.getSerializable(PRODUCT) as Produto
         }
-
+        initializeViewModel()
         binds()
+    }
+
+    private fun initializeViewModel() {
+        if (!this::viewModel.isInitialized) {
+            viewModel = ViewModelProviders.of(this).get(ProductListViewModel::class.java)
+            setObserveLive(viewModel)
+        }
     }
 
     private fun binds() {
         tbProoductDetail.title = maisVendido.nome
         tbProoductDetail.setNavigationOnClickListener { onBackPressed() }
-        if(toolbar != null){
+        if (toolbar != null) {
             setSupportActionBar(toolbar)
             supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-            supportActionBar!!.setHomeButtonEnabled(true)
         }
         tvProductName.text = maisVendido.nome
         tvDescription.text = maisVendido.descricao
-        rbPriceDe.text = getString(R.string.preco_de)+maisVendido.precoDe.toString()
-        rbPricePor.text = getString(R.string.preco_por)+ maisVendido.precoPor.toString()
+        rbPriceDe.text = getString(br.com.amedigital.lojinha.R.string.preco_de) + maisVendido.precoDe.toString()
+        rbPricePor.text = getString(br.com.amedigital.lojinha.R.string.preco_por) + maisVendido.precoPor.toString()
         setupToolbar()
         setupImageToolbar(maisVendido.urlImagem!!)
 
@@ -62,8 +73,8 @@ class ProductDetailActivity : BaseActivity() {
 
             builder.setMessage("Produto reservado com sucesso")
 
-            builder.setPositiveButton("OK"){dialog, which ->
-
+            builder.setPositiveButton("OK") { dialog, which ->
+                open()
             }
 
             val dialog: AlertDialog = builder.create()
@@ -73,25 +84,43 @@ class ProductDetailActivity : BaseActivity() {
 
     }
 
+    private fun open() {
+    }
+
+
     private fun setupToolbar() {
         setSupportActionBar(tbProoductDetail)
 
-        val upArrow = resources.getDrawable(R.drawable.ic_arrow_back_black_24dp).mutate()
-        upArrow.setColorFilter(resources.getColor(R.color.colorWhite), PorterDuff.Mode.SRC_ATOP)
+        val upArrow = resources.getDrawable(br.com.amedigital.lojinha.R.drawable.ic_arrow_back_black_24dp).mutate()
+        upArrow.setColorFilter(
+            resources.getColor(br.com.amedigital.lojinha.R.color.colorPrimaryDark),
+            PorterDuff.Mode.SRC_ATOP
+        )
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Objects.requireNonNull(supportActionBar)!!.setHomeAsUpIndicator(upArrow)
             Objects.requireNonNull(supportActionBar)!!.setDisplayHomeAsUpEnabled(true)
         }
 
-        collapsingToolbar.setExpandedTitleColor(resources.getColor(R.color.colorWhite))
-        collapsingToolbar.setCollapsedTitleTextColor(resources.getColor(R.color.colorWhite))
+        collapsingToolbar.setExpandedTitleColor(resources.getColor(br.com.amedigital.lojinha.R.color.colorWhite))
+        collapsingToolbar.setCollapsedTitleTextColor(resources.getColor(br.com.amedigital.lojinha.R.color.colorWhite))
         collapsingToolbar.collapsedTitleGravity = View.TEXT_ALIGNMENT_GRAVITY
     }
 
-    fun setupImageToolbar(imagePath: String) {
+    private fun setupImageToolbar(imagePath: String) {
         Picasso.with(this)
             .load(imagePath)
             .into(ivMovieImage)
     }
 
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item!!.itemId) {
+            android.R.id.home -> finish() // Finaliza a Activity atual e assim volta para a tela anterior
+            else -> {
+            }
+        }
+        return true
+    }
+
 }
+
+

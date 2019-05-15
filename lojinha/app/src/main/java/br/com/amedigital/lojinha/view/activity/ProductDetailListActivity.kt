@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import br.com.amedigital.lojinha.R
 import br.com.amedigital.lojinha.extension.setDefaultVerticalSettings
@@ -14,7 +15,6 @@ import br.com.amedigital.lojinha.view.adapter.ProductListAdapter
 import br.com.amedigital.lojinha.viewmodel.ProductListViewModel
 import com.br.cinesky.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_product_detail_list.*
-import kotlinx.android.synthetic.main.fragment_home.*
 
 class ProductDetailListActivity : BaseActivity() {
     private lateinit var categoria: Categoria
@@ -45,11 +45,9 @@ class ProductDetailListActivity : BaseActivity() {
 
     private fun binds() {
         toolbar.title = categoria.descricao
-        if(toolbar != null){
+        if (toolbar != null) {
             setSupportActionBar(toolbar)
             supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-            supportActionBar!!.setHomeButtonEnabled(true)
-            supportActionBar!!.setDisplayShowHomeEnabled(true)
         }
 
     }
@@ -76,5 +74,14 @@ class ProductDetailListActivity : BaseActivity() {
         }
         viewModel.productListRepositoryResponse().observe(this, listProductObservable)
         viewModel.loadRepositories(categoria.id.toString())
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item!!.itemId) {
+            android.R.id.home -> finish() // Finaliza a Activity atual e assim volta para a tela anterior
+            else -> {
+            }
+        }
+        return true
     }
 }
