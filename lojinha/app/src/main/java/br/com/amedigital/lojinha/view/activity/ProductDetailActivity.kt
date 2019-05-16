@@ -1,18 +1,20 @@
 package br.com.amedigital.lojinha.view.activity
 
 import android.app.AlertDialog
-import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.ViewModelProviders
+import android.arch.lifecycle.Observer
 import android.content.Context
 import android.content.Intent
 import android.graphics.PorterDuff
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import br.com.amedigital.lojinha.api.response.ResultResponse
+import br.com.amedigital.lojinha.extension.setDefaultVerticalSettings
 import br.com.amedigital.lojinha.model.Produto
+import br.com.amedigital.lojinha.model.ProdutoResponse
+import br.com.amedigital.lojinha.view.adapter.ProductListAdapter
 import br.com.amedigital.lojinha.viewmodel.ProductListViewModel
 import com.br.cinesky.base.BaseActivity
 import com.squareup.picasso.Picasso
@@ -69,22 +71,26 @@ class ProductDetailActivity : BaseActivity() {
         setupImageToolbar(maisVendido.urlImagem!!)
 
         fab.setOnClickListener {
+            open()
+        }
+
+    }
+
+    private fun open() {
+        val listProductObservable = Observer<ResultResponse> {
             val builder = AlertDialog.Builder(this@ProductDetailActivity)
-
             builder.setMessage("Produto reservado com sucesso")
-
             builder.setPositiveButton("OK") { dialog, which ->
-                open()
+                dialog.dismiss()
             }
 
             val dialog: AlertDialog = builder.create()
 
             dialog.show()
         }
+        viewModel.productRepositoryResponse().observe(this, listProductObservable)
+        viewModel.setRepositories(maisVendido.id.toString())
 
-    }
-
-    private fun open() {
     }
 
 
@@ -97,8 +103,8 @@ class ProductDetailActivity : BaseActivity() {
             PorterDuff.Mode.SRC_ATOP
         )
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            Objects.requireNonNull(supportActionBar)!!.setHomeAsUpIndicator(upArrow)
-            Objects.requireNonNull(supportActionBar)!!.setDisplayHomeAsUpEnabled(true)
+            supportActionBar!!.setHomeAsUpIndicator(upArrow)
+            supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         }
 
         collapsingToolbar.setExpandedTitleColor(resources.getColor(br.com.amedigital.lojinha.R.color.colorWhite))
