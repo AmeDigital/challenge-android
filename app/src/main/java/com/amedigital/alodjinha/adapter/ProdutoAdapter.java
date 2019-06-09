@@ -114,7 +114,7 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoV
 
     public class ViewHolder extends ProdutoViewHolder {
         private SimpleDraweeView imgFotoProduto;
-        private TextView txtNome;
+        private TextView txtNomeDescricao;
         private TextView txtDe;
         private TextView txtPor;
 
@@ -122,7 +122,7 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoV
             super(view);
             imgFotoProduto = view.findViewById(R.id.imgFotoProduto);
             imgFotoProduto = view.findViewById(R.id.imgFotoProduto);
-            txtNome = view.findViewById(R.id.txtNome);
+            txtNomeDescricao = view.findViewById(R.id.txtNomeDescricao);
             txtDe = view.findViewById(R.id.txtDe);
             txtPor = view.findViewById(R.id.txtPor);
 
@@ -140,7 +140,7 @@ public class ProdutoAdapter extends RecyclerView.Adapter<ProdutoAdapter.ProdutoV
             final int id = item.getId();
 
             imgFotoProduto.setImageURI(item.getUrlImagem().replace("http://", "https://"));
-            txtNome.setText(item.getNome());
+            txtNomeDescricao.setText((itemView.getResources().getString(R.string.nome_descricao_produto, item.getNome(), item.getDescricao())));
             txtDe.setText(itemView.getResources().getString(R.string.preco_de, FormataCampoUtil.formatarDecimal(item.getPrecoDe())));
             FormataCampoUtil.riscarTextView(txtDe);
             txtPor.setText(itemView.getResources().getString(R.string.preco_por, FormataCampoUtil.formatarDecimal(item.getPrecoPor())));

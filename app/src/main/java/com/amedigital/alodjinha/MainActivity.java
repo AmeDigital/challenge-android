@@ -80,15 +80,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    public void callBackPressed() {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                onBackPressed();
-            }
-        });
-    }
-
     @Override
     public void setMenu(Toolbar toolbar) {
         navigationView.setItemIconTintList(null);

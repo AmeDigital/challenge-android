@@ -1,10 +1,10 @@
 package com.amedigital.alodjinha.fragment;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
@@ -19,10 +19,8 @@ import android.widget.ProgressBar;
 
 import com.amedigital.alodjinha.R;
 import com.amedigital.alodjinha.adapter.ProdutoAdapter;
-import com.amedigital.alodjinha.common.BackPressedFragment;
 import com.amedigital.alodjinha.common.ErroWs;
 import com.amedigital.alodjinha.common.PaginationScrollListener;
-import com.amedigital.alodjinha.interfaces.ComunicadorMainActvityInterface;
 import com.amedigital.alodjinha.model.Produto;
 import com.amedigital.alodjinha.network.AsyncTaskCompleteListener;
 import com.amedigital.alodjinha.network.WS;
@@ -35,7 +33,7 @@ import java.util.ArrayList;
 
 import butterknife.ButterKnife;
 
-public class CategoriaProdutoFragment extends BackPressedFragment implements SwipeRefreshLayout.OnRefreshListener {
+public class CategoriaProdutoFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
     private Toolbar toolbar;
     private RecyclerView rvProduto;
     private ProgressBar pbProgresso;
@@ -47,8 +45,6 @@ public class CategoriaProdutoFragment extends BackPressedFragment implements Swi
     private final int PAGE_START = 1, ITEM_PAGE = 20;
     private int id, currentPage = PAGE_START, totalPage, itemCount = 0;
     private boolean isLastPage = false, isLoading = false, carregouLista = false;
-
-    private ComunicadorMainActvityInterface comunicadorMainActvityInterface;
 
     public CategoriaProdutoFragment() {
 
@@ -120,16 +116,13 @@ public class CategoriaProdutoFragment extends BackPressedFragment implements Swi
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
+            if (getFragmentManager() != null) {
+                getFragmentManager().popBackStackImmediate();
+            }
             return true;
         }
         return super.onOptionsItemSelected(item);
 
-    }
-
-    @Override
-    public void onBackPressed() {
-        comunicadorMainActvityInterface.callBackPressed();
     }
 
     private void inicializar(View view) {
@@ -141,12 +134,6 @@ public class CategoriaProdutoFragment extends BackPressedFragment implements Swi
 
     public static CategoriaProdutoFragment newInstance() {
         return new CategoriaProdutoFragment();
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        comunicadorMainActvityInterface = (ComunicadorMainActvityInterface)getActivity();
     }
 
     private void carregarListaProdutoWs(){

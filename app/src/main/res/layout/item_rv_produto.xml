@@ -25,10 +25,10 @@
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="@+id/txtPor"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/txtNome" />
+            app:layout_constraintTop_toTopOf="@+id/txtNomeDescricao" />
 
         <TextView
-            android:id="@+id/txtNome"
+            android:id="@+id/txtNomeDescricao"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -71,7 +71,7 @@
             app:fontFamily="@font/roboto"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imgVerProduto"
-            app:layout_constraintTop_toBottomOf="@+id/txtNome" />
+            app:layout_constraintTop_toBottomOf="@+id/txtNomeDescricao" />
 
         <ImageView
             android:id="@+id/imgVerProduto"
