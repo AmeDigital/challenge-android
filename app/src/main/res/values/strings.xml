@@ -1,3 +1,24 @@
 <resources>
-    <string name="app_name">challenge-android</string>
+
+    <string name="app_name">aLodjinha</string>
+
+    <string name="drawer_open">drawer_open</string>
+    <string name="drawer_close">drawer_close</string>string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_about">Sobre o aplicativo</string>
+
+    <string name="developer_name">Marco Antônio Rodrigues</string>
+    <string name="date_development">16 de Junho de 2019</string>
+
+    <string name="categories">Categorias</string>
+    <string name="best_sellers">Mais vendidos</string>
+
+    <string name="price_from">De: %s</string>
+    <string name="price_to">Por: %s</string>
+    <string name="no_products">Não há produtos ainda</string>
+    <string name="reserved_product">Produto reservado com sucesso</string>
+    <string name="reserved_product_error">Erro ao reservar, tente mais tarde</string>
+    <string name="OK">OK</string>
+
 </resources>
