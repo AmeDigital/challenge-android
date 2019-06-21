@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
 
         nvMainMenu.setNavigationItemSelectedListener(this)
-
+        nvMainMenu.itemIconTintList = null
         navController = Navigation.findNavController(this, R.id.fNavHost)
     }
 
@@ -47,10 +47,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.iHome -> {
-                Log.e("Menu", "home")
                 navController.navigate(R.id.nav_action_to_store)
             }
             R.id.iAbout -> {
