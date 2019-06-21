@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/nav_graph" app:startDestination="@id/storeFragment">
+
+    <fragment android:id="@+id/storeFragment"
+              android:name="com.leonardoalves.ametest.store.StoreFragment"
+              android:label="StoreFragment"/>
+    <fragment android:id="@+id/aboutFragment"
+              android:name="com.leonardoalves.ametest.about.AboutFragment"
+              android:label="AboutFragment"/>
+
+    <action android:id="@+id/nav_action_to_store" app:destination="@id/storeFragment"/>
+    <action android:id="@+id/nav_action_to_about" app:destination="@id/aboutFragment"/>
+</navigation>
