@@ -9,17 +9,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.leonardoalves.ametest.R
-import com.leonardoalves.ametest.custom.RecyclerViewAdapter
-import com.leonardoalves.ametest.custom.ViewHolder
-import com.leonardoalves.ametest.custom.ViewHolderFactory
-import com.leonardoalves.ametest.custom.ViewModel
-import com.leonardoalves.ametest.store.viewholder.STORE_BANNER_LIST_VIEW_ID
-import com.leonardoalves.ametest.store.viewholder.STORE_HEADER_VIEW_ID
-import com.leonardoalves.ametest.store.viewholder.StoreBannerViewHolder
-import com.leonardoalves.ametest.store.viewholder.StoreHeaderViewHolder
+import com.leonardoalves.ametest.custom.*
+import com.leonardoalves.ametest.store.viewholder.*
 import com.leonardoalves.ametest.store.viewmodel.BannerItemViewModel
 import com.leonardoalves.ametest.store.viewmodel.HeaderViewModel
 import com.leonardoalves.ametest.store.viewmodel.StoreBannerViewModel
+import com.leonardoalves.ametest.store.viewmodel.StoreCategoriesListViewModel
 import kotlinx.android.synthetic.main.fragment_store.*
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
@@ -49,18 +44,21 @@ class StoreFragment : Fragment(), StoreView {
             override fun getType(viewModel: ViewModel): Int = when(viewModel){
                 is StoreBannerViewModel -> STORE_BANNER_LIST_VIEW_ID
                 is HeaderViewModel -> STORE_HEADER_VIEW_ID
+                is StoreCategoriesListViewModel -> STORE_CATEGORIES_LIST_VIEW_ID
                 else -> throw IllegalArgumentException()
             }
 
             override fun getHolder(viewType: Int, view: View): ViewHolder<*> = when(viewType){
                 STORE_BANNER_LIST_VIEW_ID -> StoreBannerViewHolder(view, onBannerClicked)
                 STORE_HEADER_VIEW_ID -> StoreHeaderViewHolder(view)
+                STORE_CATEGORIES_LIST_VIEW_ID -> StoreCategoriesListViewHolder(view)
                 else -> throw IllegalArgumentException()
             }
         })
         rvStoreList.apply {
             adapter = storeAdapter
             layoutManager = LinearLayoutManager(context)
+            addItemDecoration(ListDividerItemDecoration(context))
         }
     }
 
