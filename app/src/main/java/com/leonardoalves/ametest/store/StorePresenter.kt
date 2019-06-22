@@ -1,7 +1,10 @@
 package com.leonardoalves.ametest.store
 
 import android.util.Log
+import com.leonardoalves.ametest.R
+import com.leonardoalves.ametest.custom.ViewModel
 import com.leonardoalves.ametest.store.viewmodel.BannerItemViewModel
+import com.leonardoalves.ametest.store.viewmodel.HeaderViewModel
 import com.leonardoalves.ametest.store.viewmodel.StoreBannerViewModel
 import com.leonardoalves.repository.repository.StoreRepository
 import io.reactivex.disposables.CompositeDisposable
@@ -16,9 +19,9 @@ class StorePresenter(
         compositeDisposable.add(
             repository.getBanners()
                 .map { StoreBannerViewModel(it.map { banner -> BannerItemViewModel(banner.urlImagem?:"", banner.linkUrl?:"") }) }
-                .map { listOf(it) }
+                .map { arrayListOf<ViewModel>(it) }
+                .map { it.add(HeaderViewModel(R.string.stores_categories)); it}
                 .subscribe ({
-                    Log.e("Received", it[0].bannerList.size.toString())
                     view.setItems(it)
                 },{it.printStackTrace()},{})
         )

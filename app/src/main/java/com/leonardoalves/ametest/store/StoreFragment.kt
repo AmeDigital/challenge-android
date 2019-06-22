@@ -14,8 +14,11 @@ import com.leonardoalves.ametest.custom.ViewHolder
 import com.leonardoalves.ametest.custom.ViewHolderFactory
 import com.leonardoalves.ametest.custom.ViewModel
 import com.leonardoalves.ametest.store.viewholder.STORE_BANNER_LIST_VIEW_ID
+import com.leonardoalves.ametest.store.viewholder.STORE_HEADER_VIEW_ID
 import com.leonardoalves.ametest.store.viewholder.StoreBannerViewHolder
+import com.leonardoalves.ametest.store.viewholder.StoreHeaderViewHolder
 import com.leonardoalves.ametest.store.viewmodel.BannerItemViewModel
+import com.leonardoalves.ametest.store.viewmodel.HeaderViewModel
 import com.leonardoalves.ametest.store.viewmodel.StoreBannerViewModel
 import kotlinx.android.synthetic.main.fragment_store.*
 import org.koin.android.ext.android.inject
@@ -45,11 +48,13 @@ class StoreFragment : Fragment(), StoreView {
         storeAdapter = RecyclerViewAdapter(object : ViewHolderFactory{
             override fun getType(viewModel: ViewModel): Int = when(viewModel){
                 is StoreBannerViewModel -> STORE_BANNER_LIST_VIEW_ID
+                is HeaderViewModel -> STORE_HEADER_VIEW_ID
                 else -> throw IllegalArgumentException()
             }
 
             override fun getHolder(viewType: Int, view: View): ViewHolder<*> = when(viewType){
                 STORE_BANNER_LIST_VIEW_ID -> StoreBannerViewHolder(view, onBannerClicked)
+                STORE_HEADER_VIEW_ID -> StoreHeaderViewHolder(view)
                 else -> throw IllegalArgumentException()
             }
         })
