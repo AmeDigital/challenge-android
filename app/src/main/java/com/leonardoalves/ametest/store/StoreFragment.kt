@@ -12,7 +12,7 @@ import com.leonardoalves.ametest.R
 import com.leonardoalves.ametest.custom.*
 import com.leonardoalves.ametest.store.viewholder.*
 import com.leonardoalves.ametest.store.viewmodel.BannerItemViewModel
-import com.leonardoalves.ametest.store.viewmodel.HeaderViewModel
+import com.leonardoalves.ametest.store.viewmodel.StoreHeaderViewModel
 import com.leonardoalves.ametest.store.viewmodel.StoreBannerViewModel
 import com.leonardoalves.ametest.store.viewmodel.StoreCategoriesListViewModel
 import kotlinx.android.synthetic.main.fragment_store.*
@@ -43,7 +43,7 @@ class StoreFragment : Fragment(), StoreView {
         storeAdapter = RecyclerViewAdapter(object : ViewHolderFactory{
             override fun getType(viewModel: ViewModel): Int = when(viewModel){
                 is StoreBannerViewModel -> STORE_BANNER_LIST_VIEW_ID
-                is HeaderViewModel -> STORE_HEADER_VIEW_ID
+                is StoreHeaderViewModel -> STORE_HEADER_VIEW_ID
                 is StoreCategoriesListViewModel -> STORE_CATEGORIES_LIST_VIEW_ID
                 else -> throw IllegalArgumentException()
             }

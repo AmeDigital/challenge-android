@@ -1,6 +1,5 @@
 package com.leonardoalves.ametest.store
 
-import android.util.Log
 import com.leonardoalves.ametest.R
 import com.leonardoalves.ametest.custom.ViewModel
 import com.leonardoalves.ametest.store.viewmodel.*
@@ -18,7 +17,7 @@ class StorePresenter(
             repository.getBanners()
                 .map { StoreBannerViewModel(it.map { banner -> BannerItemViewModel(banner.urlImagem?:"", banner.linkUrl?:"") }) }
                 .map { arrayListOf<ViewModel>(it) }
-                .map { it.add(HeaderViewModel(R.string.stores_categories)); it}
+                .map { it.add(StoreHeaderViewModel(R.string.stores_categories)); it}
                 .flatMap { result ->
                     repository.getCategories()
                         .map { it.map { category -> StoreCategoryViewModel(category.id, category.urlImagem?:"", category.descricao?:"") } }
