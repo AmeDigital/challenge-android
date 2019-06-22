@@ -1,6 +1,7 @@
 package com.leonardoalves.ametest.store.viewholder
 
 import android.os.Handler
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -19,6 +20,7 @@ const val STORE_BANNER_LIST_VIEW_ID = R.layout.view_store_banner_list
 
 class StoreBannerViewHolder(itemView: View, val listener: Listener<BannerItemViewModel>) : ViewHolder<StoreBannerViewModel>(itemView) {
     override fun bind(viewModel: StoreBannerViewModel) {
+        Log.e("BIND", viewModel.bannerList.size.toString())
         val numberOfItems = viewModel.bannerList.size
         val bannerAdapter = BannerAdapter(viewModel.bannerList)
         with(itemView){
@@ -55,7 +57,7 @@ class StoreBannerViewHolder(itemView: View, val listener: Listener<BannerItemVie
             })
 
             with(piStoreBanner) {
-                viewPager = vpStoreBanner
+                viewPager = itemView.vpStoreBanner
                 types = viewModel.bannerList.map { PageIndicator.Type.Image }
                 init()
             }

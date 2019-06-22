@@ -2,6 +2,7 @@ package com.leonardoalves.ametest
 
 import com.leonardoalves.ametest.store.StoreFragment
 import com.leonardoalves.ametest.store.StorePresenter
+import com.leonardoalves.ametest.store.StoreView
 import com.leonardoalves.repository.remoteDataSourceModule
 import com.leonardoalves.repository.repositoryModule
 import org.koin.core.context.loadKoinModules
@@ -15,7 +16,5 @@ object Modules {
 }
 
 val presentationModule = module {
-    scope(named<StoreFragment>()) {
-        scoped { StorePresenter(get()) }
-    }
+    factory { (view: StoreView) -> StorePresenter(get(), view) }
 }
