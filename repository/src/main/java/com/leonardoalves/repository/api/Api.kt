@@ -7,6 +7,7 @@ import com.leonardoalves.data.response.Response
 import io.reactivex.Flowable
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface Api {
     @GET("/banner")
@@ -20,4 +21,7 @@ interface Api {
 
     @GET("/produto/{id}")
     fun getProduct(@Path ("id") id: Int) : Flowable<Product>
+
+    @GET("/produto")
+    fun getCategoryProducts(@Query("offset") offset:Int, @Query("limit") limit:Int, @Query("categoriaId") categoryId:Int): Flowable<Response<Product>>
 }

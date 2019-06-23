@@ -1,5 +1,6 @@
 package com.leonardoalves.ametest.store
 
+import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -7,9 +8,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.leonardoalves.ametest.R
 import com.leonardoalves.ametest.custom.*
+import com.leonardoalves.ametest.store.category.CATEGORY_SERIALIZABLE_EXTRA
 import com.leonardoalves.ametest.store.viewholder.*
 import com.leonardoalves.ametest.store.viewmodel.*
 import kotlinx.android.synthetic.main.fragment_store.*
@@ -49,7 +52,7 @@ class StoreFragment : Fragment(), StoreView {
             override fun getHolder(viewType: Int, view: View): ViewHolder<*> = when(viewType){
                 STORE_BANNER_LIST_VIEW_ID -> StoreBannerViewHolder(view, onBannerClicked)
                 STORE_HEADER_VIEW_ID -> StoreHeaderViewHolder(view)
-                STORE_CATEGORIES_LIST_VIEW_ID -> StoreCategoriesListViewHolder(view)
+                STORE_CATEGORIES_LIST_VIEW_ID -> StoreCategoriesListViewHolder(view, onCategoryClicked)
                 STORE_PRODUCT_VIEW_ID -> StoreProductViewHolder(view)
                 else -> throw IllegalArgumentException()
             }
@@ -70,6 +73,15 @@ class StoreFragment : Fragment(), StoreView {
             openURL.data = Uri.parse(viewModel.link)
             startActivity(openURL)
         }
+    }
+
+    private val onCategoryClicked: ViewHolder.Listener<StoreCategoryViewModel> = object : ViewHolder.Listener<StoreCategoryViewModel>{
+        override fun onClick(viewModel: StoreCategoryViewModel) {
+            val navController = Navigation.findNavController(activity as Activity, R.id.fNavHost)
+            navController.navigate(R.id.action_storeFragment_to_categoryActivity,
+                Bundle().apply { this.putSerializable(CATEGORY_SERIALIZABLE_EXTRA, viewModel) })
+        }
+
     }
 
     override fun setItems(viewModel: List<ViewModel>) {

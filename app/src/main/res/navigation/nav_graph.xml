@@ -5,11 +5,19 @@
 
     <fragment android:id="@+id/storeFragment"
               android:name="com.leonardoalves.ametest.store.StoreFragment"
-              android:label="StoreFragment"/>
+              android:label="StoreFragment">
+        <action android:id="@+id/action_storeFragment_to_categoryActivity" app:destination="@id/categoryActivity"/>
+    </fragment>
     <fragment android:id="@+id/aboutFragment"
               android:name="com.leonardoalves.ametest.about.AboutFragment"
               android:label="AboutFragment"/>
 
     <action android:id="@+id/nav_action_to_store" app:destination="@id/storeFragment"/>
     <action android:id="@+id/nav_action_to_about" app:destination="@id/aboutFragment"/>
+    <activity android:id="@+id/categoryActivity"
+              android:name="com.leonardoalves.ametest.store.category.CategoryActivity"
+              android:label="CategoryActivity">
+        <argument android:name="category_serializable_extra"
+                  app:argType="com.leonardoalves.ametest.store.viewmodel.StoreCategoryViewModel"/>
+    </activity>
 </navigation>

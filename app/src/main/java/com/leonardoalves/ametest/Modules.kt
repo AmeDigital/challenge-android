@@ -1,12 +1,12 @@
 package com.leonardoalves.ametest
 
-import com.leonardoalves.ametest.store.StoreFragment
 import com.leonardoalves.ametest.store.StorePresenter
 import com.leonardoalves.ametest.store.StoreView
+import com.leonardoalves.ametest.store.category.CategoryPresenter
+import com.leonardoalves.ametest.store.category.CategoryView
 import com.leonardoalves.repository.remoteDataSourceModule
 import com.leonardoalves.repository.repositoryModule
 import org.koin.core.context.loadKoinModules
-import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 object Modules {
@@ -17,4 +17,5 @@ object Modules {
 
 val presentationModule = module {
     factory { (view: StoreView) -> StorePresenter(get(), view) }
+    factory { (view: CategoryView) -> CategoryPresenter(get(), view) }
 }

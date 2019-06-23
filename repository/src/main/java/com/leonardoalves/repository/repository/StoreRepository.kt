@@ -7,4 +7,6 @@ class StoreRepository(private val api: Api) {
     fun getBanners() = api.getBannerList().onDefaultSchedulers().map {it.data?: listOf()}
     fun getCategories() = api.getCategoriesList().onDefaultSchedulers().map { it.data?: listOf() }
     fun getBestSellers() = api.getBestSellers().onDefaultSchedulers().map { it.data?: listOf() }
+    fun getCategoryProducts(offset:Int, limit:Int, categoryId:Int) =
+        api.getCategoryProducts(offset, limit, categoryId).onDefaultSchedulers().map { it.data?: listOf() }
 }

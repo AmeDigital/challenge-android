@@ -1,6 +1,8 @@
 package com.leonardoalves.ametest.store.viewholder
 
+import android.os.Bundle
 import android.view.View
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -9,6 +11,7 @@ import com.leonardoalves.ametest.custom.RecyclerViewAdapter
 import com.leonardoalves.ametest.custom.ViewHolder
 import com.leonardoalves.ametest.custom.ViewHolderFactory
 import com.leonardoalves.ametest.custom.ViewModel
+import com.leonardoalves.ametest.store.category.CATEGORY_SERIALIZABLE_EXTRA
 import com.leonardoalves.ametest.store.viewmodel.StoreCategoriesListViewModel
 import com.leonardoalves.ametest.store.viewmodel.StoreCategoryViewModel
 import kotlinx.android.synthetic.main.view_store_categories.view.*
@@ -18,7 +21,7 @@ import java.lang.IllegalArgumentException
 const val STORE_CATEGORIES_LIST_VIEW_ID = R.layout.view_store_categories
 const val STORE_CATEGORY_VIEW_ID = R.layout.view_store_category
 
-class StoreCategoriesListViewHolder(itemView: View) : ViewHolder<StoreCategoriesListViewModel>(itemView){
+class StoreCategoriesListViewHolder(itemView: View, val listener: Listener<StoreCategoryViewModel>) : ViewHolder<StoreCategoriesListViewModel>(itemView) {
 
     private val viewPool = RecyclerView.RecycledViewPool()
 
@@ -30,11 +33,11 @@ class StoreCategoriesListViewHolder(itemView: View) : ViewHolder<StoreCategories
             }
 
             override fun getHolder(viewType: Int, view: View): ViewHolder<*> = when (viewType) {
-                STORE_CATEGORY_VIEW_ID -> StoreCategoryViewHolder(view)
+                STORE_CATEGORY_VIEW_ID -> StoreCategoryViewHolder(view, listener)
                 else -> throw IllegalArgumentException()
             }
         })
-        with(itemView){
+        with(itemView) {
             rvCategories.apply {
                 layoutManager = LinearLayoutManager(this@with.context, RecyclerView.HORIZONTAL, false)
                 adapter = viewAdapter
@@ -50,13 +53,16 @@ class StoreCategoriesListViewHolder(itemView: View) : ViewHolder<StoreCategories
 
 }
 
-class StoreCategoryViewHolder(itemView: View) : ViewHolder<StoreCategoryViewModel>(itemView){
+class StoreCategoryViewHolder(itemView: View, val listener: Listener<StoreCategoryViewModel>) : ViewHolder<StoreCategoryViewModel>(itemView) {
     override fun bind(viewModel: StoreCategoryViewModel) {
-        with(itemView){
+        with(itemView) {
             tvCategoryTitle.text = viewModel.description
             Glide.with(context)
                 .load(viewModel.image)
                 .into(ivCategoryImage)
+            setOnClickListener {
+                listener.onClick(viewModel)
+            }
         }
     }
 
