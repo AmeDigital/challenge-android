@@ -2,22 +2,15 @@
     <string name="app_name">a Lodjinha</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+    <string name="nav_header_desc">a Lodjinha Logo</string>
 
     <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
-    <string name="menu_tools">Tools</string>
-    <string name="menu_share">Share</string>
-    <string name="menu_send">Send</string>
-    <string name="about_developer_name">Leonardo Barbosa Alves</string>
+    <string name="menu_gallery">About this app</string>
+    <string name="about_developer_name" translatable="false">Leonardo Barbosa Alves</string>
     <string name="stores_categories">Categories</string>
     <string name="stores_product_image">Product image</string>
     <string name="stores_best_sellers">Best sellers</string>
-    <string name="dialog_ok">Ok</string>
+    <string name="dialog_ok" translatable="false">OK</string>
     <string name="product_reserved">Product reserved successfully</string>
     <string name="product_not_found">Product not found</string>
     <string name="product_reserve_failed">Product was not reserved</string>
