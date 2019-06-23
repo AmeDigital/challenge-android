@@ -18,8 +18,8 @@ class StoreProductViewHolder(itemView: View, val listener: Listener<StoreProduct
                 .load(viewModel.picture)
                 .into(ivProduct)
             tvProductName.text = viewModel.name
-            tvProductPrice.text = "Por ${viewModel.price}"
-            tvProductPriceFrom.text = "De ${viewModel.originalPrice}"
+            tvProductPrice.text = String.format("Por: %.2f", viewModel.price)
+            tvProductPriceFrom.text = String.format("De: %.2f", viewModel.originalPrice)
             setOnClickListener { listener.onClick(viewModel) }
         }
     }

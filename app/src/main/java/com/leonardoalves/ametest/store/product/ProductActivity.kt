@@ -35,8 +35,8 @@ class ProductActivity : AppCompatActivity(), ProductView {
     override fun fillProductDetails(viewModel: StoreProductViewModel) {
         tvProductCategory.text = viewModel.categoryName
         tvProdcutName.text = viewModel.name
-        tvProductPrice2.text = viewModel.price.toString()
-        tvProductPriceFrom2.text = viewModel.originalPrice.toString()
+        tvProductPrice2.text = String.format("Por: %.2f", viewModel.price)
+        tvProductPriceFrom2.text = String.format("De: %.2f", viewModel.originalPrice)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             tvProductDescription.text = Html.fromHtml(viewModel.description, Html.FROM_HTML_MODE_COMPACT)
         } else {
