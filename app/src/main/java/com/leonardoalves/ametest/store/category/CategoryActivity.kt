@@ -1,10 +1,12 @@
 package com.leonardoalves.ametest.store.category
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.leonardoalves.ametest.R
@@ -45,7 +47,7 @@ class CategoryActivity : AppCompatActivity(), CategoryView {
             }
 
             override fun getHolder(viewType: Int, view: View): ViewHolder<*> = when(viewType){
-                STORE_PRODUCT_VIEW_ID -> StoreProductViewHolder(view)
+                STORE_PRODUCT_VIEW_ID -> StoreProductViewHolder(view, onProductClicked)
                 else -> throw IllegalArgumentException()
             }
         })
@@ -66,6 +68,13 @@ class CategoryActivity : AppCompatActivity(), CategoryView {
         srlCategories.setOnRefreshListener {
             presenter.refresh()
         }
+    }
+    private val onProductClicked: ViewHolder.Listener<StoreProductViewModel> = object : ViewHolder.Listener<StoreProductViewModel>{
+        override fun onClick(viewModel: StoreProductViewModel) {
+            val navController = Navigation.findNavController(this@CategoryActivity, R.id.fNavHost)
+            navController.navigate(R.id.action_storeFragment_to_productActivity)
+        }
+
     }
 
     override fun setupToolbar(title: String){

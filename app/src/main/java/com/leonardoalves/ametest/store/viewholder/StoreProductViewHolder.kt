@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.view_store_product.view.*
 
 const val STORE_PRODUCT_VIEW_ID = R.layout.view_store_product
 
-class StoreProductViewHolder(itemView: View) : ViewHolder<StoreProductViewModel>(itemView) {
+class StoreProductViewHolder(itemView: View, val listener: Listener<StoreProductViewModel>) : ViewHolder<StoreProductViewModel>(itemView) {
     @SuppressLint("SetTextI18n")
     override fun bind(viewModel: StoreProductViewModel) {
         with(itemView){
@@ -20,6 +20,7 @@ class StoreProductViewHolder(itemView: View) : ViewHolder<StoreProductViewModel>
             tvProductName.text = viewModel.name
             tvProductPrice.text = "Por ${viewModel.price}"
             tvProductPriceFrom.text = "De ${viewModel.originalPrice}"
+            setOnClickListener { listener.onClick(viewModel) }
         }
     }
 

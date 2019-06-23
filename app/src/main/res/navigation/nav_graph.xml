@@ -7,6 +7,7 @@
               android:name="com.leonardoalves.ametest.store.StoreFragment"
               android:label="StoreFragment">
         <action android:id="@+id/action_storeFragment_to_categoryActivity" app:destination="@id/categoryActivity"/>
+        <action android:id="@+id/action_storeFragment_to_productActivity" app:destination="@id/productActivity"/>
     </fragment>
     <fragment android:id="@+id/aboutFragment"
               android:name="com.leonardoalves.ametest.about.AboutFragment"
@@ -19,5 +20,9 @@
               android:label="CategoryActivity">
         <argument android:name="category_serializable_extra"
                   app:argType="com.leonardoalves.ametest.store.viewmodel.StoreCategoryViewModel"/>
+    </activity>
+    <activity android:id="@+id/productActivity" android:name="com.leonardoalves.ametest.store.product.ProductActivity"
+              android:label="ProductActivity">
+        <argument android:name="product_id_extra" app:argType="integer" android:defaultValue="-1"/>
     </activity>
 </navigation>

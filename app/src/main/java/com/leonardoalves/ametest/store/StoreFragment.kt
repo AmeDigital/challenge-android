@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.leonardoalves.ametest.R
 import com.leonardoalves.ametest.custom.*
 import com.leonardoalves.ametest.store.category.CATEGORY_SERIALIZABLE_EXTRA
+import com.leonardoalves.ametest.store.product.PRODUCT_ID_EXTRA
 import com.leonardoalves.ametest.store.viewholder.*
 import com.leonardoalves.ametest.store.viewmodel.*
 import kotlinx.android.synthetic.main.fragment_store.*
@@ -53,7 +54,7 @@ class StoreFragment : Fragment(), StoreView {
                 STORE_BANNER_LIST_VIEW_ID -> StoreBannerViewHolder(view, onBannerClicked)
                 STORE_HEADER_VIEW_ID -> StoreHeaderViewHolder(view)
                 STORE_CATEGORIES_LIST_VIEW_ID -> StoreCategoriesListViewHolder(view, onCategoryClicked)
-                STORE_PRODUCT_VIEW_ID -> StoreProductViewHolder(view)
+                STORE_PRODUCT_VIEW_ID -> StoreProductViewHolder(view, onProductClicked)
                 else -> throw IllegalArgumentException()
             }
         })
@@ -80,6 +81,15 @@ class StoreFragment : Fragment(), StoreView {
             val navController = Navigation.findNavController(activity as Activity, R.id.fNavHost)
             navController.navigate(R.id.action_storeFragment_to_categoryActivity,
                 Bundle().apply { this.putSerializable(CATEGORY_SERIALIZABLE_EXTRA, viewModel) })
+        }
+
+    }
+
+    private val onProductClicked: ViewHolder.Listener<StoreProductViewModel> = object : ViewHolder.Listener<StoreProductViewModel>{
+        override fun onClick(viewModel: StoreProductViewModel) {
+            val navController = Navigation.findNavController(activity as Activity, R.id.fNavHost)
+            navController.navigate(R.id.action_storeFragment_to_productActivity,
+                Bundle().apply { this.putInt(PRODUCT_ID_EXTRA, viewModel.id) })
         }
 
     }
