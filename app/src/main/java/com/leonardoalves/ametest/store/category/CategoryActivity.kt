@@ -1,6 +1,7 @@
 package com.leonardoalves.ametest.store.category
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -11,6 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.leonardoalves.ametest.R
 import com.leonardoalves.ametest.custom.*
+import com.leonardoalves.ametest.store.product.PRODUCT_ID_EXTRA
+import com.leonardoalves.ametest.store.product.ProductActivity
 import com.leonardoalves.ametest.store.viewholder.STORE_PRODUCT_VIEW_ID
 import com.leonardoalves.ametest.store.viewholder.StoreProductViewHolder
 import com.leonardoalves.ametest.store.viewmodel.StoreCategoryViewModel
@@ -72,8 +75,10 @@ class CategoryActivity : AppCompatActivity(), CategoryView {
     }
     private val onProductClicked: ViewHolder.Listener<StoreProductViewModel> = object : ViewHolder.Listener<StoreProductViewModel>{
         override fun onClick(viewModel: StoreProductViewModel) {
-            val navController = Navigation.findNavController(this@CategoryActivity, R.id.fNavHost)
-            navController.navigate(R.id.action_storeFragment_to_productActivity)
+            val intent = Intent(this@CategoryActivity, ProductActivity::class.java).apply {
+                putExtra(PRODUCT_ID_EXTRA, viewModel.id)
+            }
+            startActivity(intent)
         }
 
     }
