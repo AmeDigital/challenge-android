@@ -11,10 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.leonardoalves.ametest.R
 import com.leonardoalves.ametest.custom.*
 import com.leonardoalves.ametest.store.viewholder.*
-import com.leonardoalves.ametest.store.viewmodel.BannerItemViewModel
-import com.leonardoalves.ametest.store.viewmodel.StoreHeaderViewModel
-import com.leonardoalves.ametest.store.viewmodel.StoreBannerViewModel
-import com.leonardoalves.ametest.store.viewmodel.StoreCategoriesListViewModel
+import com.leonardoalves.ametest.store.viewmodel.*
 import kotlinx.android.synthetic.main.fragment_store.*
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
@@ -45,6 +42,7 @@ class StoreFragment : Fragment(), StoreView {
                 is StoreBannerViewModel -> STORE_BANNER_LIST_VIEW_ID
                 is StoreHeaderViewModel -> STORE_HEADER_VIEW_ID
                 is StoreCategoriesListViewModel -> STORE_CATEGORIES_LIST_VIEW_ID
+                is StoreProductViewModel -> STORE_PRODUCT_VIEW_ID
                 else -> throw IllegalArgumentException()
             }
 
@@ -52,6 +50,7 @@ class StoreFragment : Fragment(), StoreView {
                 STORE_BANNER_LIST_VIEW_ID -> StoreBannerViewHolder(view, onBannerClicked)
                 STORE_HEADER_VIEW_ID -> StoreHeaderViewHolder(view)
                 STORE_CATEGORIES_LIST_VIEW_ID -> StoreCategoriesListViewHolder(view)
+                STORE_PRODUCT_VIEW_ID -> StoreProductViewHolder(view)
                 else -> throw IllegalArgumentException()
             }
         })
@@ -59,6 +58,9 @@ class StoreFragment : Fragment(), StoreView {
             adapter = storeAdapter
             layoutManager = LinearLayoutManager(context)
             addItemDecoration(ListDividerItemDecoration(context))
+        }
+        srlStoreList.setOnRefreshListener {
+            presenter.refresh()
         }
     }
 
@@ -72,5 +74,13 @@ class StoreFragment : Fragment(), StoreView {
 
     override fun setItems(viewModel: List<ViewModel>) {
         storeAdapter?.setItems(viewModel)
+    }
+
+    override fun startLoading() {
+        srlStoreList.isRefreshing = true
+    }
+
+    override fun stopLoading() {
+        srlStoreList.isRefreshing = false
     }
 }
