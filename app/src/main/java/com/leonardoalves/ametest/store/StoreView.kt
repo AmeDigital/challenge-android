@@ -6,4 +6,5 @@ interface StoreView {
     fun setItems(viewModel: List<ViewModel>)
     fun startLoading()
     fun stopLoading()
+    fun showErrorMessage()
 }

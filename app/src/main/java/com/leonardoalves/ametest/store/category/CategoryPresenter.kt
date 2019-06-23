@@ -49,6 +49,7 @@ class CategoryPresenter(private val repository: StoreRepository, private val vie
                 }, {
                     it.printStackTrace()
                     completed = true
+                    view.showErrorCriticalMessage()
                 }, { page++ })
         )
     }
@@ -95,6 +96,10 @@ class CategoryPresenter(private val repository: StoreRepository, private val vie
                     }, { page++ })
             )
         }
+    }
+
+    fun onDestroy() {
+        compositeDisposable.clear()
     }
 
 }

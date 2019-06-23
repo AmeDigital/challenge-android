@@ -15,6 +15,7 @@ import com.leonardoalves.ametest.store.viewholder.STORE_PRODUCT_VIEW_ID
 import com.leonardoalves.ametest.store.viewholder.StoreProductViewHolder
 import com.leonardoalves.ametest.store.viewmodel.StoreCategoryViewModel
 import com.leonardoalves.ametest.store.viewmodel.StoreProductViewModel
+import com.leonardoalves.ametest.utils.DialogUtils
 import kotlinx.android.synthetic.main.activity_category.*
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
@@ -99,5 +100,14 @@ class CategoryActivity : AppCompatActivity(), CategoryView {
 
     override fun stopLoading() {
         srlCategories.isRefreshing = false
+    }
+
+    override fun showErrorCriticalMessage(){
+        DialogUtils.showDialog(this, getString(R.string.product_not_found)) {finish()}
+    }
+
+    override fun onDestroy() {
+        presenter.onDestroy()
+        super.onDestroy()
     }
 }

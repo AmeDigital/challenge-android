@@ -59,7 +59,10 @@ class StorePresenter(
                 .doOnTerminate { view.stopLoading() }
                 .subscribe({
                     view.setItems(it)
-                }, { it.printStackTrace() }, {})
+                }, {
+                    it.printStackTrace()
+                    view.showErrorMessage()
+                }, {})
         )
     }
 

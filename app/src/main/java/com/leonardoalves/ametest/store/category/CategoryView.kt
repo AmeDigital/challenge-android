@@ -7,4 +7,5 @@ interface CategoryView {
     fun setupToolbar(title: String)
     fun startLoading()
     fun stopLoading()
+    fun showErrorCriticalMessage()
 }

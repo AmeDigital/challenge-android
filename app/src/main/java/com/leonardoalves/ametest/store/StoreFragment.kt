@@ -16,6 +16,7 @@ import com.leonardoalves.ametest.store.category.CATEGORY_SERIALIZABLE_EXTRA
 import com.leonardoalves.ametest.store.product.PRODUCT_ID_EXTRA
 import com.leonardoalves.ametest.store.viewholder.*
 import com.leonardoalves.ametest.store.viewmodel.*
+import com.leonardoalves.ametest.utils.DialogUtils
 import kotlinx.android.synthetic.main.fragment_store.*
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
@@ -104,5 +105,9 @@ class StoreFragment : Fragment(), StoreView {
 
     override fun stopLoading() {
         srlStoreList.isRefreshing = false
+    }
+
+    override fun showErrorMessage(){
+        DialogUtils.showDialog(context, getString(R.string.store_loading_error)) {}
     }
 }
