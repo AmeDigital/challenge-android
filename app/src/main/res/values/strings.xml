@@ -17,4 +17,8 @@
     <string name="stores_categories">Categories</string>
     <string name="stores_product_image">Product image</string>
     <string name="stores_best_sellers">Best sellers</string>
+    <string name="dialog_ok">Ok</string>
+    <string name="product_reserved">Product reserved successfully</string>
+    <string name="product_not_found">Product not found</string>
+    <string name="product_reserve_failed">Product was not reserved</string>
 </resources>

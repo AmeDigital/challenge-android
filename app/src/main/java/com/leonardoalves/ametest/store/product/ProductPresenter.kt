@@ -21,20 +21,26 @@ class ProductPresenter(private val repository: StoreRepository, private val view
                     )
                 }.subscribe({
                     view.fillProductDetails(it)
-                },{
+                }, {
+                    view.showErrorCriticalMessage()
                     it.printStackTrace()
-                },{})
+                }, {})
         )
     }
 
     fun reserveItem() {
         compositeDisposable.add(
             repository.reserveProduct(currentProductId)
-                .subscribe({}, {it.printStackTrace()})
+                .subscribe({
+                    view.showReservationSuccessMessage()
+                }, {
+                    view.showReservationErrorMessage()
+                    it.printStackTrace()
+                })
         )
     }
 
-    fun onDestroy(){
+    fun onDestroy() {
         compositeDisposable.clear()
     }
 

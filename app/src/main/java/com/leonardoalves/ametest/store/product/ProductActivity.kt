@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.leonardoalves.ametest.R
 import com.leonardoalves.ametest.store.viewmodel.StoreProductViewModel
+import com.leonardoalves.ametest.utils.DialogUtils
 import com.leonardoalves.ametest.utils.crossFade
 import kotlinx.android.synthetic.main.activity_product.*
 import org.koin.android.ext.android.inject
@@ -26,6 +27,9 @@ class ProductActivity : AppCompatActivity(), ProductView {
         fabReserve.setOnClickListener {
             presenter.reserveItem()
         }
+        ivBack.setOnClickListener {
+            onBackPressed()
+        }
     }
 
     override fun fillProductDetails(viewModel: StoreProductViewModel) {
@@ -42,5 +46,21 @@ class ProductActivity : AppCompatActivity(), ProductView {
             .load(viewModel.picture)
             .crossFade()
             .into(toolbar_image)
+    }
+
+    override fun showReservationSuccessMessage(){
+        DialogUtils.showDialog(this, getString(R.string.product_reserved)) {}
+    }
+    override fun showReservationErrorMessage(){
+        DialogUtils.showDialog(this, getString(R.string.product_reserve_failed)) {}
+    }
+
+    override fun showErrorCriticalMessage(){
+        DialogUtils.showDialog(this, getString(R.string.product_not_found)) {finish()}
+    }
+
+    override fun onDestroy() {
+        presenter.onDestroy()
+        super.onDestroy()
     }
 }

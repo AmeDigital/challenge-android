@@ -29,12 +29,12 @@
             android:paddingTop="16dp"
             android:paddingBottom="16dp"
             android:src="@drawable/ic_arrow_back_black_24dp"
+            android:background="?android:selectableItemBackground"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
             android:id="@+id/tvProductCategory"
-            android:text="Texto realmente"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textSize="20sp"
@@ -58,7 +58,6 @@
                 android:layout_height="wrap_content">
             <TextView
                     android:id="@+id/tvProdcutName"
-                    android:text="If we view this in the design tool, we can see that this represents the layout when the toolbar is in its expanded state:"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
@@ -102,7 +101,6 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp" android:layout_marginEnd="16dp"/>
             <TextView
-                    android:text="Lorem Ipsum"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/tvAlgumaCoisa"
@@ -110,10 +108,6 @@
                     app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
                     android:layout_marginTop="16dp" android:layout_marginStart="16dp" android:layout_marginEnd="16dp"/>
             <TextView
-                    android:text="Before we begin it is worth mentioning that there is nothing whatsoever \n \n wrong with using CollapsingToolbarLayout inside a CoordinatorLayout to achieve this behaviour.
-                    \n Moreover, if you already have that working in an app then there is little to be gained by changing. That said, which CoordinatorLayout provides some really useful behaviours, trying to tweak them or even create your own custom behaviours is quite difficult.
-                    \n It is those situations where MotionLayout may provide far greater flexibility and, my early experiments would suggest, a far easier path to achieving what you want. Furthermore, MotionLayout opens up new behaviours that would be really difficult with CoordinatorLayout.  One of the key differences between MotionLayout and many of the other animation frameworks on Android is that view animations and property animations run for a given duration. While it is possible to specify the duration and cancel a running animation, it is not possible to control a running animation based upon user input. For example, a Collapsing Toolbar should expand and collapse based upon the user scrolling, and the actual animation should follow the user’s drag. This is simply not possible with those frameworks.
-                    \n Let’s begin by taking a look at the behaviour that we’re trying to emulate. Here’s a Collapsing Toolbar which is implemented using CollapsingToolbarLayout from the Material Components Library and CoordinatorLayout:"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content" android:id="@+id/tvProductDescription"
                     android:layout_marginTop="16dp"
@@ -126,7 +120,7 @@
     <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:clickable="true" app:srcCompat="@drawable/check_button" android:id="@+id/fabReserve"
+            app:srcCompat="@drawable/check_button" android:id="@+id/fabReserve"
             android:layout_marginBottom="16dp" app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginEnd="16dp" app:layout_constraintEnd_toEndOf="parent"
             app:backgroundTint="@color/warmPurple"/>
