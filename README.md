@@ -1,6 +1,7 @@
 # o Lodjinha
 
-Minimo SDK: API 15</br>
+SDK Mínimo foi aumentado para api 19 afim de manter uma melhor com o motion layout e tentar seguir a recomendação da comunidade em 2017 que era suportar no mínimo a api 19. <br/>
+Minimo SDK: API 19 </br>
 Linguagem: Java ou Kotlin</br>
 
 Serão consideradas funcionalidades completas se:</br>

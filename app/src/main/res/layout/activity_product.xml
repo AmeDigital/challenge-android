@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutDescription="@xml/collapsing_toolbar"
+>
+    <ImageView
+            android:id="@+id/toolbar_image"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@null"
+            android:background="@color/warmPurple"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:fitsSystemWindows="true"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/logo_navbar" android:padding="30dp"/>
+
+    <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:src="@drawable/ic_arrow_back_black_24dp"
+            android:background="?android:selectableItemBackground"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+            android:id="@+id/tvProductCategory"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            app:layout_constraintTop_toTopOf="@+id/ivBack"
+            app:layout_constraintBottom_toBottomOf="@+id/ivBack"
+            app:layout_constraintStart_toEndOf="@+id/ivBack"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textColor="@color/whiter"
+            android:layout_marginStart="8dp"
+            android:fontFamily="sans-serif-medium"/>
+    <androidx.core.widget.NestedScrollView
+            android:id="@+id/svProductDescription"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar_image">
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <TextView
+                    android:id="@+id/tvProdcutName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" android:fontFamily="@font/roboto_bold"
+                    android:textSize="17sp" android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
+                    android:layout_marginTop="16dp"/>
+            <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/divider1"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    app:srcCompat="@drawable/shape_list_inner_boundary"
+                    tools:layout_editor_absoluteX="-16dp" app:layout_constraintTop_toBottomOf="@+id/tvProdcutName"
+                    android:layout_marginTop="16dp"/>
+            <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/divider2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    app:srcCompat="@drawable/shape_list_inner_boundary"
+                    tools:layout_editor_absoluteX="-16dp" app:layout_constraintTop_toBottomOf="@+id/tvProductPrice2"
+                    android:layout_marginTop="8dp"/>
+            <TextView
+                    android:id="@+id/tvProductPriceFrom2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="De: 9999,99" android:fontFamily="@font/roboto_medium" android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/divider1"
+                    app:layout_constraintBottom_toBottomOf="@id/divider2" android:layout_marginStart="16dp"/>
+            <TextView
+                    android:id="@+id/tvProductPrice2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    tools:text="Por 9999,98"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textSize="20sp"
+                    android:textColor="@color/tomato"
+                    app:layout_constraintTop_toBottomOf="@+id/divider1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/tvProductPriceFrom2"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp" android:layout_marginEnd="16dp"/>
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tvAlgumaCoisa"
+                    app:layout_constraintTop_toBottomOf="@+id/divider2"
+                    app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginTop="16dp" android:layout_marginStart="16dp" android:layout_marginEnd="16dp"/>
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:id="@+id/tvProductDescription"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintTop_toBottomOf="@+id/tvAlgumaCoisa"
+                    app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" android:fontFamily="@font/roboto"
+                    android:layout_marginStart="16dp" android:layout_marginEnd="16dp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/check_button" android:id="@+id/fabReserve"
+            android:layout_marginBottom="16dp" app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginEnd="16dp" app:layout_constraintEnd_toEndOf="parent"
+            app:backgroundTint="@color/warmPurple"/>
+
+</androidx.constraintlayout.motion.widget.MotionLayout>
