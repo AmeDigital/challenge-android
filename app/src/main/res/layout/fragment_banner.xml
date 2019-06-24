@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+                name="viewModel"
+                type="com.ame.lojinhatesteame.ui.banner.BannerViewModel"/>
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <ProgressBar
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewModel.isProgressBarVisible()}"
+                android:id="@+id/progressBarBanner" android:layout_marginTop="16dp"
+                tools:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginLeft="16dp" android:layout_marginStart="16dp"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        <ss.com.bannerslider.Slider
+                android:id="@+id/bannerSlider"
+                android:layout_width="0dp"
+                android:layout_height="140dp"
+                app:slider_loopSlides="true"
+                app:slider_indicatorSize="12dp" app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"/>
+
+
+    </android.support.constraint.ConstraintLayout>
+
+</layout>
