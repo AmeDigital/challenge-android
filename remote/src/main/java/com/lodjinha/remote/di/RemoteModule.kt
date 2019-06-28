@@ -13,7 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 fun createRemoteModule(baseUrl: String) = module {
 
     factory<Interceptor> {
-        HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.HEADERS)
+        HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
     }
 
     factory {

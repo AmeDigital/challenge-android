@@ -9,7 +9,7 @@ import retrofit2.http.*
 
 interface LodjinhaService {
 
-    @POST("banner")
+    @GET("banner")
     fun bannerAsync(): Deferred<Banners>
 
     @GET("categoria")
