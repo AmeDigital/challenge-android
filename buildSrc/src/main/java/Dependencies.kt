@@ -6,6 +6,8 @@ object Modules {
     const val app = ":app"
     const val remote = ":remote"
     const val model = ":model"
+    const val repository = ":repository"
+    const val commonTest = ":common_teste"
 }
 
 object Releases {

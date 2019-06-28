@@ -5,6 +5,7 @@ apply plugin: "androidx.navigation.safeargs.kotlin"
 
 dependencies {
     implementation project(Modules.remote)
+    implementation project(Modules.repository)
 
     implementation Libs.picasso
 }
