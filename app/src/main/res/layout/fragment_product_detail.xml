@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+
+        <variable
+                name="onClickListener"
+                type="android.view.View.OnClickListener" />
+
+        <variable
+                name="viewModel"
+                type="com.ame.lojinhatesteame.ui.product.ProductViewModel"/>
+
+    </data>
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+        <android.support.design.widget.CoordinatorLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true">
+
+            <android.support.design.widget.AppBarLayout
+                    android:id="@+id/app_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:fitsSystemWindows="true"
+                    android:theme="@style/AppTheme">
+
+                <android.support.design.widget.CollapsingToolbarLayout
+                        android:id="@+id/toolbar_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fitsSystemWindows="true"
+                        app:contentScrim="?attr/colorPrimary"
+                        app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                        app:expandedTitleGravity="top"
+                        app:toolbarId="@+id/toolbar">
+
+                    <ImageView
+                            android:id="@+id/imageViewProductDesc"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:fitsSystemWindows="true"
+                            app:productImage="@{viewModel.product.urlImage}"
+                            android:background="@android:color/white"
+                            android:scaleType="centerCrop"
+                            app:layout_collapseMode="parallax" />
+
+                    <android.support.v7.widget.Toolbar
+                            android:id="@+id/toolbar"
+                            android:layout_width="match_parent"
+                            android:layout_height="?attr/actionBarSize"
+                            app:layout_collapseMode="pin"/>
+
+                </android.support.design.widget.CollapsingToolbarLayout>
+            </android.support.design.widget.AppBarLayout>
+
+            <android.support.v4.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    <TextView
+                            android:text="@{viewModel.product.category.description}"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:maxLines="2"
+                            android:id="@+id/textViewCategoryName" android:layout_marginTop="16dp"
+                            app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                            android:layout_marginLeft="16dp" android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp" app:layout_constraintEnd_toEndOf="parent"
+                            android:layout_marginRight="16dp" app:fontFamily="@font/roboto_bold" android:textSize="20sp"/>
+                    <View
+                            android:id="@+id/dividerTop"
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:background="?android:attr/listDivider"
+                            app:layout_constraintTop_toBottomOf="@+id/textViewCategoryName"
+                            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+                            android:layout_marginTop="16dp"/>
+
+                    <TextView
+                            android:text="@{viewModel.product.priceOfFormated}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/textViewDe"
+                            app:fontFamily="@font/roboto_medium" android:textSize="12sp"
+                            android:textColor="@color/greyish"
+                            app:layout_constraintTop_toBottomOf="@+id/dividerTop" android:layout_marginStart="16dp"
+                            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="16dp"
+                            android:layout_marginTop="16dp"/>
+
+                    <TextView
+                            android:text="@{viewModel.product.priceForFormated}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/textViewPor"
+                            android:textColor="@color/tomato"
+                            android:textSize="20sp"
+                            app:fontFamily="@font/roboto_bold"
+                            android:layout_marginEnd="16dp"
+                            app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="16dp"
+                            app:layout_constraintBaseline_toBaselineOf="@+id/textViewDe"/>
+                    <View
+                            android:id="@+id/dividerBottom"
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:background="?android:attr/listDivider"
+                            app:layout_constraintTop_toBottomOf="@+id/textViewDe" app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="16dp"/>
+                    <TextView
+                            android:text="@{viewModel.product.name}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/textViewProdName"
+                            app:layout_constraintTop_toBottomOf="@+id/dividerBottom" android:layout_marginTop="16dp"
+                            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="16dp"
+                            android:layout_marginStart="16dp" android:textSize="20sp" app:fontFamily="@font/roboto_bold"/>
+                    <TextView
+                            android:text="@{viewModel.product.descriptionHtmlFormat}"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/textViewDescProd" android:layout_marginTop="16dp"
+                            app:layout_constraintTop_toBottomOf="@+id/textViewProdName" app:fontFamily="@font/roboto_medium"
+                            android:textSize="18sp" android:layout_marginStart="16dp" app:layout_constraintStart_toStartOf="parent"
+                            android:layout_marginLeft="16dp" android:layout_marginEnd="16dp" app:layout_constraintEnd_toEndOf="parent"
+                            android:layout_marginRight="16dp"/>
+                    <ProgressBar
+                            style="?android:attr/progressBarStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone"
+                            android:id="@+id/progressBarReserve"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:layout_marginEnd="16dp" android:layout_marginRight="16dp"
+                            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="16dp"
+                            android:layout_marginStart="16dp"
+                            app:layout_constraintTop_toBottomOf="@+id/textViewProdName" android:layout_marginTop="32dp"/>
+
+                </android.support.constraint.ConstraintLayout>
+
+            </android.support.v4.widget.NestedScrollView>
+
+            <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/floatingButtonReserve"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:onClick="@{onClickListener}"
+                    app:srcCompat="@drawable/check_button"
+                    android:layout_gravity="bottom|right" />
+
+        </android.support.design.widget.CoordinatorLayout>
+
+    </RelativeLayout>
+</layout>
