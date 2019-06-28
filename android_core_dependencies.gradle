@@ -1,0 +1,14 @@
+dependencies {
+    implementation KotlinLibs.kotlin
+    implementation KotlinLibs.kotlinCoroutineCore
+    implementation AndroidLibs.kotlinCoroutineAndroid
+
+    implementation AndroidLibs.appCompat
+    implementation AndroidLibs.coreKtx
+    implementation AndroidLibs.constrainLayout
+    implementation AndroidLibs.lifecycleViewModel
+    implementation AndroidLibs.lifecycleExtensions
+    implementation AndroidLibs.recyclerView
+    implementation AndroidLibs.navigation
+    implementation AndroidLibs.navigationFrag
+}
