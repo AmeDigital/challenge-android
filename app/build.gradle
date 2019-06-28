@@ -4,5 +4,7 @@ apply from: '../android_feature_dependencies.gradle'
 apply plugin: "androidx.navigation.safeargs.kotlin"
 
 dependencies {
+    implementation project(Modules.remote)
+
     implementation Libs.picasso
 }

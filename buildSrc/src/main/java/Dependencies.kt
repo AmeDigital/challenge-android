@@ -4,6 +4,8 @@ object ApplicationId {
 
 object Modules {
     const val app = ":app"
+    const val remote = ":remote"
+    const val model = ":model"
 }
 
 object Releases {

@@ -1,0 +1,21 @@
+apply plugin: 'kotlin'
+apply from: '../detekt.gradle'
+
+dependencies {
+    implementation KotlinLibs.kotlin
+
+    implementation project(Modules.model)
+
+    implementation Libs.retrofitCoroutineAdapter
+    implementation Libs.gson
+    implementation Libs.retrofit
+    implementation Libs.retrofitGsonConverter
+    implementation Libs.httpLoggingInterceptor
+
+    implementation Libs.koin
+    implementation Libs.koinViewModel
+
+    testImplementation TestLibs.junit
+    testImplementation TestLibs.koin
+    testImplementation TestLibs.mockWebServer
+}
