@@ -8,6 +8,7 @@ import com.lodjinha.R
 import com.lodjinha.base.BaseViewModel
 import com.lodjinha.model.Banners
 import com.lodjinha.model.Categories
+import com.lodjinha.model.Products
 import com.lodjinha.repository.AppDispatchers
 import com.lodjinha.repository.utils.Resource
 import com.lodjinha.utils.Event
@@ -17,6 +18,7 @@ import kotlinx.coroutines.withContext
 class HomeViewModel(
     private val bannerUseCase: BannerUseCase,
     private val categoriesUseCase: CategoriesUseCase,
+    private val topSellingUseCase: TopSellingUseCase,
     private val dispatchers: AppDispatchers
 ) : BaseViewModel() {
 
@@ -28,9 +30,14 @@ class HomeViewModel(
     val categories: LiveData<Resource<Categories>> get() = categoriesMediator
     private var categoriesSource: LiveData<Resource<Categories>> = MutableLiveData()
 
+    private val topSellingMediator = MediatorLiveData<Resource<Products>>()
+    val topSelling: LiveData<Resource<Products>> get() = topSellingMediator
+    private var topSellingSource: LiveData<Resource<Products>> = MutableLiveData()
+
     init {
         getBanners()
         getCategories()
+        getTopSelling()
     }
 
     private fun getBanners() = viewModelScope.launch(dispatchers.main) {
@@ -57,6 +64,21 @@ class HomeViewModel(
 
         categoriesMediator.addSource(categoriesSource) {
             categoriesMediator.value = it
+            if (it.status == Resource.Status.ERROR) {
+                snackBarErrorMediator.value = Event(R.string.an_error_happened)
+            }
+        }
+    }
+
+    private fun getTopSelling() = viewModelScope.launch(dispatchers.main) {
+        topSellingMediator.removeSource(topSellingSource)
+
+        withContext(dispatchers.io) {
+            topSellingSource = topSellingUseCase()
+        }
+
+        topSellingMediator.addSource(topSellingSource) {
+            topSellingMediator.value = it
             if (it.status == Resource.Status.ERROR) {
                 snackBarErrorMediator.value = Event(R.string.an_error_happened)
             }

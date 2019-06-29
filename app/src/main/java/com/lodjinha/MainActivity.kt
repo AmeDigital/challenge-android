@@ -11,25 +11,20 @@ import com.lodjinha.about.AboutFragment
 import com.lodjinha.databinding.ActivityMainBinding
 import com.lodjinha.home.HomeFragment
 
-
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-    //    private val viewModel: HomeViewModel by viewModel()
     private lateinit var binding: ActivityMainBinding
-
     private val fragments = listOf(HomeFragment(), AboutFragment())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-
         initViews()
         changeFragment(0)
     }
 
     private fun initViews() {
         setSupportActionBar(binding.toolbar)
-
         val toggle = ActionBarDrawerToggle(
             this,
             binding.drawerLayout,
@@ -39,7 +34,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         )
         binding.drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
-
         binding.navView.setNavigationItemSelectedListener(this)
     }
 
@@ -63,7 +57,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun changeFragment(position: Int) = with(supportFragmentManager.beginTransaction()) {
         replace(binding.fragmentContainer.id, fragments[position])
-        addToBackStack(null)
         commit()
     }
 }

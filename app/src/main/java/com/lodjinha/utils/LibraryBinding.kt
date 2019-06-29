@@ -16,9 +16,5 @@ object LibraryBinding {
 
     @BindingAdapter("app:imageUrl")
     @JvmStatic
-    fun loadImage(view: ImageView, url: String) =
-        Picasso
-            .get()
-            .load(url)
-            .into(view)
+    fun loadImage(view: ImageView, url: String) = Picasso.get().load(url).into(view)
 }
