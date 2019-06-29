@@ -6,7 +6,7 @@ class LodjinhaDataSource(private val service: LodjinhaService) {
 
     fun getCategoriesAsync() = service.categoriesAsync()
 
-    fun getProductsAsync() = service.productsAsync()
+    fun getProductsAsync(page: Int, categoryId: Int, limit: Int) = service.productsAsync(page, categoryId, limit)
 
     fun getTopSellingProductsAsync() = service.topSellingProductsAsync()
 

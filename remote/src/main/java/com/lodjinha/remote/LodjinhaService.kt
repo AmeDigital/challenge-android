@@ -16,7 +16,11 @@ interface LodjinhaService {
     fun categoriesAsync(): Deferred<Categories>
 
     @GET("produto")
-    fun productsAsync(): Deferred<Products>
+    fun productsAsync(
+        @Query("offset") page: Int,
+        @Query("categoriaId") categoryId: Int,
+        @Query("limit") limit: Int
+    ): Deferred<Products>
 
     @GET("produto/maisvendidos")
     fun topSellingProductsAsync(): Deferred<Products>

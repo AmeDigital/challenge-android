@@ -55,7 +55,7 @@ class LodjinhaServiceTest: BaseTest() {
         mockHttpResponse(mockServer,"products.json", HttpURLConnection.HTTP_OK)
 
         runBlocking {
-            val products = service.productsAsync().await()
+            val products = service.productsAsync(0, 1, 20).await()
             Assert.assertEquals(75, products.total)
             Assert.assertEquals("Games", products.data[2].category.description)
             Assert.assertEquals("Metal Gear V", products.data[2].name)
@@ -67,7 +67,7 @@ class LodjinhaServiceTest: BaseTest() {
         mockHttpResponse(mockServer,"products.json", HttpURLConnection.HTTP_FORBIDDEN)
 
         runBlocking {
-            service.productsAsync().await()
+            service.productsAsync(0, 1, 20).await()
         }
     }
 

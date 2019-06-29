@@ -12,7 +12,7 @@ interface LodjinhaRepository {
 
     suspend fun getCategoriesAsync(shouldFetch: Boolean = true) : LiveData<Resource<Categories>>
 
-    suspend fun getProductsAsync(shouldFetch: Boolean = true) : LiveData<Resource<Products>>
+    suspend fun getProductsAsync(page: Int, categoryId: Int, limit: Int = 20, shouldFetch: Boolean = true) : LiveData<Resource<Products>>
 
     suspend fun getTopSellingProductsAsync(shouldFetch: Boolean = true) : LiveData<Resource<Products>>
 

@@ -1,5 +1,6 @@
 package com.lodjinha.home
 
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -36,6 +37,8 @@ class TopSellingListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         fun bind(product: Product) {
             binding.product = product
+            binding.originalPriceProduct.paintFlags =
+                binding.originalPriceProduct.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
         }
     }
 }

@@ -1,9 +1,11 @@
 <resources>
-    <string name="app_name">A lodjinha</string>
+    <string name="app_name">a Lodjinha</string>
 
     <string name="menu_home">Home</string>
     <string name="menu_about">Sobre o aplicativo</string>
     <string name="an_error_happened">Ocorreu um erro, tente novamente mais tarde.</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="categories">Categorias</string>
+    <string name="topSelling">Mais vendidos</string>
 </resources>

@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun initViews() {
         setSupportActionBar(binding.toolbar)
+        binding.toolbar.setTitleTextAppearance(this, R.style.ToolbarStyle)
         val toggle = ActionBarDrawerToggle(
             this,
             binding.drawerLayout,

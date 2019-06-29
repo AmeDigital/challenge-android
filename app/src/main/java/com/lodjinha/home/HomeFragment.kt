@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
@@ -22,6 +21,7 @@ class HomeFragment : BaseFragment() {
     private val viewModel: HomeViewModel by viewModel()
     private lateinit var categoriesListAdapter: CategoriesListAdapter
     private lateinit var topSellingListAdapter: TopSellingListAdapter
+    private lateinit var bannerPagerAdapter: BannerPagerAdapter
 
     override fun getViewModel(): BaseViewModel = viewModel
 
@@ -34,7 +34,7 @@ class HomeFragment : BaseFragment() {
 
         binding.viewModel!!.banners.observe(this, Observer<Resource<Banners>> {
             if (it.status == Resource.Status.SUCCESS) {
-                configBanner(it.data, binding)
+                configBanner(it.data)
             }
         })
 
@@ -54,8 +54,14 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun initViews(binding: FragmentHomeBinding) = with(binding) {
+        initBannerView(this)
         initCategoriesListView(this)
         initTopSellingListView(this)
+    }
+
+    private fun initBannerView(binding: FragmentHomeBinding) = with(binding.banner) {
+        bannerPagerAdapter = BannerPagerAdapter(activity!!.supportFragmentManager)
+        adapter = bannerPagerAdapter
     }
 
     private fun initCategoriesListView(binding: FragmentHomeBinding) = with(binding.recyclerViewCategories) {
@@ -72,17 +78,14 @@ class HomeFragment : BaseFragment() {
         adapter = topSellingListAdapter
     }
 
-    private fun configBanner(banners: Banners?, binding: FragmentHomeBinding) {
-        val bannersFragments = mutableListOf<Fragment>()
+    private fun configBanner(banners: Banners?) {
         val gson = Gson()
         banners?.data?.forEach { banner ->
-            bannersFragments.add(BannerFragment().apply {
+            bannerPagerAdapter.addFragment(BannerFragment().apply {
                 arguments = Bundle().apply {
                     putString(BannerFragment.BANNERS_KEY, gson.toJson(banner))
                 }
             })
         }
-
-        binding.banner.adapter = BannerPagerAdapter(activity!!.supportFragmentManager, bannersFragments)
     }
 }

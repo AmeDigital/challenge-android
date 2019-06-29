@@ -2,9 +2,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
-    <!--<data>-->
-    <!--<variable name="" type=""/>-->
-    <!--</data>-->
 
     <androidx.drawerlayout.widget.DrawerLayout
             android:id="@+id/drawerLayout"
@@ -27,7 +24,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="?attr/actionBarSize"
                         android:background="?attr/colorPrimary"
-                        app:popupTheme="@style/AppTheme.PopupOverlay"/>
+                        app:theme="@style/ToolbarStyle"/>
 
             </com.google.android.material.appbar.AppBarLayout>
 
@@ -56,6 +53,9 @@
                 android:layout_gravity="start"
                 android:fitsSystemWindows="true"
                 app:headerLayout="@layout/nav_header_main"
+                app:fontFamily="@font/roboto_medium"
+                app:itemIconTint="@color/colorPrimary"
+                app:theme="@style/NavigationDrawerStyle"
                 app:menu="@menu/activity_main_drawer"/>
 
     </androidx.drawerlayout.widget.DrawerLayout>
