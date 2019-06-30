@@ -1,0 +1,11 @@
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    def dependencies = rootProject.ext.dependencies
+
+    implementation dependencies.koin
+    implementation dependencies.rxJava
+    implementation dependencies.kotlin
+}

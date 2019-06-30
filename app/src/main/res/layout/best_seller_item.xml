@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="wrap_content"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tool="http://schemas.android.com/tools">
+    <ImageView
+            android:id="@+id/ivBestSeller"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:scaleType="fitXY"
+            android:layout_margin="@dimen/best_seller_image_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+            android:id="@+id/tvBestSellerDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/ivBestSeller"
+            app:layout_constraintStart_toEndOf="@+id/ivBestSeller"
+            app:layout_constraintEnd_toStartOf="@id/ivArrow"
+            android:layout_marginLeft="@dimen/best_seller_margin"
+            android:fontFamily="@font/roboto_medium"
+            android:textSize="@dimen/best_seler_description_text_size"
+            tool:text="Descrição"/>
+
+    <TextView
+            android:id="@+id/tvOldPrice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@+id/tvBestSellerDescription"
+            android:layout_marginLeft="@dimen/best_seller_margin"
+            android:fontFamily="@font/roboto_medium"
+            android:textSize="@dimen/old_price_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/ivBestSeller"
+            android:textColor="@color/greyish"
+            tool:text="Old Price"/>
+
+    <TextView
+            android:id="@+id/tvNewPrice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/tomato"
+            app:layout_constraintEnd_toEndOf="@+id/tvBestSellerDescription"
+            android:layout_marginRight="@dimen/best_seller_margin"
+            android:fontFamily="@font/roboto_bold"
+            android:textSize="@dimen/new_price_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/ivBestSeller"
+            tool:text="Old Price"/>
+
+    <ImageView
+            android:id="@+id/ivArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ivBestSeller"
+            app:layout_constraintBottom_toBottomOf="@id/ivBestSeller"
+            android:layout_marginRight="@dimen/best_seller_arrow_margin"
+            android:src="@drawable/disclosure_indicator"/>
+
+    <View
+            android:id="@+id/dividerBestSellersList"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/greyish"
+            android:focusable="false"
+            android:layout_marginTop="@dimen/section_title_margin"
+            app:layout_constraintTop_toBottomOf="@id/ivBestSeller"
+            app:layout_constraintStart_toStartOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
