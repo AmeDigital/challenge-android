@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">a Lodjinha</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="home_menu">Home</string>
+    <string name="about_app_menu">Sobre o aplicativo</string>
+    <string name="a_lodjinha_menu">a Lodjinha</string>
+    <string name="categories">Categorias</string>
+    <string name="best_sellers">Mais Vendidos</string>
+    <string name="product_reserve_success_message">Produto reservado com sucesso!</string>
+    <string name="product_reserve_error_message">Ops! Algo de errado aconteceu! Tente novamente mais tarde.</string>
+</resources>

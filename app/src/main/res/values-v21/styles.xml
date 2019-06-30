@@ -1,0 +1,11 @@
+<resources>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+    <style name="menuIcon">
+        <item name="fontFamily">@font/roboto_medium</item>
+        <item name="android:textSize">@dimen/menu_item_font</item>
+    </style>
+</resources>

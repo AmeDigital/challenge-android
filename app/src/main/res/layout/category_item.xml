@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tool="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/image_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    <ImageView
+            android:id="@+id/ivCategory"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/default_image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_margin="@dimen/image_margin"/>
+
+    <TextView
+            android:id="@+id/tvCategory"
+            android:layout_width="80dp"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/title_space"
+            android:fontFamily="@font/roboto"
+            android:textStyle="bold"
+            android:textSize="@dimen/category_name"
+            app:layout_constraintTop_toBottomOf="@id/ivCategory"
+            app:layout_constraintStart_toStartOf="@id/ivCategory"
+            app:layout_constraintEnd_toEndOf="@+id/ivCategory"
+            tool:text="Category"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
