@@ -41,9 +41,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         binding.navView.setNavigationItemSelectedListener(this)
     }
 
-    private fun configFragments() = with(supportFragmentManager.beginTransaction()) {
-        for (position in fragments.size - 1..0) {
-            add(binding.fragmentContainer.id, fragments[position], fragments[position].tag).apply {
+    private fun configFragments() {
+        for (position in fragments.size - 1 downTo 0) {
+            supportFragmentManager
+                .beginTransaction()
+                .add(binding.fragmentContainer.id, fragments[position], fragments[position].tag).apply {
                 if (position == 0) commit() else hide(fragments[position]).commit()
             }
         }
@@ -71,8 +73,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun changeFragment(selectedPosition: Int) = with(supportFragmentManager.beginTransaction()) {
-        //        replace(binding.fragmentContainer.id, fragments[selectedPosition])
-//        commit()
         hide(fragments[positionActiveFragment]).show(fragments[selectedPosition]).commit()
         positionActiveFragment = selectedPosition
     }

@@ -17,7 +17,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="140dp"
+                    android:layout_height="160dp"
                     android:background="@color/white"
                     android:elevation="10dp"
                     tools:ignore="UnusedAttribute">
@@ -29,7 +29,6 @@
                         tools:ignore="UnusedAttribute"
                         app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"/>
-                <!--android:elevation="10dp"-->
 
                 <com.google.android.material.tabs.TabLayout
                         android:id="@+id/bannerIndicator"
@@ -44,17 +43,8 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-                      android:text="@string/categories" app:fontFamily="@font/roboto_bold"
-                      android:textSize="17sp"
-                      android:textColor="@color/greyishBrown"
-                      android:layout_margin="16dp"/>
-
-            <View android:layout_width="wrap_content" android:layout_height="1dp"
-                  android:background="@color/white"/>
-
-            <!--<include layout="@layout/item_top_area"-->
-                <!--app:areaTitle="@{@string/categories}"/>-->
+            <include layout="@layout/item_top_area"
+                app:areaTitle="@{@string/categories}"/>
 
             <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerViewCategories"
@@ -65,18 +55,8 @@
             <View android:layout_width="wrap_content" android:layout_height="1dp"
                   android:background="@color/white"/>
 
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-                      android:text="@string/topSelling"
-                      app:fontFamily="@font/roboto_bold"
-                      android:textSize="17sp"
-                      android:textColor="@color/greyishBrown"
-                      android:layout_margin="16dp"/>
-
-            <View android:layout_width="wrap_content" android:layout_height="1dp"
-                  android:background="@color/white"/>
-
-            <!--<include layout="@layout/item_top_area"-->
-                     <!--app:areaTitle="@{@string/topSelling}"/>-->
+            <include layout="@layout/item_top_area"
+                     app:areaTitle="@{@string/topSelling}"/>
 
             <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerViewTopSelling"
