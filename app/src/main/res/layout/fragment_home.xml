@@ -26,6 +26,7 @@
                         android:id="@+id/banner"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        app:itemsBanner="@{viewModel.banners}"
                         tools:ignore="UnusedAttribute"
                         app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"/>
@@ -50,6 +51,7 @@
                     android:id="@+id/recyclerViewCategories"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:itemsCategory="@{viewModel.categories}"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
             <View android:layout_width="wrap_content" android:layout_height="1dp"
@@ -61,8 +63,8 @@
             <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerViewTopSelling"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+                    app:itemsProduct="@{viewModel.topSelling}"
+                    android:layout_height="wrap_content"/>
 
         </LinearLayout>
 

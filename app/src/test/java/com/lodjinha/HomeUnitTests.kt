@@ -63,7 +63,12 @@ class HomeUnitTests {
             value = result
         }
 
-        homeViewModel = HomeViewModel(bannersUseCase,categoriesUseCase, topSellingUseCase, appDispatchers)
+        homeViewModel = HomeViewModel(
+            bannerUseCase = bannersUseCase,
+            categoriesUseCase = categoriesUseCase,
+            topSellingUseCase = topSellingUseCase,
+            dispatchers = appDispatchers
+        )
         homeViewModel.banners.observeForever(observer)
 
         verify {
@@ -83,7 +88,12 @@ class HomeUnitTests {
             value = result
         }
 
-        homeViewModel = HomeViewModel(bannersUseCase,categoriesUseCase, topSellingUseCase, appDispatchers)
+        homeViewModel = HomeViewModel(
+            bannerUseCase = bannersUseCase,
+            categoriesUseCase = categoriesUseCase,
+            topSellingUseCase = topSellingUseCase,
+            dispatchers = appDispatchers
+        )
         homeViewModel.banners.observeForever(observer)
         homeViewModel.snackBarError.observeForever(observerSnackBar)
 
@@ -105,7 +115,12 @@ class HomeUnitTests {
             value = result
         }
 
-        homeViewModel = HomeViewModel(bannersUseCase,categoriesUseCase, topSellingUseCase, appDispatchers)
+        homeViewModel = HomeViewModel(
+            bannerUseCase = bannersUseCase,
+            categoriesUseCase = categoriesUseCase,
+            topSellingUseCase = topSellingUseCase,
+            dispatchers = appDispatchers
+        )
         homeViewModel.categories.observeForever(observer)
 
         verify {
@@ -125,7 +140,12 @@ class HomeUnitTests {
             value = result
         }
 
-        homeViewModel = HomeViewModel(bannersUseCase,categoriesUseCase, topSellingUseCase, appDispatchers)
+        homeViewModel = HomeViewModel(
+            bannerUseCase = bannersUseCase,
+            categoriesUseCase = categoriesUseCase,
+            topSellingUseCase = topSellingUseCase,
+            dispatchers = appDispatchers
+        )
         homeViewModel.categories.observeForever(observer)
         homeViewModel.snackBarError.observeForever(observerSnackBar)
 
@@ -147,7 +167,12 @@ class HomeUnitTests {
             value = result
         }
 
-        homeViewModel = HomeViewModel(bannersUseCase,categoriesUseCase, topSellingUseCase, appDispatchers)
+        homeViewModel = HomeViewModel(
+            bannerUseCase = bannersUseCase,
+            categoriesUseCase = categoriesUseCase,
+            topSellingUseCase = topSellingUseCase,
+            dispatchers = appDispatchers
+        )
         homeViewModel.topSelling.observeForever(observer)
 
         verify {
@@ -167,7 +192,12 @@ class HomeUnitTests {
             value = result
         }
 
-        homeViewModel = HomeViewModel(bannersUseCase,categoriesUseCase, topSellingUseCase, appDispatchers)
+        homeViewModel = HomeViewModel(
+            bannerUseCase = bannersUseCase,
+            categoriesUseCase = categoriesUseCase,
+            topSellingUseCase = topSellingUseCase,
+            dispatchers = appDispatchers
+        )
         homeViewModel.topSelling.observeForever(observer)
         homeViewModel.snackBarError.observeForever(observerSnackBar)
 

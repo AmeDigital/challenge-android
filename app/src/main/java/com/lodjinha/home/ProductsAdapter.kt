@@ -10,12 +10,18 @@ import com.lodjinha.model.Products
 import com.lodjinha.databinding.ItemProductBinding
 import com.lodjinha.model.Product
 
-class TopSellingListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ProductsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private lateinit var items: Products
+    private val items = mutableListOf<Product>()
 
     fun updateProducts(products: Products) {
-        items = products
+        items.clear()
+        items.addAll(products.data)
+        notifyDataSetChanged()
+    }
+
+    fun addProducts(products: Products) {
+        items.addAll(products.data)
         notifyDataSetChanged()
     }
 
@@ -29,9 +35,9 @@ class TopSellingListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     )
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) =
-        (holder as TopSellingViewHolder).bind(items.data[position])
+        (holder as TopSellingViewHolder).bind(items[position])
 
-    override fun getItemCount(): Int = if (::items.isInitialized) items.data.size else 0
+    override fun getItemCount(): Int = items.size
 
     class TopSellingViewHolder(private val binding: ItemProductBinding) : RecyclerView.ViewHolder(binding.root) {
 

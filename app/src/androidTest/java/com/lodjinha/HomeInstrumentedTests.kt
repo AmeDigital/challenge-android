@@ -8,7 +8,7 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
 import com.lodjinha.common_teste.FakeData.createFakeProducts
-import com.lodjinha.home.di.featureModule
+import com.lodjinha.category.di.featureModule
 import com.lodjinha.model.Products
 import com.lodjinha.repository.AppDispatchers
 import com.lodjinha.repository.LodjinhaRepository

@@ -1,15 +1,19 @@
 package com.lodjinha.home
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
 import com.lodjinha.R
+import com.lodjinha.category.CategoryActivity
+import com.lodjinha.category.CategoryActivity.Companion.CATEGORY_EXTRA
 import com.lodjinha.model.Categories
 import com.lodjinha.databinding.ItemCategoryBinding
 import com.lodjinha.model.Category
 
-class CategoriesListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class CategoriesAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private lateinit var items: Categories
 
@@ -36,6 +40,12 @@ class CategoriesListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         fun bind(category: Category) {
             binding.category = category
+
+            binding.root.setOnClickListener {
+                it.context.startActivity(
+                    Intent(it.context, CategoryActivity::class.java).putExtra( CATEGORY_EXTRA, Gson().toJson(category))
+                )
+            }
         }
     }
 }

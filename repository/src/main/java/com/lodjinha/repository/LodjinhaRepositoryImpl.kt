@@ -36,7 +36,7 @@ class LodjinhaRepositoryImpl(private val dataSource: LodjinhaDataSource) : Lodji
 
             override fun shouldFetch(): Boolean = shouldFetch
 
-            override fun createCallAsync(): Deferred<Products> = dataSource.getProductsAsync(page, limit, categoryId)
+            override fun createCallAsync(): Deferred<Products> = dataSource.getProductsAsync(page, categoryId, limit)
         }.build().asLiveData()
 
     override suspend fun getTopSellingProductsAsync(shouldFetch: Boolean): LiveData<Resource<Products>> =
