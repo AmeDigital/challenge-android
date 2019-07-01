@@ -62,6 +62,11 @@ class HomeFragment : BaseFragment() {
     private fun initBannerView(binding: FragmentHomeBinding) = with(binding.banner) {
         bannerPagerAdapter = BannerPagerAdapter(activity!!.supportFragmentManager)
         adapter = bannerPagerAdapter
+        binding.bannerIndicator.setupWithViewPager(this, true)
+
+//        binding.bannerIndicator.setViewPager(this)
+//        binding.bannerIndicator.setOnSurfaceCount(3)
+//        binding.bannerIndicator.setRisingCount(2)
     }
 
     private fun initCategoriesListView(binding: FragmentHomeBinding) = with(binding.recyclerViewCategories) {
@@ -82,9 +87,7 @@ class HomeFragment : BaseFragment() {
         val gson = Gson()
         banners?.data?.forEach { banner ->
             bannerPagerAdapter.addFragment(BannerFragment().apply {
-                arguments = Bundle().apply {
-                    putString(BannerFragment.BANNERS_KEY, gson.toJson(banner))
-                }
+                arguments = Bundle().apply { putString(BannerFragment.BANNERS_KEY, gson.toJson(banner)) }
             })
         }
     }

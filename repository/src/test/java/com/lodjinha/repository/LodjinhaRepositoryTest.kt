@@ -2,13 +2,13 @@ package com.lodjinha.repository
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
+import com.lodjinha.common_teste.FakeData
 import com.lodjinha.common_teste.rules.CoroutinesMainDispatcherRule
 import com.lodjinha.model.Banners
 import com.lodjinha.model.Categories
 import com.lodjinha.model.Product
 import com.lodjinha.model.Products
 import com.lodjinha.remote.LodjinhaDataSource
-import com.lodjinha.repository.utils.FakeData
 import com.lodjinha.repository.utils.Resource
 import io.mockk.confirmVerified
 import io.mockk.every
@@ -123,11 +123,11 @@ class LodjinhaRepositoryTest {
     fun `Get products from network`() {
         val fakeProducts = FakeData.createFakeProducts()
         every {
-            remoteDataSource.getProductsAsync()
+            remoteDataSource.getProductsAsync(page = 1, categoryId = 1, limit = 20)
         } returns GlobalScope.async { fakeProducts }
 
         runBlocking {
-            repository.getProductsAsync().observeForever(observerProducts)
+            repository.getProductsAsync(page = 1, categoryId = 1, limit = 20).observeForever(observerProducts)
         }
 
         verifyOrder {
@@ -141,11 +141,11 @@ class LodjinhaRepositoryTest {
     fun `Get products from network when no internet is available`() {
         val exception = Exception("Internet")
         every {
-            remoteDataSource.getProductsAsync()
+            remoteDataSource.getProductsAsync(page = 1, categoryId = 1, limit = 20)
         } throws exception
 
         runBlocking {
-            repository.getProductsAsync().observeForever(observerProducts)
+            repository.getProductsAsync(page = 1, categoryId = 1, limit = 20).observeForever(observerProducts)
         }
 
         verifyOrder {

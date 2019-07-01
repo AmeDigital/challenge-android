@@ -15,17 +15,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private lateinit var binding: ActivityMainBinding
     private val fragments = listOf(HomeFragment(), AboutFragment())
+    private var positionActiveFragment: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         initViews()
+        configFragments()
         changeFragment(0)
     }
 
     private fun initViews() {
         setSupportActionBar(binding.toolbar)
         binding.toolbar.setTitleTextAppearance(this, R.style.ToolbarStyle)
+
         val toggle = ActionBarDrawerToggle(
             this,
             binding.drawerLayout,
@@ -38,6 +41,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         binding.navView.setNavigationItemSelectedListener(this)
     }
 
+    private fun configFragments() = with(supportFragmentManager.beginTransaction()) {
+        for (position in fragments.size - 1..0) {
+            add(binding.fragmentContainer.id, fragments[position], fragments[position].tag).apply {
+                if (position == 0) commit() else hide(fragments[position]).commit()
+            }
+        }
+    }
+
     override fun onBackPressed() {
         val drawerLayout = binding.drawerLayout
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -48,16 +59,21 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.nav_home -> changeFragment(0)
-            R.id.nav_about -> changeFragment(1)
-        }
+        changeFragment(
+            selectedPosition = when (item.itemId) {
+                R.id.nav_home -> 0
+                R.id.nav_about -> 1
+                else -> 1
+            }
+        )
         binding.drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
 
-    private fun changeFragment(position: Int) = with(supportFragmentManager.beginTransaction()) {
-        replace(binding.fragmentContainer.id, fragments[position])
-        commit()
+    private fun changeFragment(selectedPosition: Int) = with(supportFragmentManager.beginTransaction()) {
+        //        replace(binding.fragmentContainer.id, fragments[selectedPosition])
+//        commit()
+        hide(fragments[positionActiveFragment]).show(fragments[selectedPosition]).commit()
+        positionActiveFragment = selectedPosition
     }
 }

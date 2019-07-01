@@ -15,13 +15,34 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-            <androidx.viewpager.widget.ViewPager
-                    android:id="@+id/banner"
-                    android:background="@color/white"
+            <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="140dp"
+                    android:background="@color/white"
                     android:elevation="10dp"
-                    tools:ignore="UnusedAttribute"/>
+                    tools:ignore="UnusedAttribute">
+
+                <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/banner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:ignore="UnusedAttribute"
+                        app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"/>
+                <!--android:elevation="10dp"-->
+
+                <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/bannerIndicator"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:tabBackground="@drawable/tab_selector"
+                        tools:background="@color/dark"
+                        app:tabGravity="center"
+                        app:tabIndicatorHeight="0dp"
+                        app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
                       android:text="@string/categories" app:fontFamily="@font/roboto_bold"
@@ -31,6 +52,9 @@
 
             <View android:layout_width="wrap_content" android:layout_height="1dp"
                   android:background="@color/white"/>
+
+            <!--<include layout="@layout/item_top_area"-->
+                <!--app:areaTitle="@{@string/categories}"/>-->
 
             <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerViewCategories"
@@ -50,6 +74,9 @@
 
             <View android:layout_width="wrap_content" android:layout_height="1dp"
                   android:background="@color/white"/>
+
+            <!--<include layout="@layout/item_top_area"-->
+                     <!--app:areaTitle="@{@string/topSelling}"/>-->
 
             <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerViewTopSelling"

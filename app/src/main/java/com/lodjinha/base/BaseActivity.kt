@@ -1,14 +1,14 @@
 package com.lodjinha.base
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.lodjinha.extension.setupSnackBar
 
-abstract class BaseFragment: Fragment() {
+abstract class BaseActivity: AppCompatActivity() {
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setupSnackBar(this, getViewModel().snackBarError, Snackbar.LENGTH_LONG)
     }
 

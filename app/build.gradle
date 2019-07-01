@@ -6,7 +6,10 @@ apply plugin: "androidx.navigation.safeargs.kotlin"
 dependencies {
     implementation project(Modules.remote)
     implementation project(Modules.repository)
+    implementation project(Modules.commonTest)
 
     implementation Libs.picasso
     implementation Libs.gson
+
+    implementation 'com.shuhart.bubblepagerindicator:bubblepagerindicator:1.1.2'
 }

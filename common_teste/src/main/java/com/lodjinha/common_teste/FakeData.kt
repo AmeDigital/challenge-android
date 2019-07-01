@@ -1,4 +1,4 @@
-package com.lodjinha.repository.utils
+package com.lodjinha.common_teste
 
 import com.lodjinha.model.*
 

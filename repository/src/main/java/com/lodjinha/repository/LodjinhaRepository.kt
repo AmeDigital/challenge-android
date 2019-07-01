@@ -8,6 +8,7 @@ import com.lodjinha.model.Products
 import com.lodjinha.repository.utils.Resource
 
 interface LodjinhaRepository {
+
     suspend fun getBannerAsync(shouldFetch: Boolean = true) : LiveData<Resource<Banners>>
 
     suspend fun getCategoriesAsync(shouldFetch: Boolean = true) : LiveData<Resource<Categories>>
