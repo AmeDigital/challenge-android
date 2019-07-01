@@ -4,9 +4,12 @@
     <string name="menu_home">Home</string>
     <string name="menu_about">Sobre o aplicativo</string>
     <string name="an_error_happened">Ocorreu um erro, tente novamente mais tarde</string>
-    <string name="empty_state">Produtos disponíveis no momento</string>
+    <string name="empty_state">Produtos indisponíveis no momento</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="categories">Categorias</string>
     <string name="topSelling">Mais vendidos</string>
+    <string name="development_date">03 de julho de 2019</string>
+    <string name="developer_name">Gildênio Reis do Nascimento Neto</string>
+    <string name="about">Sobre</string>
 </resources>

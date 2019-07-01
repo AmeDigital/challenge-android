@@ -75,5 +75,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun changeFragment(selectedPosition: Int) = with(supportFragmentManager.beginTransaction()) {
         hide(fragments[positionActiveFragment]).show(fragments[selectedPosition]).commit()
         positionActiveFragment = selectedPosition
+        supportActionBar?.title = getString(if (selectedPosition == 1) R.string.about else R.string.app_name)
     }
 }
