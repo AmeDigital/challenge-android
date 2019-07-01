@@ -4,17 +4,13 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.PagerSnapHelper
 import br.com.igorfs.lodjinha.R
 import br.com.igorfs.lodjinha.adapter.HomeHeaderListAdapter
-import br.com.igorfs.lodjinha.service.BannerService
-import br.com.igorfs.lodjinha.util.RetrofitFactory
-import br.com.igorfs.lodjinha.util.callback
+import br.com.igorfs.lodjinha.util.CirclePagerIndicatorDecoration
 import br.com.igorfs.lodjinha.viewmodel.HomeViewModel
-import br.com.igorfs.lodjinha.vo.HomeBannerVo
 import kotlinx.android.synthetic.main.activity_home.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class HomeActivity : AppCompatActivity() {
 
@@ -28,16 +24,31 @@ class HomeActivity : AppCompatActivity() {
             .of(this)
             .get(HomeViewModel::class.java)
 
-        homeViewModel.fetchHomeBanner()
         setupView()
+        setupCall()
     }
 
     private fun setupView() {
         val adapter = HomeHeaderListAdapter()
-        header_list_recyclerview.adapter = adapter
+
+        with(header_list_recyclerview){
+            this.adapter = adapter
+
+            layoutManager = LinearLayoutManager(this@HomeActivity,
+                LinearLayoutManager.HORIZONTAL, false)
+
+            addItemDecoration(CirclePagerIndicatorDecoration())
+        }
+
+        val snapHelper = PagerSnapHelper()
+        snapHelper.attachToRecyclerView(header_list_recyclerview)
 
         homeViewModel.getBannerList().observe(this, Observer {
             adapter.loadItems(it?: emptyList())
         })
+    }
+
+    private fun setupCall() {
+        homeViewModel.fetchBannerList()
     }
 }

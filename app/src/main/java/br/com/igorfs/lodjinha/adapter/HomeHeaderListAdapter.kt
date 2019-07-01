@@ -1,12 +1,15 @@
 package br.com.igorfs.lodjinha.adapter
 
+import android.content.Intent
+import android.net.Uri
+import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.widget.RecyclerView
-import android.view.View
-import br.com.igorfs.lodjinha.vo.HomeBannerVo
 import android.support.v7.widget.RecyclerView.Adapter
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import br.com.igorfs.lodjinha.R
+import br.com.igorfs.lodjinha.vo.HomeBannerVo
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.header_item_layout.view.*
 
@@ -42,8 +45,13 @@ class HomeHeaderListAdapter :
             Glide
                 .with(itemView)
                 .load(item.urlImagem)
-                .centerCrop()
                 .into(imageView)
+
+            itemView.setOnClickListener {
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.data = Uri.parse(item.linkUrl)
+                startActivity(itemView.context, intent, null)
+            }
         }
     }
 }
