@@ -1,11 +1,11 @@
 package br.com.igorfs.lodjinha.view
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.PagerSnapHelper
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.PagerSnapHelper
 import br.com.igorfs.lodjinha.R
 import br.com.igorfs.lodjinha.adapter.HomeHeaderListAdapter
 import br.com.igorfs.lodjinha.util.CirclePagerIndicatorDecoration
@@ -34,8 +34,10 @@ class HomeActivity : AppCompatActivity() {
         with(header_list_recyclerview){
             this.adapter = adapter
 
-            layoutManager = LinearLayoutManager(this@HomeActivity,
-                LinearLayoutManager.HORIZONTAL, false)
+            layoutManager = LinearLayoutManager(
+                this@HomeActivity,
+                LinearLayoutManager.HORIZONTAL, false
+            )
 
             addItemDecoration(CirclePagerIndicatorDecoration())
         }
