@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import br.com.igorfs.lodjinha.R
+import br.com.igorfs.lodjinha.util.getLoaderPlaceholder
 import br.com.igorfs.lodjinha.vo.HomeBannerVo
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.header_item_layout.view.*
@@ -18,7 +19,7 @@ class HomeHeaderListAdapter :
 
     private var headerList: ArrayList<HomeBannerVo> = arrayListOf()
 
-    fun loadItems(newList: List<HomeBannerVo>){
+    fun loadItems(newList: List<HomeBannerVo>) {
         headerList.addAll(newList)
         notifyDataSetChanged()
     }
@@ -41,10 +42,12 @@ class HomeHeaderListAdapter :
         RecyclerView.ViewHolder(itemView) {
         private val imageView = itemView.header_item_imageview
 
-        fun bindView(item: HomeBannerVo){
+        fun bindView(item: HomeBannerVo) {
             Glide
                 .with(itemView)
                 .load(item.urlImagem)
+                .placeholder(getLoaderPlaceholder(itemView.context))
+                .error(R.drawable.ic_placeholder)
                 .into(imageView)
 
             itemView.setOnClickListener {

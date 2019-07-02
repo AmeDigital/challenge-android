@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.igorfs.lodjinha.R
+import br.com.igorfs.lodjinha.util.getLoaderPlaceholder
 import br.com.igorfs.lodjinha.vo.CategoryVo
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.category_item_layout.view.*
@@ -40,9 +41,11 @@ class CategoryListAdapter:
 
         fun bindView(item: CategoryVo){
             Glide
-                    .with(itemView)
-                    .load(item.urlImagem)
-                    .into(imageView)
+                .with(itemView)
+                .load(item.urlImagem)
+                .placeholder(getLoaderPlaceholder(itemView.context))
+                .error(R.drawable.ic_placeholder)
+                .into(imageView)
 
             categoryDescription.text = item.descricao
 
