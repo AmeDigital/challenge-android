@@ -13,6 +13,31 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        tools:itemCount="4"
+        tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:layout_height="200dp"
+        tools:listitem="@layout/header_item_layout"/>
+
+    <TextView
+        android:id="@+id/category_header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/category_header_title"
+        android:layout_margin="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header_list_recyclerview" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/category_list_recyclerview"
+        android:layout_width="0dp"
+        android:layout_height="128dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/category_header"
+        tools:itemCount="4"
+        tools:listitem="@layout/category_item_layout"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
