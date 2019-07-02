@@ -1,0 +1,14 @@
+apply plugin: 'com.android.library'
+apply from: '../android_commons.gradle'
+apply from: '../detekt.gradle'
+
+dependencies {
+    implementation project(Modules.model)
+    implementation AndroidLibs.lifecycleExtensions
+    implementation TestLibs.androidTestRunner
+    implementation TestLibs.espresso
+    implementation Libs.koin
+    implementation Libs.koinViewModel
+    implementation AndroidLibs.recyclerView
+    implementation TestLibs.coroutine
+}

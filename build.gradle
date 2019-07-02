@@ -1,0 +1,26 @@
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath ProjectDeps.gradle
+        classpath ProjectDeps.kotlinGradle
+        classpath ProjectDeps.navigationSafe
+    }
+}
+
+plugins {
+    id("io.gitlab.arturbosch.detekt").version("1.0.0-RC14")
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

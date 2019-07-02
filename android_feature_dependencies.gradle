@@ -1,0 +1,23 @@
+apply from: '../android_commons.gradle'
+apply from: '../android_core_dependencies.gradle'
+apply from: '../detekt.gradle'
+
+dependencies {
+    implementation Libs.koin
+    implementation Libs.koinViewModel
+
+    androidTestImplementation TestLibs.androidTestRunner
+    androidTestImplementation TestLibs.junit
+    androidTestImplementation TestLibs.mockkAndroid
+    androidTestImplementation TestLibs.fragmentNav
+    androidTestImplementation TestLibs.espresso
+    androidTestImplementation TestLibs.espressoContrib
+    androidTestImplementation TestLibs.koin
+    androidTestImplementation TestLibs.archCoreTest
+
+    testImplementation TestLibs.androidTestRunner
+    testImplementation TestLibs.junit
+    testImplementation TestLibs.mockk
+    testImplementation TestLibs.archCoreTest
+    kaptAndroidTest TestLibs.databinding
+}

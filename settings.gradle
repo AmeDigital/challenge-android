@@ -1,0 +1,1 @@
+include ':app', ':remote', ':model', ':repository', ':common_teste'

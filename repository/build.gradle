@@ -1,0 +1,22 @@
+apply plugin: 'com.android.library'
+apply from: '../android_commons.gradle'
+apply from: '../detekt.gradle'
+
+dependencies {
+    implementation project(Modules.remote)
+    api project(Modules.model)
+
+    implementation KotlinLibs.kotlinCoroutineCore
+    implementation AndroidLibs.kotlinCoroutineAndroid
+    implementation AndroidLibs.lifecycleExtensions
+
+    implementation Libs.koin
+    implementation Libs.koinViewModel
+    implementation Libs.okHttp
+
+    testImplementation TestLibs.junit
+    testImplementation TestLibs.mockk
+    testImplementation TestLibs.archCoreTest
+    testImplementation TestLibs.coroutine
+    testImplementation project(Modules.commonTest)
+}

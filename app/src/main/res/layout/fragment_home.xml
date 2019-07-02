@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools" xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable name="viewModel" type="com.lodjinha.home.HomeViewModel"/>
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:background="@color/white"
+                    android:elevation="10dp"
+                    tools:ignore="UnusedAttribute">
+
+                <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/banner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:itemsBanner="@{viewModel.banners}"
+                        tools:ignore="UnusedAttribute"
+                        app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/bannerIndicator"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:tabBackground="@drawable/tab_selector"
+                        tools:background="@color/dark"
+                        app:tabGravity="center"
+                        app:tabIndicatorHeight="0dp"
+                        app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:showAfterLoading="@{viewModel.categories}">
+
+                <include
+                        layout="@layout/item_top_area"
+                        app:areaTitle="@{@string/categories}"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerViewCategories"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:itemsCategory="@{viewModel.categories}"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+            </LinearLayout>
+
+            <TextView
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="@string/loading"
+                    android:layout_margin="32dp"
+                    app:showBeforeLoading="@{viewModel.categories}"/>
+
+            <View
+                    android:layout_width="wrap_content" android:layout_height="1dp"
+                    android:background="@color/white"/>
+
+            <LinearLayout
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:showAfterLoading="@{viewModel.topSelling}">
+
+                <include layout="@layout/item_top_area"
+                         app:areaTitle="@{@string/topSelling}"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerViewTopSelling"
+                        android:layout_width="match_parent"
+                        app:itemsProduct="@{viewModel.topSelling}"
+                        android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <TextView
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="@string/loading"
+                    android:layout_margin="32dp"
+                    android:visibility="gone"
+                    app:showBeforeLoading="@{viewModel.topSelling}"/>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

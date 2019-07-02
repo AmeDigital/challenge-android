@@ -1,0 +1,7 @@
+apply plugin: 'kotlin'
+apply from: '../detekt.gradle'
+
+dependencies {
+    implementation KotlinLibs.kotlin
+    implementation Libs.gson
+}
