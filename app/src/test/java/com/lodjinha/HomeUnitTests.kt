@@ -7,7 +7,7 @@ import androidx.test.filters.SmallTest
 import com.lodjinha.common_teste.FakeData.createFakeBanners
 import com.lodjinha.common_teste.FakeData.createFakeCategories
 import com.lodjinha.common_teste.FakeData.createFakeProducts
-import com.lodjinha.home.BannerUseCase
+import com.lodjinha.home.GetBannerUseCase
 import com.lodjinha.home.CategoriesUseCase
 import com.lodjinha.home.HomeViewModel
 import com.lodjinha.home.TopSellingUseCase
@@ -37,7 +37,7 @@ class HomeUnitTests {
     @JvmField
     val instantExecutorRule = InstantTaskExecutorRule()
 
-    private lateinit var bannersUseCase: BannerUseCase
+    private lateinit var bannersUseCaseGet: GetBannerUseCase
     private lateinit var categoriesUseCase: CategoriesUseCase
     private lateinit var topSellingUseCase: TopSellingUseCase
 
@@ -47,7 +47,7 @@ class HomeUnitTests {
 
     @Before
     fun setUp() {
-        bannersUseCase = mockk()
+        bannersUseCaseGet = mockk()
         categoriesUseCase = mockk()
         topSellingUseCase = mockk()
     }
@@ -58,13 +58,13 @@ class HomeUnitTests {
         val fakeBanners = createFakeBanners()
         val result = Resource.success(fakeBanners)
         coEvery {
-            bannersUseCase()
+            bannersUseCaseGet()
         } returns MutableLiveData<Resource<Banners>>().apply {
             value = result
         }
 
         homeViewModel = HomeViewModel(
-            bannerUseCase = bannersUseCase,
+            getBannerUseCase = bannersUseCaseGet,
             categoriesUseCase = categoriesUseCase,
             topSellingUseCase = topSellingUseCase,
             dispatchers = appDispatchers
@@ -83,13 +83,13 @@ class HomeUnitTests {
         val observerSnackBar = mockk<Observer<Event<Int>>>(relaxed = true)
         val result = Resource.error(Exception("fail"), null)
         coEvery {
-            bannersUseCase()
+            bannersUseCaseGet()
         } returns MutableLiveData<Resource<Banners>>().apply {
             value = result
         }
 
         homeViewModel = HomeViewModel(
-            bannerUseCase = bannersUseCase,
+            getBannerUseCase = bannersUseCaseGet,
             categoriesUseCase = categoriesUseCase,
             topSellingUseCase = topSellingUseCase,
             dispatchers = appDispatchers
@@ -116,7 +116,7 @@ class HomeUnitTests {
         }
 
         homeViewModel = HomeViewModel(
-            bannerUseCase = bannersUseCase,
+            getBannerUseCase = bannersUseCaseGet,
             categoriesUseCase = categoriesUseCase,
             topSellingUseCase = topSellingUseCase,
             dispatchers = appDispatchers
@@ -141,7 +141,7 @@ class HomeUnitTests {
         }
 
         homeViewModel = HomeViewModel(
-            bannerUseCase = bannersUseCase,
+            getBannerUseCase = bannersUseCaseGet,
             categoriesUseCase = categoriesUseCase,
             topSellingUseCase = topSellingUseCase,
             dispatchers = appDispatchers
@@ -168,7 +168,7 @@ class HomeUnitTests {
         }
 
         homeViewModel = HomeViewModel(
-            bannerUseCase = bannersUseCase,
+            getBannerUseCase = bannersUseCaseGet,
             categoriesUseCase = categoriesUseCase,
             topSellingUseCase = topSellingUseCase,
             dispatchers = appDispatchers
@@ -193,7 +193,7 @@ class HomeUnitTests {
         }
 
         homeViewModel = HomeViewModel(
-            bannerUseCase = bannersUseCase,
+            getBannerUseCase = bannersUseCaseGet,
             categoriesUseCase = categoriesUseCase,
             topSellingUseCase = topSellingUseCase,
             dispatchers = appDispatchers

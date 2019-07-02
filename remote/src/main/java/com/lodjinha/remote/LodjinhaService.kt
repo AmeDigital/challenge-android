@@ -5,6 +5,7 @@ import com.lodjinha.model.Categories
 import com.lodjinha.model.Product
 import com.lodjinha.model.Products
 import kotlinx.coroutines.Deferred
+import okhttp3.ResponseBody
 import retrofit2.http.*
 
 interface LodjinhaService {
@@ -29,5 +30,5 @@ interface LodjinhaService {
     fun productAsync(@Path("productId") productId: Int): Deferred<Product>
 
     @POST("produto/{productId}")
-    fun bookProductAsync(@Path("productId") productId: Int)
+    fun reserveProductAsync(@Path("productId") productId: Int): Deferred<ResponseBody>
 }

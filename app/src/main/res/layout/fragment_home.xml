@@ -44,27 +44,56 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <include layout="@layout/item_top_area"
-                app:areaTitle="@{@string/categories}"/>
+            <LinearLayout
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:showAfterLoading="@{viewModel.categories}">
 
-            <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerViewCategories"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:itemsCategory="@{viewModel.categories}"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+                <include
+                        layout="@layout/item_top_area"
+                        app:areaTitle="@{@string/categories}"/>
 
-            <View android:layout_width="wrap_content" android:layout_height="1dp"
-                  android:background="@color/white"/>
+                <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerViewCategories"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:itemsCategory="@{viewModel.categories}"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
-            <include layout="@layout/item_top_area"
-                     app:areaTitle="@{@string/topSelling}"/>
+            </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerViewTopSelling"
-                    android:layout_width="match_parent"
-                    app:itemsProduct="@{viewModel.topSelling}"
-                    android:layout_height="wrap_content"/>
+            <TextView
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="@string/loading"
+                    android:layout_margin="32dp"
+                    app:showBeforeLoading="@{viewModel.categories}"/>
+
+            <View
+                    android:layout_width="wrap_content" android:layout_height="1dp"
+                    android:background="@color/white"/>
+
+            <LinearLayout
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:showAfterLoading="@{viewModel.topSelling}">
+
+                <include layout="@layout/item_top_area"
+                         app:areaTitle="@{@string/topSelling}"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerViewTopSelling"
+                        android:layout_width="match_parent"
+                        app:itemsProduct="@{viewModel.topSelling}"
+                        android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <TextView
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="@string/loading"
+                    android:layout_margin="32dp"
+                    android:visibility="gone"
+                    app:showBeforeLoading="@{viewModel.topSelling}"/>
 
         </LinearLayout>
 

@@ -6,6 +6,7 @@ import com.lodjinha.model.Categories
 import com.lodjinha.model.Product
 import com.lodjinha.model.Products
 import com.lodjinha.repository.utils.Resource
+import okhttp3.ResponseBody
 
 interface LodjinhaRepository {
 
@@ -19,5 +20,5 @@ interface LodjinhaRepository {
 
     suspend fun getProductAsync(productId: Int, shouldFetch: Boolean = true) : LiveData<Resource<Product>>
 
-//    suspend fun bookProductAsync(productId: Int, shouldFetch: Boolean = true)
+    suspend fun reserveProductAsync(productId: Int): LiveData<Resource<ResponseBody>>
 }

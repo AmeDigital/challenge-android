@@ -9,6 +9,7 @@ import com.lodjinha.remote.LodjinhaDataSource
 import com.lodjinha.repository.utils.NetworkBoundResource
 import com.lodjinha.repository.utils.Resource
 import kotlinx.coroutines.Deferred
+import okhttp3.ResponseBody
 
 class LodjinhaRepositoryImpl(private val dataSource: LodjinhaDataSource) : LodjinhaRepository {
 
@@ -57,14 +58,12 @@ class LodjinhaRepositoryImpl(private val dataSource: LodjinhaDataSource) : Lodji
             override fun createCallAsync(): Deferred<Product> = dataSource.getProductAsync(productId)
         }.build().asLiveData()
 
-//    override suspend fun bookProductAsync(productId: Int, shouldFetch: Boolean) =
-//        object : NetworkBoundResource<Product, Product>() {
-//            override fun processResponse(response: Product): Product = response
-//
-//            override fun shouldFetch(): Boolean = shouldFetch
-//
-//            override fun createCallAsync(): Deferred<Product> {
-//                return null
-//            }
-//        }.build().asLiveData()
+    override suspend fun reserveProductAsync(productId: Int): LiveData<Resource<ResponseBody>> =
+        object : NetworkBoundResource<ResponseBody, ResponseBody>() {
+            override fun processResponse(response: ResponseBody): ResponseBody = response
+
+            override fun shouldFetch(): Boolean = true
+
+            override fun createCallAsync(): Deferred<ResponseBody> = dataSource.reserveProductAsync(productId)
+        }.build().asLiveData()
 }

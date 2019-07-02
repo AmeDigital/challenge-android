@@ -12,5 +12,5 @@ class LodjinhaDataSource(private val service: LodjinhaService) {
 
     fun getProductAsync(productId: Int) = service.productAsync(productId)
 
-    fun bookProductAsync(productId: Int) = service.bookProductAsync(productId)
+    fun reserveProductAsync(productId: Int) = service.reserveProductAsync(productId)
 }

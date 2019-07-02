@@ -69,6 +69,7 @@ object Libs {
     const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
     const val retrofitGsonConverter = "com.squareup.retrofit2:converter-gson:${Versions.retrofitGson}"
     const val httpLoggingInterceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okHttp}"
+    const val okHttp = "com.squareup.okhttp3:okhttp:${Versions.okHttp}"
 
     const val picasso = "com.squareup.picasso:picasso:${Versions.picasso}"
     const val picassoTransformations = "jp.wasabeef:picasso-transformations:2.2.1"

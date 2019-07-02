@@ -23,8 +23,8 @@
                         android:id="@+id/toolbar"
                         android:layout_width="match_parent"
                         android:layout_height="?attr/actionBarSize"
-                        android:background="?attr/colorPrimary"
-                        app:theme="@style/ToolbarStyle"/>
+                        app:theme="@style/ToolbarStyle"
+                        app:titleMarginStart="24dp"/>
 
             </com.google.android.material.appbar.AppBarLayout>
 

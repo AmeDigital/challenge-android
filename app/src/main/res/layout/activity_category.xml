@@ -19,7 +19,6 @@
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
-                    android:background="?attr/colorPrimary"
                     app:theme="@style/ToolbarStyle"/>
 
         </com.google.android.material.appbar.AppBarLayout>
@@ -56,6 +55,7 @@
                             app:layout_constraintHorizontal_bias="0.5"
                             app:layout_constraintBottom_toTopOf="@+id/recyclerViewProducts"
                             android:textStyle="bold"
+                            android:textColor="@color/dark"
                             android:visibility="gone"
                             tools:visibility="visible"/>
 
@@ -63,7 +63,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             app:showWhenEmptyListProducts="@{viewModel.products}"
-                            android:src="@drawable/ic_error_black_24dp"
+                            android:src="@drawable/ic_sentiment_neutral_black_48dp"
                             android:id="@+id/imageEmptyList"
                             android:layout_marginTop="8dp"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -76,7 +76,7 @@
                             app:layout_constraintHorizontal_bias="0.5"
                             android:visibility="gone"
                             tools:visibility="visible"
-                            android:tint="#414141" tools:ignore="ContentDescription"/>
+                            android:tint="@color/dark" tools:ignore="ContentDescription"/>
 
                     <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/recyclerViewProducts"

@@ -12,6 +12,7 @@ dependencies {
 
     implementation Libs.koin
     implementation Libs.koinViewModel
+    implementation Libs.okHttp
 
     testImplementation TestLibs.junit
     testImplementation TestLibs.mockk

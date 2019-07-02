@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class HomeViewModel(
-    private val bannerUseCase: BannerUseCase,
+    private val getBannerUseCase: GetBannerUseCase,
     private val categoriesUseCase: CategoriesUseCase,
     private val topSellingUseCase: TopSellingUseCase,
     private val dispatchers: AppDispatchers
@@ -44,7 +44,7 @@ class HomeViewModel(
         bannersMediator.removeSource(bannersSource) // We make sure there is only one source of liveData (allowing us properly refresh)
 
         withContext(dispatchers.io) {
-            bannersSource = bannerUseCase()
+            bannersSource = getBannerUseCase()
         }
 
         bannersMediator.addSource(bannersSource) {

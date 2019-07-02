@@ -9,6 +9,7 @@ dependencies {
     implementation Libs.retrofitCoroutineAdapter
     implementation Libs.gson
     implementation Libs.retrofit
+    implementation Libs.okHttp
     implementation Libs.retrofitGsonConverter
     implementation Libs.httpLoggingInterceptor
 

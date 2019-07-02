@@ -12,7 +12,7 @@
 
         <TextView
                 tools:text="9999,9"
-                android:text="De: 9999,9"
+                android:text="@{product.formatOriginalPrice()}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/originalPriceProduct"
@@ -26,7 +26,7 @@
 
         <TextView
                 tools:text="9999,9"
-                android:text="Por 9999,9"
+                android:text="@{product.formatCurrentPrice()}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/currentPriceProduct"
@@ -35,7 +35,8 @@
                 android:textSize="20sp"
                 android:textColor="@color/tomato"
                 app:fontFamily="@font/roboto_bold"
-                android:layout_alignParentEnd="true" android:layout_alignParentRight="true"/>
+                android:layout_alignParentEnd="true" android:layout_alignParentRight="true"
+                tools:ignore="RelativeOverlap"/>
 
     </RelativeLayout>
 

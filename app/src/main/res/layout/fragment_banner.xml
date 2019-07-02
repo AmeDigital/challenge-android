@@ -20,17 +20,6 @@
                 tools:src="@tools:sample/avatars"
                 android:scaleType="centerCrop"/>
 
-        <!--<ImageView-->
-                <!--android:layout_width="0dp"-->
-                <!--android:layout_height="0dp"-->
-                <!--app:layout_constraintDimensionRatio="H,16:9"-->
-                <!--app:imageUrl="@{banner.urlImage}"-->
-                <!--tools:ignore="ContentDescription,MissingConstraints" app:layout_constraintEnd_toEndOf="parent"-->
-                <!--app:layout_constraintStart_toStartOf="parent"-->
-                <!--app:layout_constraintTop_toTopOf="parent"-->
-                <!--tools:src="@tools:sample/avatars"-->
-                <!--android:scaleType="centerCrop"/>-->
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

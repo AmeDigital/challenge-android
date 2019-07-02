@@ -1,5 +1,7 @@
 package com.lodjinha
 
+import android.graphics.Bitmap.createScaledBitmap
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -28,6 +30,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun initViews() {
         setSupportActionBar(binding.toolbar)
         binding.toolbar.setTitleTextAppearance(this, R.style.ToolbarStyle)
+        val bitmap = (resources.getDrawable(R.drawable.ticket) as BitmapDrawable).bitmap
+        val drawable = BitmapDrawable(resources, createScaledBitmap(bitmap, 32, 32, true))
+        supportActionBar?.apply {
+            setLogo(drawable)
+            setDisplayUseLogoEnabled(true)
+        }
 
         val toggle = ActionBarDrawerToggle(
             this,
