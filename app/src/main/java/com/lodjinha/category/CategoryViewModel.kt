@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class CategoryViewModel(
-    private val productsUseCase: ProductsUseCase,
+    private val getProductsUseCase: GetProductsUseCase,
     private val dispatchers: AppDispatchers
 ) : BaseViewModel() {
 
@@ -37,7 +37,7 @@ class CategoryViewModel(
         productsMediator.removeSource(productsSource)
 
         withContext(dispatchers.io) {
-            productsSource = productsUseCase(page = page, categoryId = lastCategoryID)
+            productsSource = getProductsUseCase(page = page, categoryId = lastCategoryID)
         }
 
         productsMediator.addSource(productsSource) {

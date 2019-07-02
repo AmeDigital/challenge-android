@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="viewModel" type="com.lodjinha.detailProduct.DetailProductViewModel"/>
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:theme="@style/AppTheme.AppBarOverlay">
+
+            <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="?attr/colorPrimary"
+                    app:theme="@style/ToolbarStyle"/>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <ScrollView android:layout_width="match_parent" android:layout_height="match_parent"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" tools:srcCompat="@tools:sample/avatars"
+                        android:id="@+id/imageView2" app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
+                        app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
+                        android:layout_marginStart="8dp" android:layout_marginTop="8dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:imageUrl="@{viewModel.product.urlImage}"
+                        android:layout_marginBottom="16dp" tools:ignore="ContentDescription"/>
+
+                <include layout="@layout/item_top_area"
+                         android:layout_height="wrap_content"
+                         android:layout_width="match_parent"
+                         app:areaTitle="@{viewModel.product.name}"/>
+
+                <include
+                        android:id="@+id/priceArea"
+                        layout="@layout/item_product_price"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        tools:layout_editor_absoluteY="393dp" app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
+                        app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="8dp"
+                        android:layout_margin="16dp"
+                        android:layout_marginEnd="8dp" app:layout_constraintHorizontal_bias="1.0"
+                        app:product="@{viewModel.product}"/>
+
+                <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="1dp"
+                        android:background="@color/white"/>
+
+                <TextView
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:text="@string/description_title"
+                        app:fontFamily="@font/roboto_bold"
+                        android:textSize="17sp"
+                        android:layout_margin="16dp"/>
+
+                <TextView
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:text="@{viewModel.product.description}"
+                        app:fontFamily="@font/roboto_medium"
+                        android:textSize="18sp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="32dp"/>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="@dimen/fab_margin"
+                app:srcCompat="@drawable/ic_done_white_24dp"
+                tools:ignore="VectorDrawableCompat"
+                android:onClick="@{() -> viewModel.reserveProduct()}"/>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

@@ -7,5 +7,6 @@ val appComponent = listOf(
     createRemoteModule("https://alodjinha.herokuapp.com"),
     repositoryModule,
     featureHomeModule,
-    featureCategoryModule
+    featureCategoryModule,
+    featureDetailProductModule
 )

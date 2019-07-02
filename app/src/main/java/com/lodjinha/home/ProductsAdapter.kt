@@ -1,13 +1,17 @@
 package com.lodjinha.home
 
+import android.content.Intent
 import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
 import com.lodjinha.R
 import com.lodjinha.model.Products
 import com.lodjinha.databinding.ItemProductBinding
+import com.lodjinha.detailProduct.DetailProductActivity
+import com.lodjinha.detailProduct.DetailProductActivity.Companion.DETAIL_PRODUCT_EXTRA
 import com.lodjinha.model.Product
 
 class ProductsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -41,10 +45,17 @@ class ProductsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     class TopSellingViewHolder(private val binding: ItemProductBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(product: Product) {
-            binding.product = product
-            binding.originalPriceProduct.paintFlags =
-                binding.originalPriceProduct.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+        fun bind(newProduct: Product) = with(binding) {
+            product = newProduct
+            priceArea.originalPriceProduct.paintFlags =
+                priceArea.originalPriceProduct.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+
+            root.setOnClickListener {
+                it.context.startActivity(
+                    Intent(it.context, DetailProductActivity::class.java)
+                        .putExtra(DETAIL_PRODUCT_EXTRA, Gson().toJson(newProduct))
+                )
+            }
         }
     }
 }

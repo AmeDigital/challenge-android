@@ -12,4 +12,5 @@
     <string name="development_date">03 de julho de 2019</string>
     <string name="developer_name">Gildênio Reis do Nascimento Neto</string>
     <string name="about">Sobre</string>
+    <string name="description_title">Descrição</string>
 </resources>
