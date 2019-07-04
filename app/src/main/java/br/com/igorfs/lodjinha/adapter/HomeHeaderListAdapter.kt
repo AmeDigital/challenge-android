@@ -37,7 +37,7 @@ class HomeHeaderListAdapter :
     }
 
 
-    inner class HeaderListViewHolder(itemView: View) :
+    class HeaderListViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
         private val imageView = itemView.header_item_imageview
 
