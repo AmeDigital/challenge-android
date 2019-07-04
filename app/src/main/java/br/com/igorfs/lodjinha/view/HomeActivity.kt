@@ -9,10 +9,12 @@ import androidx.recyclerview.widget.PagerSnapHelper
 import br.com.igorfs.lodjinha.R
 import br.com.igorfs.lodjinha.adapter.BannerListAdapter
 import br.com.igorfs.lodjinha.adapter.CategoryListAdapter
+import br.com.igorfs.lodjinha.adapter.TopSellersAdapter
 import br.com.igorfs.lodjinha.util.CirclePagerIndicatorDecoration
 import br.com.igorfs.lodjinha.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.activity_home.category_list_recyclerview
 import kotlinx.android.synthetic.main.activity_home.header_list_recyclerview
+import kotlinx.android.synthetic.main.activity_home.top_sellers_list_recyclerview
 
 class HomeActivity : AppCompatActivity() {
 
@@ -33,18 +35,20 @@ class HomeActivity : AppCompatActivity() {
     private fun setupCall() {
         homeViewModel.fetchBannerList()
         homeViewModel.fetchCategoryList()
+        homeViewModel.fetchTopSellersData()
     }
 
     private fun setupView() {
         setupBannerRecyclerView()
         setupCategoryRecyclerView()
+        setupTopSellersRecyclerView()
     }
 
     private fun setupBannerRecyclerView() {
-        val adapter = BannerListAdapter()
+        val bannerAdapter = BannerListAdapter()
 
         with(header_list_recyclerview) {
-            this.adapter = adapter
+            this.adapter = bannerAdapter
 
             layoutManager = LinearLayoutManager(
                     this@HomeActivity,
@@ -58,19 +62,31 @@ class HomeActivity : AppCompatActivity() {
         snapHelper.attachToRecyclerView(header_list_recyclerview)
 
         homeViewModel.getBannerList().observe(this, Observer {
-            adapter.loadItems(it ?: emptyList())
+            bannerAdapter.loadItems(it ?: emptyList())
         })
     }
 
     private fun setupCategoryRecyclerView() {
-        val adapter = CategoryListAdapter()
+        val categoryAdapter = CategoryListAdapter()
 
-        category_list_recyclerview.adapter = adapter
+        category_list_recyclerview.adapter = categoryAdapter
         category_list_recyclerview.layoutManager = LinearLayoutManager(this,
                 LinearLayoutManager.HORIZONTAL, false)
 
         homeViewModel.getCategories().observe(this, Observer {
-            adapter.loadItems(it ?: emptyList())
+            categoryAdapter.loadItems(it ?: emptyList())
+        })
+    }
+
+    private fun setupTopSellersRecyclerView() {
+        val topSellersAdapter = TopSellersAdapter()
+
+        top_sellers_list_recyclerview.adapter = topSellersAdapter
+        top_sellers_list_recyclerview.layoutManager = LinearLayoutManager(this)
+        top_sellers_list_recyclerview.isNestedScrollingEnabled = false
+
+        homeViewModel.getTopSellers().observe(this, Observer {
+            topSellersAdapter.loadItems(it ?: emptyList())
         })
     }
 }
