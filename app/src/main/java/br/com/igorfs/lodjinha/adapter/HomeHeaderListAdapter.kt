@@ -2,9 +2,9 @@ package br.com.igorfs.lodjinha.adapter
 
 import android.content.Intent
 import android.net.Uri
-import android.support.v4.content.ContextCompat.startActivity
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.RecyclerView.Adapter
+import androidx.core.content.ContextCompat.startActivity
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.Adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
