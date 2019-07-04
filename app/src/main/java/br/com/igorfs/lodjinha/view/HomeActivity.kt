@@ -7,11 +7,12 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import br.com.igorfs.lodjinha.R
+import br.com.igorfs.lodjinha.adapter.BannerListAdapter
 import br.com.igorfs.lodjinha.adapter.CategoryListAdapter
-import br.com.igorfs.lodjinha.adapter.HomeHeaderListAdapter
 import br.com.igorfs.lodjinha.util.CirclePagerIndicatorDecoration
 import br.com.igorfs.lodjinha.viewmodel.HomeViewModel
-import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.activity_home.category_list_recyclerview
+import kotlinx.android.synthetic.main.activity_home.header_list_recyclerview
 
 class HomeActivity : AppCompatActivity() {
 
@@ -40,7 +41,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun setupBannerRecyclerView() {
-        val adapter = HomeHeaderListAdapter()
+        val adapter = BannerListAdapter()
 
         with(header_list_recyclerview) {
             this.adapter = adapter
