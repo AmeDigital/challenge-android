@@ -7,10 +7,12 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import br.com.igorfs.lodjinha.R
-import br.com.igorfs.lodjinha.adapter.HomeHeaderListAdapter
+import br.com.igorfs.lodjinha.adapter.BannerListAdapter
+import br.com.igorfs.lodjinha.adapter.CategoryListAdapter
 import br.com.igorfs.lodjinha.util.CirclePagerIndicatorDecoration
 import br.com.igorfs.lodjinha.viewmodel.HomeViewModel
-import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.activity_home.category_list_recyclerview
+import kotlinx.android.synthetic.main.activity_home.header_list_recyclerview
 
 class HomeActivity : AppCompatActivity() {
 
@@ -28,15 +30,25 @@ class HomeActivity : AppCompatActivity() {
         setupCall()
     }
 
-    private fun setupView() {
-        val adapter = HomeHeaderListAdapter()
+    private fun setupCall() {
+        homeViewModel.fetchBannerList()
+        homeViewModel.fetchCategoryList()
+    }
 
-        with(header_list_recyclerview){
+    private fun setupView() {
+        setupBannerRecyclerView()
+        setupCategoryRecyclerView()
+    }
+
+    private fun setupBannerRecyclerView() {
+        val adapter = BannerListAdapter()
+
+        with(header_list_recyclerview) {
             this.adapter = adapter
 
             layoutManager = LinearLayoutManager(
-                this@HomeActivity,
-                LinearLayoutManager.HORIZONTAL, false
+                    this@HomeActivity,
+                    LinearLayoutManager.HORIZONTAL, false
             )
 
             addItemDecoration(CirclePagerIndicatorDecoration())
@@ -46,11 +58,19 @@ class HomeActivity : AppCompatActivity() {
         snapHelper.attachToRecyclerView(header_list_recyclerview)
 
         homeViewModel.getBannerList().observe(this, Observer {
-            adapter.loadItems(it?: emptyList())
+            adapter.loadItems(it ?: emptyList())
         })
     }
 
-    private fun setupCall() {
-        homeViewModel.fetchBannerList()
+    private fun setupCategoryRecyclerView() {
+        val adapter = CategoryListAdapter()
+
+        category_list_recyclerview.adapter = adapter
+        category_list_recyclerview.layoutManager = LinearLayoutManager(this,
+                LinearLayoutManager.HORIZONTAL, false)
+
+        homeViewModel.getCategories().observe(this, Observer {
+            adapter.loadItems(it ?: emptyList())
+        })
     }
 }

@@ -131,3 +131,8 @@ class CirclePagerIndicatorDecoration: RecyclerView.ItemDecoration() {
         private val DP = Resources.getSystem().displayMetrics.density
     }
 }
+
+/*
+    Base code:
+    @see https://stackoverflow.com/questions/33841363/how-to-make-a-page-indicator-for-horizontal-recyclerview
+*/
