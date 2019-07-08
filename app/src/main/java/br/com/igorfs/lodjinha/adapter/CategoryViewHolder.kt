@@ -1,9 +1,11 @@
 package br.com.igorfs.lodjinha.adapter
 
 import android.view.View
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import br.com.igorfs.lodjinha.R
 import br.com.igorfs.lodjinha.util.getLoaderPlaceholder
+import br.com.igorfs.lodjinha.view.HomeFragmentDirections
 import br.com.igorfs.lodjinha.vo.CategoryVo
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.category_item_layout.view.description_category_item
@@ -24,7 +26,8 @@ class CategoryViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView) {
         categoryDescription.text = item.descricao
 
         itemView.setOnClickListener {
-            TODO() // Open Category by id activity
+            val action = HomeFragmentDirections.actionHomeToCategory(item.id)
+            itemView.findNavController().navigate(action)
         }
     }
 }

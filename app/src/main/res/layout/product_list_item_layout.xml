@@ -6,43 +6,44 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/top_sellers_imageview"
+        android:id="@+id/product_item_imageview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:minWidth="128dp"
         android:minHeight="128dp"
         android:layout_margin="8dp"
         android:src="@drawable/ic_placeholder"
+        android:contentDescription="@null"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/top_sellers_item_title"
+        android:id="@+id/product_item_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:maxLines="2"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@id/top_sellers_imageview"
+        app:layout_constraintStart_toEndOf="@id/product_item_imageview"
         app:layout_constraintEnd_toEndOf="parent"
         tools:text="@tools:sample/lorem/random"/>
 
     <TextView
-        android:id="@+id/top_sellers_precoDe"
+        android:id="@+id/product_item_precoDe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@id/top_sellers_item_title"
-        app:layout_constraintTop_toBottomOf="@id/top_sellers_item_title"
+        app:layout_constraintStart_toStartOf="@id/product_item_title"
+        app:layout_constraintTop_toBottomOf="@id/product_item_title"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:text="De: 9999,99"/>
 
     <TextView
-        android:id="@+id/top_sellers_precoPor"
+        android:id="@+id/product_item_precoPor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/top_sellers_item_title"
-        app:layout_constraintEnd_toEndOf="@id/top_sellers_item_title"
+        app:layout_constraintTop_toBottomOf="@id/product_item_title"
+        app:layout_constraintEnd_toEndOf="@id/product_item_title"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:text="Por: 9999,99"/>
 

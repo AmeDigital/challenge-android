@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/main_nav_graph"
+            app:startDestination="@id/homeFragment">
+    <fragment
+            android:id="@+id/homeFragment"
+            android:name="br.com.igorfs.lodjinha.view.HomeFragment"
+            android:label="TimelineFragment"
+            tools:layout="@layout/fragment_home">
+        <action
+                android:id="@+id/action_home_to_category"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"
+                app:destination="@id/CategoryFragment"/>
+    </fragment>
+
+    <fragment
+            android:id="@+id/CategoryFragment"
+            android:name="br.com.igorfs.lodjinha.view.CategoryFragment"
+            tools:layout="@layout/fragment_category">
+        <argument
+                android:name="categoryId"
+                app:argType="long"
+                android:defaultValue="0L"/>
+    </fragment>
+
+    <action
+            android:id="@+id/action_to_product"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:destination="@id/ProductFragment"/>
+
+    <fragment
+            android:id="@+id/ProductFragment"
+            android:name="br.com.igorfs.lodjinha.view.ProductFragment"
+            tools:layout="@layout/fragment_product">
+        <argument
+                android:name="product"
+                app:argType="br.com.igorfs.lodjinha.vo.ProductVo"/>
+    </fragment>
+</navigation>

@@ -11,6 +11,7 @@ import br.com.igorfs.lodjinha.vo.ProductVo
 class ProductRepository {
 
     private val topSellers = MutableLiveData<List<ProductVo>>()
+    private val productsList = MutableLiveData<List<ProductVo>>()
     private val productService: ProductService by lazy {
         RetrofitFactory().getRetrofit().create(ProductService::class.java)
     }
@@ -30,5 +31,19 @@ class ProductRepository {
                 Log.e(TAG, it.message)
             }
         })
+    }
+
+    fun getProductsList(): LiveData<List<ProductVo>> = productsList
+
+    fun fetchProductsData(categoryId: Long? = null, page: Long? = null) {
+        productService.getProducts(categoryId = categoryId, offset = page).enqueue(
+            callback { response, throwable ->
+                response?.let {
+                    response.body()?.let { productsList.postValue(it.getList) }
+                }
+                throwable?.let {
+                    Log.e(TAG, it.message)
+                }
+            })
     }
 }
