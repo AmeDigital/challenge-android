@@ -1,5 +1,6 @@
 package br.com.igorfs.lodjinha.adapter
 
+import android.graphics.Paint
 import android.view.View
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -22,8 +23,10 @@ class ProductsViewHolder (itemView: View) :
 
     fun bindView(product: ProductVo) {
         titleTextView.text = product.nome
-        precoDeTextView.text = product.precoDe.toString()
-        precoPorTextView.text = product.precoPor.toString()
+
+        precoDeTextView.text = itemView.context.getString(R.string.preco_de, product.precoDe.toString())
+        precoDeTextView.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+        precoPorTextView.text = itemView.context.getString(R.string.preco_por, product.precoPor.toString())
 
         Glide
             .with(itemView)

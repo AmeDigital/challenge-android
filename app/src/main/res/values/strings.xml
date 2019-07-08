@@ -3,4 +3,6 @@
     <string name="action_settings">Settings</string>
     <string name="category_header_title">Categorias</string>
     <string name="top_sellers_title">Mais Vendidos</string>
+    <string name="preco_de">De: R$ %s</string>
+    <string name="preco_por">Por: R$ %s</string>
 </resources>

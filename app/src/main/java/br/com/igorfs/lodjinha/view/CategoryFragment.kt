@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.igorfs.lodjinha.R
 import br.com.igorfs.lodjinha.adapter.ProductsAdapter
 import br.com.igorfs.lodjinha.repository.ProductRepository
+import kotlinx.android.synthetic.main.fragment_category.category_progressBar
 import kotlinx.android.synthetic.main.fragment_category.category_recyclerview
 
 class CategoryFragment : Fragment() {
@@ -47,6 +48,7 @@ class CategoryFragment : Fragment() {
 
         productRepository.getProductsList().observe(this, Observer {
             productsAdapter.loadItems(it?: emptyList())
+            hideLoading()
         })
     }
 
@@ -54,5 +56,10 @@ class CategoryFragment : Fragment() {
         productRepository.fetchProductsData(categoryId = categoryId)
 
         //TODO setup page loading scroll
+    }
+
+    private fun hideLoading() {
+        category_progressBar.visibility = View.GONE
+        category_recyclerview.visibility = View.VISIBLE
     }
 }
