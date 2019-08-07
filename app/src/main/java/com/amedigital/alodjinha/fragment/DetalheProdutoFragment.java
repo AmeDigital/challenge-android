@@ -26,6 +26,9 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class DetalheProdutoFragment extends Fragment {
     private ImageView imgVoltar;
@@ -98,87 +101,117 @@ public class DetalheProdutoFragment extends Fragment {
     }
 
     private void carregarProdutoWs(){
+        Map<String, String> parametros = new HashMap<>();
+        parametros.put("produtoId", String.valueOf(id));
         new WS(new AsyncTaskCompleteListener<String>() {
             @Override
             public void onTaskComplete(String result) {
-                carregarRetornoWs(result, false);
+                new ThreadCarregarRetornoProdutoWs(result).start();
             }
-        }, true, "produto/" + id).execute();
+        }, true, "produto", parametros).execute();
     }
 
     private void reservarProdutoWs(){
+        Map<String, String> parametros = new HashMap<>();
+        parametros.put("produtoId", String.valueOf(id));
         new WS(new AsyncTaskCompleteListener<String>() {
             @Override
             public void onTaskComplete(String result) {
-                carregarRetornoWs(result, true);
+                new ThreadCarregarRetornoReservarProdutoWs(result).start();
             }
-        }, false, "produto/" + id).execute();
+        }, false, "produto", parametros).execute();
     }
 
-    public void carregarRetornoWs(String response, boolean reservaProduto) {
-        try {
-            if ("Erro".equals(response)) {
-                if (reservaProduto) {
-                    carregarRetornoReservarProdutoWs(response);
-                } else {
+    private class ThreadCarregarRetornoProdutoWs extends Thread{
+        private String result;
+
+        ThreadCarregarRetornoProdutoWs(String result){
+            this.result = result;
+        }
+
+        @Override
+        public void run() {
+            try {
+                if (result.equals("Erro")) {
                     ErroWs.retornarErroWS(getContext(), pbProgresso);
-                }
-            } else {
-                if (reservaProduto) {
-                    carregarRetornoReservarProdutoWs(response);
-                } else {
-                    carregarRetornoProdutoWs(response);
-                }
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-            ErroWs.retornarErroWS(getContext(), pbProgresso);
-        }
-    }
+                }else {
+                    final JSONObject jsonObject = new JSONObject(result);
+                    if (getActivity() != null) {
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    imgFotoProduto.setImageURI(jsonObject.getString("urlImagem"));
+                                    if (getContext() != null) {
+                                        txtNomeDescricao.setText((getContext().getString(R.string.nome_descricao_produto, jsonObject.getString("nome"), jsonObject.getString("descricao"))));
+                                        txtDe.setText(getContext().getString(R.string.preco_de, FormataCampoUtil.formatarDecimal(jsonObject.getDouble("precoDe"))));
+                                        FormataCampoUtil.riscarTextView(txtDe);
+                                        txtPor.setText(getContext().getString(R.string.preco_por, FormataCampoUtil.formatarDecimal(jsonObject.getDouble("precoPor"))));
+                                    }
+                                    txtNome.setText(jsonObject.getString("nome"));
+                                    txtDescricao.setText(Html.fromHtml(jsonObject.getString("descricao")));
+                                    pbProgresso.setVisibility(View.GONE);
+                                    constraintLayout.setVisibility(View.VISIBLE);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                    ErroWs.retornarErroWS(getContext(), pbProgresso);
+                                }
 
-    private void carregarRetornoProdutoWs(String response) throws JSONException {
-        JSONObject jsonObject = new JSONObject(response);
-        try {
-            imgFotoProduto.setImageURI(jsonObject.getString("urlImagem"));
-            if (getContext() != null) {
-                txtNomeDescricao.setText((getContext().getString(R.string.nome_descricao_produto, jsonObject.getString("nome"), jsonObject.getString("descricao"))));
-                txtDe.setText(getContext().getString(R.string.preco_de, FormataCampoUtil.formatarDecimal(jsonObject.getDouble("precoDe"))));
-                FormataCampoUtil.riscarTextView(txtDe);
-                txtPor.setText(getContext().getString(R.string.preco_por, FormataCampoUtil.formatarDecimal(jsonObject.getDouble("precoPor"))));
-            }
-            txtNome.setText(jsonObject.getString("nome"));
-            txtDescricao.setText(Html.fromHtml(jsonObject.getString("descricao")));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        pbProgresso.setVisibility(View.GONE);
-        constraintLayout.setVisibility(View.VISIBLE);
-    }
-
-    private void carregarRetornoReservarProdutoWs(final String response) {
-        pbProgresso.setVisibility(View.GONE);
-
-        AlertDialog alerta;
-        if (getContext() != null) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-            if (response.equals("Erro")) {
-                builder.setMessage(getContext().getString(R.string.erro_reserva_produto));
-            }else{
-                builder.setMessage(getContext().getString(R.string.produto_reservado));
-            }
-            builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface arg0, int arg1) {
-                    fabReservar.setClickable(true);
-                    if (!response.equals("Erro")) {
-                        if (getFragmentManager() != null) {
-                            getFragmentManager().popBackStackImmediate();
-                        }
+                            }
+                        });
                     }
                 }
-            });
-            alerta = builder.create();
-            alerta.setCanceledOnTouchOutside(false);
-            alerta.show();
+            } catch (JSONException e) {
+                e.printStackTrace();
+                ErroWs.retornarErroWS(getContext(), pbProgresso);
+            }
+        }
+    }
+
+    private class ThreadCarregarRetornoReservarProdutoWs extends Thread{
+        private String result;
+
+        ThreadCarregarRetornoReservarProdutoWs(String result){
+            this.result = result;
+        }
+
+        @Override
+        public void run() {
+            if (getActivity() != null) {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (result.equals("Erro")) {
+                            ErroWs.retornarErroWS(getContext(), pbProgresso);
+                        }else {
+                            pbProgresso.setVisibility(View.GONE);
+
+                            AlertDialog alerta;
+                            if (getContext() != null) {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                                if (result.equals("Erro")) {
+                                    builder.setMessage(getContext().getString(R.string.erro_reserva_produto));
+                                } else {
+                                    builder.setMessage(getContext().getString(R.string.produto_reservado));
+                                }
+                                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface arg0, int arg1) {
+                                        fabReservar.setClickable(true);
+                                        if (!result.equals("Erro")) {
+                                            if (getFragmentManager() != null) {
+                                                getFragmentManager().popBackStackImmediate();
+                                            }
+                                        }
+                                    }
+                                });
+                                alerta = builder.create();
+                                alerta.setCanceledOnTouchOutside(false);
+                                alerta.show();
+                            }
+                        }
+                    }
+                });
+            }
         }
     }
 }

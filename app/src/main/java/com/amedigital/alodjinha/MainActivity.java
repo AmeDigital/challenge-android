@@ -26,11 +26,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         Fresco.initialize(this);
         setContentView(R.layout.activity_main);
-
         inicializar();
-
         abrirFragment(true);
-
         navigationView.setNavigationItemSelectedListener(this);
     }
 
@@ -83,9 +80,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void setMenu(Toolbar toolbar) {
         navigationView.setItemIconTintList(null);
-
         setSupportActionBar(toolbar);
-
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();

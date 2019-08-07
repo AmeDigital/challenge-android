@@ -30,6 +30,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.ButterKnife;
 
@@ -80,10 +82,8 @@ public class CategoriaProdutoFragment extends Fragment implements SwipeRefreshLa
         ButterKnife.bind(getActivity());
 
         swipeRefresh.setOnRefreshListener(this);
-        rvProduto.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false);
-        rvProduto.setLayoutManager(layoutManager);
-        rvProduto.addItemDecoration(new DividerItemDecoration(view.getContext(), DividerItemDecoration.VERTICAL));
+        setParametrosRecyclerView(view, layoutManager);
 
         rvProduto.addOnScrollListener(new PaginationScrollListener(layoutManager) {
             @Override
@@ -125,6 +125,10 @@ public class CategoriaProdutoFragment extends Fragment implements SwipeRefreshLa
 
     }
 
+    public static CategoriaProdutoFragment newInstance() {
+        return new CategoriaProdutoFragment();
+    }
+
     private void inicializar(View view) {
         toolbar = view.findViewById(R.id.toolbar);
         rvProduto = view.findViewById(R.id.rvProduto);
@@ -132,17 +136,22 @@ public class CategoriaProdutoFragment extends Fragment implements SwipeRefreshLa
         swipeRefresh = view.findViewById(R.id.swipeRefresh);
     }
 
-    public static CategoriaProdutoFragment newInstance() {
-        return new CategoriaProdutoFragment();
+    private void setParametrosRecyclerView(@NonNull View view, LinearLayoutManager layoutManager) {
+        rvProduto.setHasFixedSize(true);
+        rvProduto.setLayoutManager(layoutManager);
+        rvProduto.addItemDecoration(new DividerItemDecoration(view.getContext(), DividerItemDecoration.VERTICAL));
     }
 
     private void carregarListaProdutoWs(){
+        Map<String, String> parametros = new HashMap<>();
+        parametros.put("categoriaId", String.valueOf(id));
+
         new WS(new AsyncTaskCompleteListener<String>() {
             @Override
             public void onTaskComplete(String result) {
                 carregarRetornoWs(result);
             }
-        }, true, "produto?categoriaId=" + id).execute();
+        }, true, "produto", parametros).execute();
     }
 
     public void carregarRetornoWs(String response) {

@@ -65,19 +65,9 @@ public class HomeFragment extends Fragment {
 
         Fresco.initialize(view.getContext());
         inicializar(view);
-
         toolbar.setTitle("");
         comunicadorMainActvityInterface.setMenu(toolbar);
-
-        rvBanner.setHasFixedSize(true);
-        rvBanner.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false));
-        rvBanner.addItemDecoration(new CirclePagerIndicatorDecoration());
-        rvCategoria.setHasFixedSize(true);
-        rvCategoria.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false));
-        rvMaisVendido.setHasFixedSize(true);
-        rvMaisVendido.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
-        rvMaisVendido.addItemDecoration(new DividerItemDecoration(view.getContext(), DividerItemDecoration.VERTICAL));
-
+        setParametrosRecyclerView(view);
         if (!carregouListas) {
             listaBanner = new ArrayList<>();
             listaCategoria = new ArrayList<>();
@@ -95,6 +85,16 @@ public class HomeFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        comunicadorMainActvityInterface = (ComunicadorMainActvityInterface)getActivity();
+    }
+
+    public static HomeFragment newInstance() {
+        return new HomeFragment();
+    }
+
     private void inicializar(View view){
         toolbar =  view.findViewById(R.id.toolbar);
         constraintLayout = view.findViewById(R.id.constraintLayout);
@@ -104,124 +104,165 @@ public class HomeFragment extends Fragment {
         pbProgresso = view.findViewById(R.id.pbProgresso);
     }
 
-    public static HomeFragment newInstance() {
-        return new HomeFragment();
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        comunicadorMainActvityInterface = (ComunicadorMainActvityInterface)getActivity();
+    private void setParametrosRecyclerView(@NonNull View view) {
+        rvBanner.setHasFixedSize(true);
+        rvBanner.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false));
+        rvBanner.addItemDecoration(new CirclePagerIndicatorDecoration());
+        rvCategoria.setHasFixedSize(true);
+        rvCategoria.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false));
+        rvMaisVendido.setHasFixedSize(true);
+        rvMaisVendido.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
+        rvMaisVendido.addItemDecoration(new DividerItemDecoration(view.getContext(), DividerItemDecoration.VERTICAL));
     }
 
     private void carregarListaBannerWs(){
         new WS(new AsyncTaskCompleteListener<String>() {
             @Override
             public void onTaskComplete(String result) {
-                carregarRetornoWs(result, true, false);
+                new ThreadCarregarRetornoBannerWs(result).start();
             }
-        }, true, "banner").execute();
+        }, true, "banner", null).execute();
     }
 
     private void carregarListaCategoriaWs(){
         new WS(new AsyncTaskCompleteListener<String>() {
             @Override
             public void onTaskComplete(String result) {
-                carregarRetornoWs(result, false, true);
+                new ThreadCarregarRetornoCategoriaWs(result).start();
             }
-        }, true, "categoria").execute();
+        }, true, "categoria", null).execute();
     }
 
     private void carregarListaMaisVendidoWs(){
         new WS(new AsyncTaskCompleteListener<String>() {
             @Override
             public void onTaskComplete(String result) {
-                carregarRetornoWs(result, false, false);
+                new ThreadCarregarRetornoMaisVendidoWs(result).start();
             }
-        }, true, "produto/maisvendidos").execute();
+        }, true, "produto/maisvendidos", null).execute();
     }
 
-    public void carregarRetornoWs(String response, boolean banner, boolean categoria) {
-        try {
-            if ("Erro".equals(response)) {
-                ErroWs.retornarErroWS(getContext(), pbProgresso);
-            } else {
-                if (banner) {
-                    carregarRetornoBannerWs(response);
-                } else if (categoria) {
-                    carregarRetornoCategoriaWs(response);
-                } else {
-                    carregarRetornoMaisVendidoWs(response);
+    private class ThreadCarregarRetornoBannerWs extends Thread{
+        private String result;
+
+        ThreadCarregarRetornoBannerWs(String result){
+            this.result = result;
+        }
+
+        @Override
+        public void run() {
+            try {
+                if (result.equals("Erro")) {
+                    ErroWs.retornarErroWS(getContext(), pbProgresso);
+                }else {
+                    JSONObject jsonObjectData = new JSONObject(result);
+                    JSONArray jsonArray = jsonObjectData.getJSONArray("data");
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        Banner banner = new Banner();
+                        banner.setId(jsonObject.getInt("id"));
+                        banner.setUrlImagem(jsonObject.getString("urlImagem"));
+                        listaBanner.add(banner);
+                    }
+                    if (getActivity() != null) {
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                adapterBunner = new BannerAdapter(listaBanner, getContext());
+                                rvBanner.setAdapter(adapterBunner);
+                            }
+                        });
+                    }
                 }
+            } catch (JSONException e) {
+                e.printStackTrace();
+                ErroWs.retornarErroWS(getContext(), pbProgresso);
             }
-        } catch (JSONException e) {
-            e.printStackTrace();
-            if (!banner && !categoria) ErroWs.retornarErroWS(getContext(), pbProgresso);
         }
     }
 
-    private void carregarRetornoBannerWs(String response) throws JSONException {
-        JSONObject jsonObjectData = new JSONObject(response);
-        try {
-            JSONArray jsonArray = jsonObjectData.getJSONArray("data");
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                Banner banner = new Banner();
-                banner.setId(jsonObject.getInt("id"));
-                banner.setUrlImagem(jsonObject.getString("urlImagem"));
-                listaBanner.add(banner);
+    private class ThreadCarregarRetornoCategoriaWs extends Thread{
+        private String result;
+
+        ThreadCarregarRetornoCategoriaWs(String result){
+            this.result = result;
+        }
+
+        @Override
+        public void run() {
+            try {
+                if (result.equals("Erro")) {
+                    ErroWs.retornarErroWS(getContext(), pbProgresso);
+                }else {
+                    JSONObject jsonObjectData = new JSONObject(result);
+                    JSONArray jsonArray = jsonObjectData.getJSONArray("data");
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        Categoria categoria = new Categoria();
+                        categoria.setId(jsonObject.getInt("id"));
+                        categoria.setDescricao(jsonObject.getString("descricao"));
+                        categoria.setUrlImagem(jsonObject.getString("urlImagem"));
+                        listaCategoria.add(categoria);
+                    }
+                    if (getActivity() != null) {
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                adapterCategoria = new CategoriaAdapter(listaCategoria, getContext(), getActivity().getSupportFragmentManager());
+                                rvCategoria.setAdapter(adapterCategoria);
+                            }
+                        });
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+                ErroWs.retornarErroWS(getContext(), pbProgresso);
             }
-            adapterBunner = new BannerAdapter(listaBanner, getContext());
-            rvBanner.setAdapter(adapterBunner);
-        } catch (JSONException e) {
-            e.printStackTrace();
         }
     }
 
-    private void carregarRetornoCategoriaWs(String response) throws JSONException {
-        JSONObject jsonObjectData = new JSONObject(response);
-        try {
-            JSONArray jsonArray = jsonObjectData.getJSONArray("data");
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                Categoria categoria = new Categoria();
-                categoria.setId(jsonObject.getInt("id"));
-                categoria.setDescricao(jsonObject.getString("descricao"));
-                categoria.setUrlImagem(jsonObject.getString("urlImagem"));
-                listaCategoria.add(categoria);
-            }
-            if (getActivity() != null) {
-                adapterCategoria = new CategoriaAdapter(listaCategoria, getContext(), getActivity().getSupportFragmentManager());
-                rvCategoria.setAdapter(adapterCategoria);
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
+    private class ThreadCarregarRetornoMaisVendidoWs extends Thread{
+        private String result;
 
-    private void carregarRetornoMaisVendidoWs(String response) throws JSONException {
-        JSONObject jsonObjectData = new JSONObject(response);
-        try {
-            JSONArray jsonArray = jsonObjectData.getJSONArray("data");
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                Produto produto = new Produto();
-                produto.setId(jsonObject.getInt("id"));
-                produto.setNome(jsonObject.getString("nome"));
-                produto.setUrlImagem(jsonObject.getString("urlImagem"));
-                produto.setDescricao(jsonObject.getString("descricao"));
-                produto.setPrecoDe(jsonObject.getDouble("precoDe"));
-                produto.setPrecoPor(jsonObject.getDouble("precoPor"));
-                listaProduto.add(produto);
-            }
-            if (getActivity() != null) {
-                adapterProdutos = new ProdutoAdapter(listaProduto, getContext(), getActivity().getSupportFragmentManager());
-                rvMaisVendido.setAdapter(adapterProdutos);
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
+        ThreadCarregarRetornoMaisVendidoWs(String result){
+            this.result = result;
         }
-        pbProgresso.setVisibility(View.GONE);
-        constraintLayout.setVisibility(View.VISIBLE);
+
+        @Override
+        public void run() {
+            try {
+                if (result.equals("Erro")) {
+                    ErroWs.retornarErroWS(getContext(), pbProgresso);
+                }else {
+                    JSONObject jsonObjectData = new JSONObject(result);
+                    JSONArray jsonArray = jsonObjectData.getJSONArray("data");
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        Produto produto = new Produto();
+                        produto.setId(jsonObject.getInt("id"));
+                        produto.setNome(jsonObject.getString("nome"));
+                        produto.setUrlImagem(jsonObject.getString("urlImagem"));
+                        produto.setDescricao(jsonObject.getString("descricao"));
+                        produto.setPrecoDe(jsonObject.getDouble("precoDe"));
+                        produto.setPrecoPor(jsonObject.getDouble("precoPor"));
+                        listaProduto.add(produto);
+                    }
+                    if (getActivity() != null) {
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                adapterProdutos = new ProdutoAdapter(listaProduto, getContext(), getActivity().getSupportFragmentManager());
+                                rvMaisVendido.setAdapter(adapterProdutos);
+                                pbProgresso.setVisibility(View.GONE);
+                                constraintLayout.setVisibility(View.VISIBLE);
+                            }
+                        });
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+                ErroWs.retornarErroWS(getContext(), pbProgresso);
+            }
+        }
     }
 }
