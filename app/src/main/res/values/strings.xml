@@ -7,4 +7,10 @@
 
     <string name="menu_home">Home</string>
     <string name="menu_about">Sobre o aplicativo</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="development_date">10 de agosto de 2019</string>
+    <string name="dev_name">Luiz Zabuscka</string>
+    <string name="title_about">sobre</string>
 </resources>

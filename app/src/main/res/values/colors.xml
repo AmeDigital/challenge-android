@@ -11,4 +11,5 @@
     <color name="greyishBrown">#4a4a4a</color>
     <color name="white">#d5d5d5</color>
     <color name="whiteTwo">#fcfcfc</color>
+    <color name="whiteAplha">#77fcfcfc</color>
 </resources>

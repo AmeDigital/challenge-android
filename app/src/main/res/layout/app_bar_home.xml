@@ -21,17 +21,20 @@
 
 
             <LinearLayout
+                    android:id="@+id/llBar"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
                     android:gravity="center_vertical">
 
                 <ImageView
+                        android:id="@+id/ivLogoBar"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:src="@drawable/logo_navbar"/>
 
                 <TextView
+                        android:id="@+id/tvTitleBar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/whiteTwo"

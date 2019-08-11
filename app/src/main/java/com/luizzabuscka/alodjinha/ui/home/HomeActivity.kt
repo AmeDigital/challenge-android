@@ -1,20 +1,23 @@
 package com.luizzabuscka.alodjinha.ui.home
 
 import android.os.Bundle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import androidx.core.view.GravityCompat
 import androidx.appcompat.app.ActionBarDrawerToggle
 import android.view.MenuItem
-import androidx.drawerlayout.widget.DrawerLayout
+import android.view.View
 import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.luizzabuscka.alodjinha.R
+import com.luizzabuscka.alodjinha.ui.about.AboutFragment
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.app_bar_home.*
 
+
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
+    private val homeFragment = HomeFragment()
+    private val aboutFragment = AboutFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +30,9 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
 
+        nav_view.itemIconTintList = null
         nav_view.setNavigationItemSelectedListener(this)
+        configFragment(homeFragment)
     }
 
     override fun onBackPressed() {
@@ -41,14 +46,23 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_home -> {
-
+                llBar.visibility = View.VISIBLE
+                supportActionBar?.title = ""
+                configFragment(homeFragment)
             }
             R.id.nav_about -> {
-
+                llBar.visibility = View.GONE
+                supportActionBar?.title = getString(R.string.title_about)
+                configFragment(aboutFragment)
             }
         }
-        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
-        drawerLayout.closeDrawer(GravityCompat.START)
+        drawer_layout.closeDrawer(GravityCompat.START)
         return true
     }
+
+    private fun configFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction().replace(R.id.framelayout_home, fragment).commit()
+    }
+
+
 }
