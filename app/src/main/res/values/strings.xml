@@ -13,4 +13,6 @@
     <string name="development_date">10 de agosto de 2019</string>
     <string name="dev_name">Luiz Zabuscka</string>
     <string name="title_about">sobre</string>
+    <string name="title_categories">Categorias</string>
+    <string name="title_best_sellers">Mais vendidos</string>
 </resources>

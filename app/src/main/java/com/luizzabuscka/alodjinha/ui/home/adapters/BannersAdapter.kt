@@ -1,4 +1,4 @@
-package com.luizzabuscka.alodjinha.ui.home
+package com.luizzabuscka.alodjinha.ui.home.adapters
 
 import android.view.View
 import android.view.ViewGroup

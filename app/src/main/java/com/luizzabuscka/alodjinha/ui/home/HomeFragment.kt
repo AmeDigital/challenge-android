@@ -7,8 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.luizzabuscka.alodjinha.R
+import com.luizzabuscka.alodjinha.ui.home.adapters.BannersAdapter
+import com.luizzabuscka.commons.mock.mockBanners
+import com.luizzabuscka.commons.mock.mockCategories
 import com.luizzabuscka.commons.models.Banner
+import com.luizzabuscka.commons.models.Category
 import kotlinx.android.synthetic.main.fragment_home.*
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.luizzabuscka.alodjinha.ui.home.adapters.CategoriesAdapter
+
 
 class HomeFragment : Fragment() {
 
@@ -22,20 +29,21 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        configBanners()
+        configBanners(mockBanners())
+        configCategories(mockCategories())
     }
 
-    private fun configBanners() {
-        vpBanners.adapter = BannersAdapter(
-            listOf(
-                Banner("https://images-submarino.b2w.io/spacey/2017/02/06/MainTop_GAMES_FEV17.png", "https://images-submarino.b2w.io/spacey/2017/02/06/MainTop_GAMES_FEV17.png"),
-                Banner("https://images-submarino.b2w.io/spacey/2017/02/06/DESTAQUE_FULL_CARTAO_CASA_FEV.png", "https://images-submarino.b2w.io/spacey/2017/02/06/DESTAQUE_FULL_CARTAO_CASA_FEV.png"),
-                Banner("https://images-submarino.b2w.io/spacey/2017/02/03/sub-home-dest-full-655x328-touch-play.png", "https://images-submarino.b2w.io/spacey/2017/02/03/sub-home-dest-full-655x328-touch-play.png")
-            )
-        )
+    private fun configBanners(items: List<Banner>) {
+        vpBanners.adapter = BannersAdapter(items)
 
         tabLayoutBanners.setupWithViewPager(vpBanners, true)
         tabLayoutBanners.bringToFront()
+    }
+
+    private fun configCategories(items: List<Category>) {
+        val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        rvCategories.layoutManager = layoutManager
+        rvCategories.adapter = CategoriesAdapter(items)
     }
 
 
