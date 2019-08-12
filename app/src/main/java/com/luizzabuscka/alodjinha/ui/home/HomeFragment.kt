@@ -15,6 +15,9 @@ import com.luizzabuscka.commons.models.Category
 import kotlinx.android.synthetic.main.fragment_home.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.luizzabuscka.alodjinha.ui.home.adapters.CategoriesAdapter
+import com.luizzabuscka.alodjinha.ui.home.adapters.ProductsAdapter
+import com.luizzabuscka.commons.mock.mockProductsBestSellers
+import com.luizzabuscka.commons.models.Product
 
 
 class HomeFragment : Fragment() {
@@ -31,6 +34,7 @@ class HomeFragment : Fragment() {
 
         configBanners(mockBanners())
         configCategories(mockCategories())
+        configProductsBestSellers(mockProductsBestSellers())
     }
 
     private fun configBanners(items: List<Banner>) {
@@ -41,9 +45,11 @@ class HomeFragment : Fragment() {
     }
 
     private fun configCategories(items: List<Category>) {
-        val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        rvCategories.layoutManager = layoutManager
         rvCategories.adapter = CategoriesAdapter(items)
+    }
+
+    private fun configProductsBestSellers(items: List<Product>) {
+        rvBestSellers.adapter = ProductsAdapter(items)
     }
 
 
