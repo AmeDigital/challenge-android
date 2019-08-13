@@ -1,12 +1,15 @@
 import React from 'react';
 import { Text, View, Button } from 'react-native';
 
+import styles from './styles';
+
 import LogoTitle from '../../components/LogoTitle';
+import Banners from '../../components/Banners';
 
 function HomeScreen({ navigation }) {
 	return (
-		<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-			<Text>Home</Text>
+		<View style={styles.container}>
+			<Banners />
 			<Button title="Vá a Sobre" onPress={() => navigation.navigate('About')} />
 		</View>
 	);
