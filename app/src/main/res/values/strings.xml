@@ -15,6 +15,6 @@
     <string name="title_categories">Categorias</string>
     <string name="title_best_sellers">Mais vendidos</string>
 
-    <string name="price_from"><stroke>De: %s</stroke></string>
+    <string name="title_from">De:</string>
     <string name="price_to">Por %s</string>
 </resources>

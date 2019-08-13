@@ -8,9 +8,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.luizzabuscka.alodjinha.R
+import com.luizzabuscka.alodjinha.ui.category.CategoryActivity
 import com.luizzabuscka.commons.models.Category
 import kotlinx.android.synthetic.main.item_category.view.*
 import org.jetbrains.anko.find
+import org.jetbrains.anko.startActivity
 
 class CategoriesAdapter(private val items: List<Category>) : RecyclerView.Adapter<CategoriesAdapter.CategoryViewHolder>() {
 
@@ -29,6 +31,10 @@ class CategoriesAdapter(private val items: List<Category>) : RecyclerView.Adapte
             .placeholder(R.drawable.logo_menu)
             .centerCrop()
             .into(holder.ivCategory)
+
+        holder.itemView.setOnClickListener {
+            it.context.startActivity<CategoryActivity>("category" to items[position])
+        }
     }
 
     class CategoryViewHolder(view: View) : RecyclerView.ViewHolder(view) {

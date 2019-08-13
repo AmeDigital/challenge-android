@@ -10,6 +10,8 @@ import com.bumptech.glide.Glide
 import com.luizzabuscka.alodjinha.R
 import com.luizzabuscka.commons.models.Product
 import org.jetbrains.anko.find
+import android.graphics.Paint.STRIKE_THRU_TEXT_FLAG
+
 
 class ProductsAdapter(private val items: List<Product>) : RecyclerView.Adapter<ProductsAdapter.ProductViewHolder>() {
 
@@ -29,7 +31,8 @@ class ProductsAdapter(private val items: List<Product>) : RecyclerView.Adapter<P
             .into(holder.ivProduct)
 
         holder.tvDescription.text = items[position].name
-        holder.tvPriceFrom.text = holder.tvPriceFrom.context.getString(R.string.price_from, items[position].priceFrom)
+        holder.tvPriceFrom.text = items[position].priceFrom
+        holder.tvPriceFrom.paintFlags = holder.tvPriceFrom.paintFlags or STRIKE_THRU_TEXT_FLAG
         holder.tvPrice.text = holder.tvPrice.context.getString(R.string.price_to, items[position].price)
     }
 
