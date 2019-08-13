@@ -29,28 +29,15 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:textColor="@color/dark"
-            android:textSize="18sp"
+            android:textSize="20sp"
             tools:text="Nome do produto com uma descrição grandona"
             android:layout_height="wrap_content"
     />
 
     <TextView
             android:layout_width="0dp"
-            android:id="@+id/tvTitleFrom"
-            app:layout_constraintStart_toEndOf="@+id/ivProduct"
-            app:layout_constraintBottom_toBottomOf="@+id/tvPrice"
-            android:layout_marginTop="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:textColor="@color/greyish"
-            android:textSize="12sp"
-            android:text="@string/title_from"
-            android:layout_height="wrap_content"/>
-
-    <TextView
-            android:layout_width="0dp"
             android:id="@+id/tvPriceFrom"
-            app:layout_constraintStart_toEndOf="@+id/tvTitleFrom"
+            app:layout_constraintStart_toEndOf="@+id/ivProduct"
             app:layout_constraintBottom_toBottomOf="@+id/tvPrice"
             android:layout_marginTop="8dp"
             android:layout_marginStart="4dp"
