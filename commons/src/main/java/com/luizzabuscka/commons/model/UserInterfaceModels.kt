@@ -1,4 +1,4 @@
-package com.luizzabuscka.commons.models
+package com.luizzabuscka.commons.model
 
 import java.io.Serializable
 
@@ -8,13 +8,13 @@ data class Banner(
 )
 
 data class Category(
-    val id: Number,
+    val id: Int,
     val description: String,
     val urlImage: String
 ) : Serializable
 
 data class Product(
-    val id: Number,
+    val id: Int,
     val name: String,
     val urlImage: String,
     val description: String,

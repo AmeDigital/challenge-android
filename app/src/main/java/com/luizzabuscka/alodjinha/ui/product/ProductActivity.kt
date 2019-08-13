@@ -7,7 +7,7 @@ import android.view.MenuItem
 import androidx.core.text.HtmlCompat
 import com.bumptech.glide.Glide
 import com.luizzabuscka.alodjinha.R
-import com.luizzabuscka.commons.models.Product
+import com.luizzabuscka.commons.model.Product
 import kotlinx.android.synthetic.main.activity_product.*
 import kotlinx.android.synthetic.main.activity_product.ivProduct
 
@@ -23,7 +23,19 @@ class ProductActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.title = product.category.description
 
+        configFab()
+
         configProduct(product)
+    }
+
+    private fun configFab() {
+        fabReserve.setOnClickListener {
+            reserveProduct()
+        }
+    }
+
+    private fun reserveProduct() {
+        //RESERVE PRODUCT
     }
 
     private fun configProduct(product: Product) {

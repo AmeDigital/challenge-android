@@ -1,4 +1,4 @@
-package com.luizzabuscka.alodjinha.ui.home.adapters
+package com.luizzabuscka.alodjinha.components.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,8 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.luizzabuscka.alodjinha.R
 import com.luizzabuscka.alodjinha.ui.category.CategoryActivity
-import com.luizzabuscka.commons.models.Category
-import kotlinx.android.synthetic.main.item_category.view.*
+import com.luizzabuscka.commons.model.Category
 import org.jetbrains.anko.find
 import org.jetbrains.anko.startActivity
 

@@ -1,4 +1,4 @@
-package com.luizzabuscka.alodjinha.ui.home.adapters
+package com.luizzabuscka.alodjinha.components.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.luizzabuscka.alodjinha.R
-import com.luizzabuscka.commons.models.Product
+import com.luizzabuscka.commons.model.Product
 import org.jetbrains.anko.find
 import android.graphics.Paint.STRIKE_THRU_TEXT_FLAG
 import com.luizzabuscka.alodjinha.ui.product.ProductActivity

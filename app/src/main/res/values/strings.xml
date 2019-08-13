@@ -17,4 +17,6 @@
 
     <string name="price_from">De: %s</string>
     <string name="price_to">Por %s</string>
+    <string name="dialog_loading">Carregando</string>
+    <string name="dialog_please_wait">Por favor, aguarde...</string>
 </resources>

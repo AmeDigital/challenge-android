@@ -4,10 +4,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import com.luizzabuscka.alodjinha.R
-import com.luizzabuscka.alodjinha.ui.home.adapters.ProductsAdapter
+import com.luizzabuscka.alodjinha.components.adapters.ProductsAdapter
 import com.luizzabuscka.commons.mock.mockProductsBestSellers
-import com.luizzabuscka.commons.models.Category
-import com.luizzabuscka.commons.models.Product
+import com.luizzabuscka.commons.model.Category
+import com.luizzabuscka.commons.model.Product
 import kotlinx.android.synthetic.main.activity_category.*
 
 class CategoryActivity : AppCompatActivity() {

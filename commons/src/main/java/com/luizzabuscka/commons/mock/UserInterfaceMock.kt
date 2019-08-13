@@ -1,8 +1,8 @@
 package com.luizzabuscka.commons.mock
 
-import com.luizzabuscka.commons.models.Banner
-import com.luizzabuscka.commons.models.Category
-import com.luizzabuscka.commons.models.Product
+import com.luizzabuscka.commons.model.Banner
+import com.luizzabuscka.commons.model.Category
+import com.luizzabuscka.commons.model.Product
 
 fun mockBanners() : List<Banner> {
     return listOf(

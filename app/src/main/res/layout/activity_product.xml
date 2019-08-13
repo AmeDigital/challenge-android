@@ -8,8 +8,10 @@
         android:layout_height="match_parent"
         tools:context=".ui.product.ProductActivity">
 
-    <ScrollView android:layout_width="match_parent"
-                android:layout_height="match_parent">
+    <ScrollView
+            android:id="@+id/svProduct"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
         <LinearLayout
                 android:layout_width="match_parent"
@@ -102,11 +104,14 @@
     </ScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
+            android:id="@+id/fabReserve"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="24dp"
+            app:hideMotionSpec="@android:anim/accelerate_decelerate_interpolator"
+            app:showMotionSpec="@android:anim/accelerate_decelerate_interpolator"
             android:layout_gravity="end|bottom"
             android:layout_margin="@dimen/fab_margin"
-            android:src="@drawable/check_button" />
+            android:src="@drawable/check_button"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
