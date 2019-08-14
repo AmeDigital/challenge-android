@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, Image, Text } from 'react-native';
+import { View, Image, Text, TouchableOpacity } from 'react-native';
 
 import styles from './styles';
 
-export default function Product() {
+export default function Product({ navigation }) {
 	return (
 		<View style={styles.produto}>
 			<Image
@@ -23,7 +23,9 @@ export default function Product() {
 				</View>
 			</View>
 			<View style={styles.containerImageRow}>
-				<Image style={styles.imageRow} source={require('../../images/disclosure_indicator.png')} />
+				<TouchableOpacity onPress={() => navigation.navigate('DescriptionProduct')}>
+					<Image style={styles.imageRow} source={require('../../images/disclosure_indicator.png')} />
+				</TouchableOpacity>
 			</View>
 		</View>
 	);
