@@ -8,8 +8,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 import okhttp3.OkHttpClient
+import okhttp3.Response
+import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
-
+import retrofit2.http.POST
+import retrofit2.http.Path
 
 
 interface WebService {
@@ -26,13 +29,14 @@ interface WebService {
     @GET("produto")
     fun getProducts(@Query("offset") offset: Int, @Query("limit") limit: Int, @Query("categoriaId") categoryId: Int) : Single<ProductsResponse>
 
+    @POST("produto/{productId}")
+    fun reserveProduct(@Path("productId") productId: Int) : Single<ResponseBody>
+
 }
 
 object WebServiceFactory {
 
     private const val baseUrl = "https://alodjinha.herokuapp.com/"
-
-
 
     internal fun create(): WebService {
 

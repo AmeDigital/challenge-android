@@ -5,19 +5,37 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.core.text.HtmlCompat
+import androidx.lifecycle.*
 import com.bumptech.glide.Glide
 import com.luizzabuscka.alodjinha.R
 import com.luizzabuscka.commons.model.Product
+import com.luizzabuscka.viewmodel.ProductViewModel
 import kotlinx.android.synthetic.main.activity_product.*
 import kotlinx.android.synthetic.main.activity_product.ivProduct
+import org.jetbrains.anko.alert
+import org.jetbrains.anko.indeterminateProgressDialog
+import org.jetbrains.anko.okButton
 
-class ProductActivity : AppCompatActivity() {
+class ProductActivity : AppCompatActivity(), LifecycleOwner {
+
+    private val product by lazy {
+        intent?.extras?.get("product") as Product
+    }
+
+    private val progressDialog by lazy {
+        indeterminateProgressDialog(
+            getString(R.string.dialog_please_wait),
+            getString(R.string.dialog_loading)
+        )
+    }
+
+    private val viewModel: ProductViewModel by lazy {
+        ViewModelProviders.of(this).get(ProductViewModel::class.java)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product)
-
-        val product = intent?.extras?.get("product") as Product
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
@@ -35,7 +53,25 @@ class ProductActivity : AppCompatActivity() {
     }
 
     private fun reserveProduct() {
-        //RESERVE PRODUCT
+        progressDialog.show()
+        viewModel.reserveProduct(product.id).observe(this, Observer { success ->
+            progressDialog.hide()
+            if (success) {
+                alert(getString(R.string.reserve_success)) {
+                    this.isCancelable = false
+                    okButton {
+                        // do nothing
+                    }
+                }.show()
+            } else {
+                alert(getString(R.string.failed_to_reserve)) {
+                    this.isCancelable = false
+                    positiveButton(getString(R.string.dialog_button_try_again)) {
+                        reserveProduct()
+                    }
+                }.show()
+            }
+        })
     }
 
     private fun configProduct(product: Product) {
@@ -59,5 +95,10 @@ class ProductActivity : AppCompatActivity() {
             onBackPressed()
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private val lifecycle = LifecycleRegistry(this)
+    override fun getLifecycle(): Lifecycle {
+        return lifecycle
     }
 }

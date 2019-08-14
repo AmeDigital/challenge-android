@@ -27,6 +27,17 @@ class ProductsRepository {
             })
     }
 
+    fun reserveProduct(productId: Int, observer: SingleObserver<Boolean>) {
+        service.reserveProduct(productId)
+            .subscribeOn(Schedulers.computation())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                observer.onSuccess(true)
+            }, { error ->
+                observer.onError(error)
+            })
+    }
+
 
 
 }

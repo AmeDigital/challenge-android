@@ -21,4 +21,6 @@
     <string name="dialog_please_wait">Por favor, aguarde...</string>
     <string name="dialog_fail_load_data">Falha ao carregar dados.</string>
     <string name="dialog_button_try_again">Tentar Novamente</string>
+    <string name="failed_to_reserve">Falha ao reservar produto</string>
+    <string name="reserve_success">Produto reservado com sucesso</string>
 </resources>

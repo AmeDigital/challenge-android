@@ -27,7 +27,6 @@ class ProductsAdapter(private val items: List<Product>) : RecyclerView.Adapter<P
         holder.bind(items[position])
     }
 
-
     class ProductViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val ivProduct = view.find<ImageView>(R.id.ivProduct)
         private val tvDescription = view.find<TextView>(R.id.tvDescription)
