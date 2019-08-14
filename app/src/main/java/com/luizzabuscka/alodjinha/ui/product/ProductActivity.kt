@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.activity_product.ivProduct
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.indeterminateProgressDialog
 import org.jetbrains.anko.okButton
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class ProductActivity : AppCompatActivity(), LifecycleOwner {
 
@@ -29,9 +30,7 @@ class ProductActivity : AppCompatActivity(), LifecycleOwner {
         )
     }
 
-    private val viewModel: ProductViewModel by lazy {
-        ViewModelProviders.of(this).get(ProductViewModel::class.java)
-    }
+    private val productViewModel: ProductViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,7 +53,7 @@ class ProductActivity : AppCompatActivity(), LifecycleOwner {
 
     private fun reserveProduct() {
         progressDialog.show()
-        viewModel.reserveProduct(product.id).observe(this, Observer { success ->
+        productViewModel.reserveProduct(product.id).observe(this, Observer { success ->
             progressDialog.hide()
             if (success) {
                 alert(getString(R.string.reserve_success)) {

@@ -18,6 +18,7 @@ import com.luizzabuscka.commons.model.Product
 import com.luizzabuscka.viewmodel.HomeViewModel
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.indeterminateProgressDialog
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
 
@@ -28,9 +29,7 @@ class HomeFragment : Fragment() {
         )
     }
 
-    private val viewModel: HomeViewModel by lazy {
-        ViewModelProviders.of(requireActivity()).get(HomeViewModel::class.java)
-    }
+    private val homeViewModel: HomeViewModel by viewModel()
 
     private var bannersResponded = false
     private var categoriesResponded = false
@@ -66,7 +65,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun getBanners() {
-        viewModel.getBanners().observe(this, Observer<List<Banner>> { banners ->
+        homeViewModel.getBanners().observe(this, Observer<List<Banner>> { banners ->
             bannersResponded = true
             banners?.let {
                 configBanners(it)
@@ -78,7 +77,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun getCategories() {
-        viewModel.getCategories().observe(this, Observer<List<Category>> { categories ->
+        homeViewModel.getCategories().observe(this, Observer<List<Category>> { categories ->
             categoriesResponded = true
             categories?.let {
                 configCategories(it)
@@ -90,7 +89,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun getBestSellers() {
-        viewModel.getBestSellers().observe(this, Observer<List<Product>> { products ->
+        homeViewModel.getBestSellers().observe(this, Observer<List<Product>> { products ->
             bestSellersResponded = true
             products?.let {
                 configBestSellers(it)

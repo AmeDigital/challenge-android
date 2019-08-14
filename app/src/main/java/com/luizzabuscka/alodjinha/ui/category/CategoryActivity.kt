@@ -14,12 +14,20 @@ import com.luizzabuscka.viewmodel.CategoryViewModel
 import kotlinx.android.synthetic.main.activity_category.*
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.indeterminateProgressDialog
+import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.getViewModel
+import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
+import java.lang.System.setProperty
 
 
 class CategoryActivity : AppCompatActivity(), LifecycleOwner {
 
     private lateinit var adapter: ProductsPagedAdapter
-    private lateinit var category: Category
+
+    private val category: Category by lazy {
+        intent?.extras?.get("category") as Category
+    }
 
     private val progressDialog by lazy {
         indeterminateProgressDialog(
@@ -28,17 +36,15 @@ class CategoryActivity : AppCompatActivity(), LifecycleOwner {
         )
     }
 
-    private var viewModel: CategoryViewModel? = null
+    private val categoryViewModel: CategoryViewModel by lazy {
+        CategoryViewModel(category.id)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category)
 
         progressDialog.setCancelable(false)
-
-        category = intent?.extras?.get("category") as Category
-
-        viewModel = CategoryViewModel(category.id)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
@@ -49,9 +55,9 @@ class CategoryActivity : AppCompatActivity(), LifecycleOwner {
     }
 
     private fun configProducts() {
-        adapter = ProductsPagedAdapter { viewModel?.retry() }
+        adapter = ProductsPagedAdapter { categoryViewModel.retry() }
         rvProducts.adapter = adapter
-        viewModel?.products?.observe(this, Observer<PagedList<Product>> {
+        categoryViewModel.products.observe(this, Observer<PagedList<Product>> {
             if (progressDialog.isShowing) {
                 progressDialog.hide()
             }
@@ -60,12 +66,12 @@ class CategoryActivity : AppCompatActivity(), LifecycleOwner {
     }
 
     private fun initState() {
-        viewModel?.getState()?.observe(this, Observer { state ->
-            if (viewModel?.listIsEmpty()!! && state == State.LOADING) {
+        categoryViewModel.getState().observe(this, Observer { state ->
+            if (categoryViewModel.listIsEmpty() && state == State.LOADING) {
                 progressDialog.show()
             }
 
-            if (viewModel?.listIsEmpty()!! && state == State.ERROR) {
+            if (categoryViewModel.listIsEmpty() && state == State.ERROR) {
                 alert(getString(R.string.dialog_fail_load_data)) {
                     this.isCancelable = false
                     positiveButton(getString(R.string.dialog_button_try_again)) {
@@ -74,7 +80,7 @@ class CategoryActivity : AppCompatActivity(), LifecycleOwner {
                 }.show()
             }
 
-            if (!viewModel?.listIsEmpty()!!) {
+            if (!categoryViewModel.listIsEmpty()) {
                 progressDialog.hide()
                 adapter.setState(state ?: State.DONE)
             }
