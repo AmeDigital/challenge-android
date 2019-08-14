@@ -48,5 +48,6 @@ dependencies {
 
     implementation project(path: ':commons')
     implementation project(path: ':viewmodel')
+    implementation 'androidx.paging:paging-runtime-ktx:2.1.0'
 
 }

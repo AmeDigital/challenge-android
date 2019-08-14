@@ -19,4 +19,6 @@
     <string name="price_to">Por %s</string>
     <string name="dialog_loading">Carregando</string>
     <string name="dialog_please_wait">Por favor, aguarde...</string>
+    <string name="dialog_fail_load_data">Falha ao carregar dados.</string>
+    <string name="dialog_button_try_again">Tentar Novamente</string>
 </resources>

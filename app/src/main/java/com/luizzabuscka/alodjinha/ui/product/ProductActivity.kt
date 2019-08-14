@@ -42,7 +42,7 @@ class ProductActivity : AppCompatActivity() {
         Glide
             .with(ivProduct.context)
             .load(product.urlImage)
-            .placeholder(R.drawable.logo_menu)
+            .placeholder(R.drawable.placeholder)
             .centerInside()
             .into(ivProduct)
 

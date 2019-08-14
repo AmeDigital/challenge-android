@@ -27,7 +27,7 @@ class CategoriesAdapter(private val items: List<Category>) : RecyclerView.Adapte
         Glide
             .with(holder.ivCategory.context)
             .load(items[position].urlImage)
-            .placeholder(R.drawable.logo_menu)
+            .placeholder(R.drawable.placeholder)
             .centerCrop()
             .into(holder.ivCategory)
 

@@ -1,5 +1,7 @@
 package com.luizzabuscka.data.repository
 
+import androidx.paging.PagedList
+import androidx.paging.RxPagedListBuilder
 import com.luizzabuscka.commons.model.Category
 import com.luizzabuscka.commons.model.Product
 import com.luizzabuscka.data.mapper.CategoriesMapper
@@ -24,5 +26,7 @@ class ProductsRepository {
                 observer.onError(error)
             })
     }
+
+
 
 }

@@ -14,11 +14,10 @@ import com.luizzabuscka.commons.model.Category
 import kotlinx.android.synthetic.main.fragment_home.*
 import com.luizzabuscka.alodjinha.components.adapters.CategoriesAdapter
 import com.luizzabuscka.alodjinha.components.adapters.ProductsAdapter
-import com.luizzabuscka.commons.mock.mockProductsBestSellers
 import com.luizzabuscka.commons.model.Product
 import com.luizzabuscka.viewmodel.HomeViewModel
+import org.jetbrains.anko.alert
 import org.jetbrains.anko.indeterminateProgressDialog
-
 
 class HomeFragment : Fragment() {
 
@@ -35,8 +34,9 @@ class HomeFragment : Fragment() {
 
     private var bannersResponded = false
     private var categoriesResponded = false
-    private var bestSellersResponded = true
+    private var bestSellersResponded = false
 
+    private var errorLoading = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,7 +48,17 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        progressDialog.setCancelable(false)
         progressDialog.show()
+
+        loadData()
+    }
+
+    private fun loadData() {
+        bannersResponded = false
+        categoriesResponded = false
+        bestSellersResponded = false
+        errorLoading = false
 
         getBanners()
         getCategories()
@@ -58,41 +68,50 @@ class HomeFragment : Fragment() {
     private fun getBanners() {
         viewModel.getBanners().observe(this, Observer<List<Banner>> { banners ->
             bannersResponded = true
-            verifyHideLoading()
             banners?.let {
                 configBanners(it)
             } ?: run {
-                //error loading banners
+                errorLoading = true
             }
+            verifyHideLoading()
         })
     }
 
     private fun getCategories() {
         viewModel.getCategories().observe(this, Observer<List<Category>> { categories ->
             categoriesResponded = true
-            verifyHideLoading()
             categories?.let {
                 configCategories(it)
             } ?: run {
-                //error loading categories
+                errorLoading = true
             }
+            verifyHideLoading()
         })
     }
 
     private fun getBestSellers() {
         viewModel.getBestSellers().observe(this, Observer<List<Product>> { products ->
             bestSellersResponded = true
-            verifyHideLoading()
             products?.let {
                 configBestSellers(it)
             } ?: run {
-                //error loading best sellers
+                errorLoading = true
             }
+            verifyHideLoading()
         })
     }
 
     private fun verifyHideLoading() {
         if (bannersResponded && categoriesResponded && bestSellersResponded) {
+            if (errorLoading) {
+                requireActivity().alert(getString(R.string.dialog_fail_load_data)) {
+                    this.isCancelable = false
+                    positiveButton(getString(R.string.dialog_button_try_again)) {
+                        loadData()
+                    }
+                }.show()
+            }
+
             progressDialog.hide()
         }
     }

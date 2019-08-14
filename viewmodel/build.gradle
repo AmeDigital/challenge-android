@@ -41,4 +41,5 @@ dependencies {
 
     implementation project(path: ':data')
     implementation project(path: ':commons')
+    implementation 'androidx.paging:paging-runtime-ktx:2.1.0'
 }

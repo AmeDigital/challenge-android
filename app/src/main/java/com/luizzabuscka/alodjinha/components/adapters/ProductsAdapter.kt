@@ -24,29 +24,32 @@ class ProductsAdapter(private val items: List<Product>) : RecyclerView.Adapter<P
     override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
-
-        Glide
-            .with(holder.ivProduct.context)
-            .load(items[position].urlImage)
-            .placeholder(R.drawable.logo_menu)
-            .centerCrop()
-            .into(holder.ivProduct)
-
-        holder.tvDescription.text = items[position].name
-        holder.tvPriceFrom.text = holder.tvPriceFrom.context.getString(R.string.price_from, items[position].priceFrom)
-        holder.tvPriceFrom.paintFlags = holder.tvPriceFrom.paintFlags or STRIKE_THRU_TEXT_FLAG
-        holder.tvPrice.text = holder.tvPrice.context.getString(R.string.price_to, items[position].price)
-
-        holder.itemView.setOnClickListener {
-            it.context.startActivity<ProductActivity>("product" to items[position])
-        }
+        holder.bind(items[position])
     }
 
 
     class ProductViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val ivProduct = view.find<ImageView>(R.id.ivProduct)
-        val tvDescription = view.find<TextView>(R.id.tvDescription)
-        val tvPriceFrom = view.find<TextView>(R.id.tvPriceFrom)
-        val tvPrice = view.find<TextView>(R.id.tvPrice)
+        private val ivProduct = view.find<ImageView>(R.id.ivProduct)
+        private val tvDescription = view.find<TextView>(R.id.tvDescription)
+        private val tvPriceFrom = view.find<TextView>(R.id.tvPriceFrom)
+        private val tvPrice = view.find<TextView>(R.id.tvPrice)
+
+        fun bind(product: Product) {
+            Glide
+                .with(ivProduct.context)
+                .load(product.urlImage)
+                .placeholder(R.drawable.placeholder)
+                .centerCrop()
+                .into(ivProduct)
+
+            tvDescription.text = product.name
+            tvPriceFrom.text = tvPriceFrom.context.getString(R.string.price_from, product.priceFrom)
+            tvPriceFrom.paintFlags = tvPriceFrom.paintFlags or STRIKE_THRU_TEXT_FLAG
+            tvPrice.text = tvPrice.context.getString(R.string.price_to, product.price)
+
+            itemView.setOnClickListener {
+                it.context.startActivity<ProductActivity>("product" to product)
+            }
+        }
     }
 }
