@@ -3,12 +3,14 @@ import { createStackNavigator, createAppContainer } from 'react-navigation';
 
 import HomeScreen from '../pages/Home';
 import AboutScreen from '../pages/About';
+import CategoriesScreen from '../pages/Categories';
 
 export default createAppContainer(
 	createStackNavigator(
 		{
 			Home: HomeScreen,
-			About: AboutScreen
+			About: AboutScreen,
+			Categories: CategoriesScreen
 		},
 		{
 			initialRouteName: 'Home',

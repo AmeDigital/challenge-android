@@ -12,7 +12,7 @@ function HomeScreen({ navigation }) {
 	return (
 		<View style={styles.container}>
 			<Banners />
-			<Categories />
+			<Categories navigation={navigation} />
 			<BestSellers />
 		</View>
 	);

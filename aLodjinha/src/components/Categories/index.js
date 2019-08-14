@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, ScrollView, Image } from 'react-native';
+import { Text, View, ScrollView, Image, TouchableOpacity } from 'react-native';
 
 import api from '../../services/api';
 
 import styles from './styles';
 
-export default function Categories() {
+export default function Categories({ navigation }) {
 	const [ categories, setCategories ] = useState([]);
 
 	useEffect(() => {
@@ -14,6 +14,10 @@ export default function Categories() {
 			setCategories(response.data.data);
 		})();
 	}, []);
+
+	function goPageCategories() {
+		navigation.navigate('Categories');
+	}
 
 	return (
 		<View style={styles.container}>
@@ -27,12 +31,14 @@ export default function Categories() {
 				style={styles.categoryContent}
 			>
 				{categories.map((item, index) => (
-					<View key={index} style={styles.category}>
-						<Image style={styles.image} source={{ uri: item.urlImagem }} />
-						<Text style={styles.description} numberOfLines={1}>
-							{item.descricao}
-						</Text>
-					</View>
+					<TouchableOpacity key={index} onPress={goPageCategories}>
+						<View style={styles.category}>
+							<Image style={styles.image} source={{ uri: item.urlImagem }} />
+							<Text style={styles.description} numberOfLines={1}>
+								{item.descricao}
+							</Text>
+						</View>
+					</TouchableOpacity>
 				))}
 			</ScrollView>
 		</View>
