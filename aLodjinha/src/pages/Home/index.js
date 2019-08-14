@@ -5,12 +5,13 @@ import styles from './styles';
 
 import LogoTitle from '../../components/LogoTitle';
 import Banners from '../../components/Banners';
+import Categories from '../../components/Categories';
 
 function HomeScreen({ navigation }) {
 	return (
 		<View style={styles.container}>
 			<Banners />
-			<Button title="Vá a Sobre" onPress={() => navigation.navigate('About')} />
+			<Categories />
 		</View>
 	);
 }
