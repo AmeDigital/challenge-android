@@ -15,8 +15,9 @@ export default function Categories({ navigation }) {
 		})();
 	}, []);
 
-	function goPageCategories() {
-		navigation.navigate('Categories');
+	function goPageCategories(id) {
+		console.log('>>>>', id);
+		navigation.navigate('Categories', { id });
 	}
 
 	return (
@@ -30,16 +31,17 @@ export default function Categories({ navigation }) {
 				contentContainerStyle={{ padding: 8 }}
 				style={styles.categoryContent}
 			>
-				{categories.map((item, index) => (
-					<TouchableOpacity key={index} onPress={goPageCategories}>
-						<View style={styles.category}>
-							<Image style={styles.image} source={{ uri: item.urlImagem }} />
-							<Text style={styles.description} numberOfLines={1}>
-								{item.descricao}
-							</Text>
-						</View>
-					</TouchableOpacity>
-				))}
+				{categories.length > 0 &&
+					categories.map((item, index) => (
+						<TouchableOpacity key={index} onPress={() => goPageCategories(item.id)}>
+							<View style={styles.category}>
+								<Image style={styles.image} source={{ uri: item.urlImagem }} />
+								<Text style={styles.description} numberOfLines={1}>
+									{item.descricao}
+								</Text>
+							</View>
+						</TouchableOpacity>
+					))}
 			</ScrollView>
 		</View>
 	);
