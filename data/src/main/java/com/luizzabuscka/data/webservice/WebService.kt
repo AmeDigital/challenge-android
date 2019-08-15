@@ -38,7 +38,7 @@ object WebServiceFactory {
 
     private const val baseUrl = "https://alodjinha.herokuapp.com/"
 
-    internal fun create(): WebService {
+    fun create(): WebService {
 
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
