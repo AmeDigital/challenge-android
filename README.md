@@ -3,6 +3,9 @@
 Projeto criado na arquitetura MVVM, utilizando Architecture Components e AndroidX.
 
 Cada camada da arquitetura é representada por um módulo no projeto.
+- View - módulo app
+- ViewModel - módulo viewmodel
+- Model - módulo data
 
 ## Desenho da Arquitetura:
 (Cada elemento é um módulo do projeto)
@@ -17,3 +20,7 @@ Cada camada da arquitetura é representada por um módulo no projeto.
 - Anko (Para simplificar chamadas entre Activities e Dialogs)
 - Glide
 - Retrofit
+
+Para Testes:
+- Mockito (e MockitoKotlin)
+- Espresso
