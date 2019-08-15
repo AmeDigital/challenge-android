@@ -7,6 +7,8 @@ Cada camada da arquitetura é representada por um módulo no projeto.
 - ViewModel - módulo viewmodel
 - Model - módulo data
 
+Há alguns testes unitários na camada ViewModel e testes instrumentados no módulo app.
+
 ## Desenho da Arquitetura:
 (Cada elemento é um módulo do projeto)
 
