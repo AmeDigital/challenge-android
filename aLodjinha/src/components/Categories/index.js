@@ -15,9 +15,8 @@ export default function Categories({ navigation }) {
 		})();
 	}, []);
 
-	function goPageCategories(id) {
-		console.log('>>>>', id);
-		navigation.navigate('Categories', { id });
+	function goPageCategories(descricao) {
+		navigation.navigate('Categories', { descricao });
 	}
 
 	return (
@@ -33,7 +32,7 @@ export default function Categories({ navigation }) {
 			>
 				{categories.length > 0 &&
 					categories.map((item, index) => (
-						<TouchableOpacity key={index} onPress={() => goPageCategories(item.id)}>
+						<TouchableOpacity key={index} onPress={() => goPageCategories(item.descricao)}>
 							<View style={styles.category}>
 								<Image style={styles.image} source={{ uri: item.urlImagem }} />
 								<Text style={styles.description} numberOfLines={1}>

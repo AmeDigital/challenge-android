@@ -1,21 +1,76 @@
-import React, { useEffect } from 'react';
-import { ScrollView, View } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { FlatList, View, ActivityIndicator } from 'react-native';
 
 import styles from './styles';
 import Product from '../../components/Product';
+import api from '../../services/api';
 
 function CategoriesScreen({ navigation }) {
-	const id = navigation.getParam('id');
+	const [ products, setProducts ] = useState([]);
+	const [ offset, setOffset ] = useState(0);
+	const [ load, setLoad ] = useState(false);
+
+	useEffect(() => {
+		loadProducts();
+	}, []);
+
+	async function loadProducts() {
+		if (load) return;
+
+		if (listFinished()) return;
+		console.log('Passou com ', products.length);
+
+		setLoad(true);
+
+		try {
+			const response = await api.get(`/produto?offset=${offset}`);
+
+			setProducts([ ...products, ...response.data.data ]);
+			setOffset(offset + 1);
+			setLoad(false);
+			console.log(products.length, 'TAMANHO');
+		} catch (e) {
+			console.error(e);
+		}
+	}
+
+	function funcPage(id) {
+		navigation.navigate('DescriptionProduct', { id });
+	}
+
+	function listFinished() {
+		return products.length > 75;
+	}
+
+	function renderFooter() {
+		if (!load) return null;
+		return (
+			<View style={styles.load}>
+				<ActivityIndicator size="large" color="#ff0000" style={{ margin: 20 }} />
+			</View>
+		);
+	}
 
 	return (
 		<View style={styles.container}>
-			<ScrollView>{/* <Product funcPage={} item={item}/> */}</ScrollView>
+			{products.length > 0 && (
+				<FlatList
+					data={products}
+					renderItem={({ item }) => <Product key={item.id} funcPage={funcPage} item={item} />}
+					keyExtractor={(item) => String(item.id + Math.floor(Math.random() * 198541))}
+					onEndReached={loadProducts}
+					onEndReachedThreshold={0.1}
+					ListFooterComponent={renderFooter}
+				/>
+			)}
 		</View>
 	);
 }
 
-CategoriesScreen.navigationOptions = {
-	title: 'placas de video'
+CategoriesScreen.navigationOptions = ({ navigation }) => {
+	return {
+		title: navigation.getParam('descricao')
+	};
 };
 
 export default CategoriesScreen;
