@@ -10,7 +10,7 @@ export default function LogoTitle({ navigation }) {
 		<React.Fragment>
 			<Icon name="menu" style={{ marginLeft: 15 }} onPress={navigation.openDrawer} size={24} color="#fff" />
 			<Image source={logo} style={styles.image} />
-			<Text style={styles.textTile}>o Lodjinha</Text>
+			<Text style={styles.textTile}>a Lodjinha</Text>
 		</React.Fragment>
 	);
 }
