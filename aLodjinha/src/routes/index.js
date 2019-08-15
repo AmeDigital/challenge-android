@@ -36,7 +36,7 @@ class DrawerScreen extends React.Component {
 										color: '#fff',
 										position: 'absolute',
 										top: -80,
-										left: 220,
+										right: 10,
 										fontFamily: 'Pacifico-Regular',
 										fontSize: 22
 									}}
@@ -123,7 +123,7 @@ const AppDrawerNavigator = createDrawerNavigator(
 	},
 	{
 		contentComponent: DrawerScreen,
-		drawerWidth: 350
+		drawerWidth: 300
 	}
 );
 

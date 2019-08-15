@@ -3,10 +3,11 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
 	container: {
 		flex: 1,
-		alignItems: 'center'
+		alignItems: 'center',
+		justifyContent: 'space-between'
 	},
 	logo: {
-		marginTop: 60
+		marginTop: 20
 	},
 	logoText: {
 		fontFamily: 'Pacifico-Regular',
@@ -14,13 +15,13 @@ export default StyleSheet.create({
 		color: '#2d3142'
 	},
 	nameDev: {
-		marginTop: 120,
 		fontWeight: 'bold',
 		fontSize: 16,
 		color: '#2d3142'
 	},
 	dataDev: {
-		marginTop: 10,
-		color: '#aaaaaa'
+		color: '#aaaaaa',
+		textAlign: 'center',
+		margin: 10
 	}
 });
