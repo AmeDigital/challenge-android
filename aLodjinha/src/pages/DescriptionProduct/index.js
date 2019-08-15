@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Text, View, StatusBar, Image, ScrollView } from 'react-native';
+import { Text, View, StatusBar, Image, ScrollView, Alert } from 'react-native';
 
 import api from '../../services/api';
+import FloatingButton from '../../components/FloatingButton';
 import { replacePonitForComma } from '../../utils/Utils';
 
 import styles from './styles';
@@ -40,6 +41,8 @@ function DescriptionProductScreen({ navigation }) {
 						<Text style={styles.title}>{product.categoria.descricao}</Text>
 						<Text style={styles.description}>{product.descricao.replace(/<br\/>+/g, '\n')}</Text>
 					</View>
+
+					<FloatingButton onPress={() => Alert.alert('Produto reservado com sucesso')} />
 				</View>
 			)}
 		</ScrollView>
