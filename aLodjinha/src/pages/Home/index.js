@@ -18,8 +18,10 @@ function HomeScreen({ navigation }) {
 	);
 }
 
-HomeScreen.navigationOptions = {
-	headerTitle: <LogoTitle />
+HomeScreen.navigationOptions = ({ navigation }) => {
+	return {
+		headerTitle: <LogoTitle navigation={navigation} />
+	};
 };
 
 export default HomeScreen;
