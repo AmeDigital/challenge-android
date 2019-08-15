@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Text, View, StatusBar, Image, ScrollView } from 'react-native';
 
 import api from '../../services/api';
+import { replacePonitForComma } from '../../utils/Utils';
 
 import styles from './styles';
 
@@ -32,8 +33,8 @@ function DescriptionProductScreen({ navigation }) {
 					/>
 					<Text style={styles.nameDescription}>{product.nome}</Text>
 					<View style={styles.containerPrices}>
-						<Text style={styles.priceOf}>{`De: ${product.precoDe}`}</Text>
-						<Text style={styles.priceBy}>{`Por ${product.precoPor}`}</Text>
+						<Text style={styles.priceOf}>{`De: ${replacePonitForComma(product.precoDe)}`}</Text>
+						<Text style={styles.priceBy}>{`Por ${replacePonitForComma(product.precoPor)}`}</Text>
 					</View>
 					<View style={styles.containerDescription}>
 						<Text style={styles.title}>{product.categoria.descricao}</Text>

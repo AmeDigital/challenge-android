@@ -6,13 +6,22 @@ export default StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'space-between'
 	},
+	header: {
+		justifyContent: 'center',
+		alignItems: 'center'
+	},
 	logo: {
 		marginTop: 20
 	},
 	logoText: {
 		fontFamily: 'Pacifico-Regular',
-		fontSize: 60,
+		fontSize: 55,
 		color: '#2d3142'
+	},
+	footer: {
+		justifyContent: 'center',
+		alignItems: 'center',
+		marginBottom: 20
 	},
 	nameDev: {
 		fontWeight: 'bold',
@@ -21,7 +30,6 @@ export default StyleSheet.create({
 	},
 	dataDev: {
 		color: '#aaaaaa',
-		textAlign: 'center',
 		margin: 10
 	}
 });
