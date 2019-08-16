@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Carousel from 'react-native-banner-carousel';
-import { StyleSheet, Image, View, Dimensions, TouchableOpacity } from 'react-native';
+import { StyleSheet, Image, View, Dimensions, TouchableOpacity, Linking, Alert } from 'react-native';
 
 import api from '../../services/api';
 import Loading from '../Loading';
@@ -21,8 +21,14 @@ export default function Banners() {
 	function renderPage(image, index) {
 		return (
 			<View key={index}>
-				<TouchableOpacity />
-				<Image style={styles.image} source={{ uri: image.urlImagem }} />
+				<TouchableOpacity
+					onPress={() =>
+						Linking.openURL(image.linkUrl).catch((err) =>
+							Alert.alert('Impossivel abrir a url', image.linkUrl)
+						)}
+				>
+					<Image style={styles.image} source={{ uri: image.urlImagem }} />
+				</TouchableOpacity>
 			</View>
 		);
 	}
