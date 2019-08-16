@@ -42,7 +42,12 @@ function DescriptionProductScreen({ navigation }) {
 						<Text style={styles.description}>{product.descricao.replace(/<br\/>+/g, '\n')}</Text>
 					</View>
 
-					<FloatingButton onPress={() => Alert.alert('Produto reservado com sucesso')} />
+					<FloatingButton
+						onPress={() =>
+							Alert.alert(null, 'Produto reservado com sucesso', [
+								{ text: 'OK', onPress: () => console.log('OK Pressed'), style: '#5e2a84' }
+							])}
+					/>
 				</View>
 			)}
 		</ScrollView>
