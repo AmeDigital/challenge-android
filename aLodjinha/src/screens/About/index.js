@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, View, Image } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import styles from './styles';
 
@@ -17,5 +18,17 @@ function AboutScreen() {
 		</View>
 	);
 }
+
+AboutScreen.navigationOptions = ({ navigation }) => {
+	return {
+		headerTitle: (
+			<React.Fragment>
+				<Icon name="menu" style={{ marginLeft: 15 }} onPress={navigation.openDrawer} size={24} color="#fff" />
+				<Text style={{ color: '#fff', marginLeft: 15, fontWeight: 'bold', fontSize: 20 }}>Sobre</Text>
+			</React.Fragment>
+		),
+		headerLeft: null
+	};
+};
 
 export default AboutScreen;
