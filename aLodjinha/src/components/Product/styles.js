@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native';
 
+import material from '../../utils/MaterialDesign';
+
 export default StyleSheet.create({
 	produto: {
 		flexDirection: 'row',
@@ -18,8 +20,8 @@ export default StyleSheet.create({
 		padding: 10
 	},
 	textDescription: {
-		fontSize: 18,
-		color: '#333',
+		fontSize: 17,
+		color: material.colorDark,
 		fontFamily: 'Roboto'
 	},
 	containerPrices: {
@@ -29,14 +31,14 @@ export default StyleSheet.create({
 		height: 40
 	},
 	priceOf: {
-		color: '#aaaaaa',
-		fontSize: 15,
+		color: material.colorGreyish,
+		fontSize: 12,
 		fontWeight: 'bold',
 		textDecorationLine: 'line-through'
 	},
 	priceBy: {
-		fontSize: 23,
-		color: '#f15025',
+		fontSize: 20,
+		color: material.colorTomato,
 		fontFamily: 'Roboto',
 		fontWeight: 'bold'
 	},

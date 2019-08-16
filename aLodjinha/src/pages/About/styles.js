@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native';
 
+import material from '../../utils/MaterialDesign';
+
 export default StyleSheet.create({
 	container: {
 		flex: 1,
@@ -14,9 +16,10 @@ export default StyleSheet.create({
 		marginTop: 20
 	},
 	logoText: {
-		fontFamily: 'Pacifico-Regular',
-		fontSize: 55,
-		color: '#2d3142'
+		fontFamily: material.fontPacificoRegular,
+		fontSize: 64,
+		letterSpacing: 1.5,
+		color: material.colorDark
 	},
 	footer: {
 		justifyContent: 'center',
@@ -25,11 +28,14 @@ export default StyleSheet.create({
 	},
 	nameDev: {
 		fontWeight: 'bold',
-		fontSize: 16,
-		color: '#2d3142'
+		fontSize: 14,
+		letterSpacing: 0.3,
+		color: material.colorDark
 	},
 	dataDev: {
-		color: '#aaaaaa',
-		margin: 10
+		color: material.colorDark,
+		letterSpacing: 0.3,
+		margin: 10,
+		fontSize: 12
 	}
 });

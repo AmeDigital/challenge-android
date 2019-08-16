@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native';
 
+import material from '../../utils/MaterialDesign';
+
 export default StyleSheet.create({
 	image: {
 		width: 30,
@@ -7,8 +9,9 @@ export default StyleSheet.create({
 		marginHorizontal: 15
 	},
 	textTile: {
-		color: '#fff',
-		fontSize: 20,
-		fontFamily: 'Pacifico-Regular'
+		color: material.colorWhiteTwo,
+		fontSize: 24,
+		letterSpacing: 0.6,
+		fontFamily: material.fontPacificoRegular
 	}
 });

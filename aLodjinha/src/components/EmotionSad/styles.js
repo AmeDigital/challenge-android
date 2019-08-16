@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native';
 
+import material from '../../utils/MaterialDesign';
+
 export default StyleSheet.create({
 	container: {
 		flex: 1,
@@ -12,12 +14,12 @@ export default StyleSheet.create({
 	},
 	description: {
 		fontSize: 16,
-		color: '#333'
+		color: material.colorDark
 	},
 	title: {
-		fontSize: 22,
+		fontSize: 24,
 		fontWeight: 'bold',
-		color: '#333',
+		color: material.colorDark,
 		margin: 15
 	}
 });
