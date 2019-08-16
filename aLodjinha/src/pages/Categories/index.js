@@ -58,7 +58,7 @@ function CategoriesScreen({ navigation }) {
 						onEndReached={loadProducts}
 						onEndReachedThreshold={0.1}
 						ListFooterComponent={
-							load && <ActivityIndicator size="large" color="#ff0000" style={{ margin: 20 }} />
+							load && <ActivityIndicator size="large" color="#5e2a84" style={{ margin: 20 }} />
 						}
 					/>
 				) : (
