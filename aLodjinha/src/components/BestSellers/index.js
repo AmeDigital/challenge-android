@@ -4,6 +4,7 @@ import { Text, View, ScrollView } from 'react-native';
 import styles from './styles';
 import Product from '../Product';
 import api from '../../services/api';
+import Loading from '../Loading';
 
 export default function BestSellers({ navigation }) {
 	const [ best, setBest ] = useState([]);
@@ -23,7 +24,13 @@ export default function BestSellers({ navigation }) {
 			<View style={styles.bestHeader}>
 				<Text style={styles.bestTitle}>Mais Vendidos</Text>
 			</View>
-			<ScrollView>{best.map((item) => <Product key={item.id} item={item} funcPage={funcPage} />)}</ScrollView>
+			<ScrollView>
+				{best.length > 0 ? (
+					best.map((item) => <Product key={item.id} item={item} funcPage={funcPage} />)
+				) : (
+					<Loading />
+				)}
+			</ScrollView>
 		</View>
 	);
 }

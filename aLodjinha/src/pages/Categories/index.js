@@ -4,6 +4,7 @@ import { FlatList, View, ActivityIndicator } from 'react-native';
 import styles from './styles';
 import Product from '../../components/Product';
 import api from '../../services/api';
+import Loading from '../../components/Loading';
 
 function CategoriesScreen({ navigation }) {
 	const [ products, setProducts ] = useState([]);
@@ -18,7 +19,6 @@ function CategoriesScreen({ navigation }) {
 		if (load) return;
 
 		if (listFinished()) return;
-		console.log('Passou com ', products.length);
 
 		setLoad(true);
 
@@ -28,7 +28,6 @@ function CategoriesScreen({ navigation }) {
 			setProducts([ ...products, ...response.data.data ]);
 			setOffset(offset + 1);
 			setLoad(false);
-			console.log(products.length, 'TAMANHO');
 		} catch (e) {
 			console.error(e);
 		}
@@ -42,26 +41,21 @@ function CategoriesScreen({ navigation }) {
 		return products.length > 75;
 	}
 
-	function renderFooter() {
-		if (!load) return null;
-		return (
-			<View style={styles.load}>
-				<ActivityIndicator size="large" color="#ff0000" style={{ margin: 20 }} />
-			</View>
-		);
-	}
-
 	return (
 		<View style={styles.container}>
-			{products.length > 0 && (
+			{products.length > 0 ? (
 				<FlatList
 					data={products}
 					renderItem={({ item }) => <Product key={item.id} funcPage={funcPage} item={item} />}
 					keyExtractor={(item) => String(item.id + Math.floor(Math.random() * 198541))}
 					onEndReached={loadProducts}
 					onEndReachedThreshold={0.1}
-					ListFooterComponent={renderFooter}
+					ListFooterComponent={
+						load && <ActivityIndicator size="large" color="#ff0000" style={{ margin: 20 }} />
+					}
 				/>
+			) : (
+				<Loading />
 			)}
 		</View>
 	);

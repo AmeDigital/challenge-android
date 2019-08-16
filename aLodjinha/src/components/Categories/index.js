@@ -4,6 +4,7 @@ import { Text, View, ScrollView, Image, TouchableOpacity } from 'react-native';
 import api from '../../services/api';
 
 import styles from './styles';
+import Loading from '../Loading';
 
 export default function Categories({ navigation }) {
 	const [ categories, setCategories ] = useState([]);
@@ -24,14 +25,15 @@ export default function Categories({ navigation }) {
 			<View style={styles.categoryHeader}>
 				<Text style={styles.categoryTitle}>Categorias</Text>
 			</View>
-			<ScrollView
-				showsHorizontalScrollIndicator={false}
-				horizontal={true}
-				contentContainerStyle={{ padding: 8 }}
-				style={styles.categoryContent}
-			>
-				{categories.length > 0 &&
-					categories.map((item, index) => (
+
+			{categories.length > 0 ? (
+				<ScrollView
+					showsHorizontalScrollIndicator={false}
+					horizontal={true}
+					contentContainerStyle={{ padding: 8 }}
+					style={styles.categoryContent}
+				>
+					{categories.map((item, index) => (
 						<TouchableOpacity key={index} onPress={() => goPageCategories(item.descricao)}>
 							<View style={styles.category}>
 								<Image style={styles.image} source={{ uri: item.urlImagem }} />
@@ -41,7 +43,10 @@ export default function Categories({ navigation }) {
 							</View>
 						</TouchableOpacity>
 					))}
-			</ScrollView>
+				</ScrollView>
+			) : (
+				<Loading />
+			)}
 		</View>
 	);
 }

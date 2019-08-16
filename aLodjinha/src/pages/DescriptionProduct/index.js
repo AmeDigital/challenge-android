@@ -6,6 +6,7 @@ import FloatingButton from '../../components/FloatingButton';
 import { replacePonitForComma } from '../../utils/Utils';
 
 import styles from './styles';
+import Loading from '../../components/Loading';
 
 function DescriptionProductScreen({ navigation }) {
 	const id = navigation.getParam('id');
@@ -23,7 +24,7 @@ function DescriptionProductScreen({ navigation }) {
 
 	return (
 		<ScrollView>
-			{product !== undefined && (
+			{product !== undefined ? (
 				<View style={styles.productDescription}>
 					<StatusBar backgroundColor="#aaaaaa" />
 					<Image
@@ -49,6 +50,8 @@ function DescriptionProductScreen({ navigation }) {
 							])}
 					/>
 				</View>
+			) : (
+				<Loading />
 			)}
 		</ScrollView>
 	);

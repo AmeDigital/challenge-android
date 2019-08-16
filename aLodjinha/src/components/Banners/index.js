@@ -3,6 +3,7 @@ import Carousel from 'react-native-banner-carousel';
 import { StyleSheet, Image, View, Dimensions, TouchableOpacity } from 'react-native';
 
 import api from '../../services/api';
+import Loading from '../Loading';
 
 const BannerWidth = Dimensions.get('window').width;
 const BannerHeight = 150;
@@ -28,9 +29,13 @@ export default function Banners() {
 
 	return (
 		<View style={styles.container}>
-			<Carousel autoplay autoplayTimeout={5000} loop index={0} pageSize={BannerWidth}>
-				{banners.map((image, index) => renderPage(image, index))}
-			</Carousel>
+			{banners.length > 0 ? (
+				<Carousel autoplay autoplayTimeout={5000} loop index={0} pageSize={BannerWidth}>
+					{banners.map((image, index) => renderPage(image, index))}
+				</Carousel>
+			) : (
+				<Loading />
+			)}
 		</View>
 	);
 }
