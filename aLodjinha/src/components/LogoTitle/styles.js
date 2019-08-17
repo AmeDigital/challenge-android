@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import material from '../../utils/MaterialDesign';
+import material, { normalize } from '../../utils/MaterialDesign';
 
 export default StyleSheet.create({
 	image: {
@@ -10,7 +10,7 @@ export default StyleSheet.create({
 	},
 	textTile: {
 		color: material.colorWhiteTwo,
-		fontSize: 24,
+		fontSize: normalize(24),
 		letterSpacing: 0.6,
 		fontFamily: material.fontPacificoRegular
 	}

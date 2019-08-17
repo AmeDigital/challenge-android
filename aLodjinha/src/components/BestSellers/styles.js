@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import MaterialDesign from '../../utils/MaterialDesign';
+import MaterialDesign, { normalize } from '../../utils/MaterialDesign';
 
 export default StyleSheet.create({
 	container: {
@@ -12,7 +12,7 @@ export default StyleSheet.create({
 		borderColor: MaterialDesign.colorGreyish
 	},
 	bestTitle: {
-		fontSize: 18,
+		fontSize: normalize(18),
 		color: MaterialDesign.colorDark,
 		fontWeight: 'bold'
 	},

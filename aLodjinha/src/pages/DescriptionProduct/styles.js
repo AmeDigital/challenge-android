@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import material from '../../utils/MaterialDesign';
+import material, { normalize } from '../../utils/MaterialDesign';
 
 export default StyleSheet.create({
 	productDescription: {
@@ -14,10 +14,10 @@ export default StyleSheet.create({
 	},
 	nameDescription: {
 		alignSelf: 'stretch',
-		fontSize: 20,
+		fontSize: normalize(20),
 		fontFamily: 'Roboto',
 		fontWeight: 'bold',
-		color: '#2d3142',
+		color: material.colorDark,
 		margin: 15
 	},
 	containerPrices: {
@@ -35,12 +35,12 @@ export default StyleSheet.create({
 	},
 	priceOf: {
 		color: material.colorWhite,
-		fontSize: 12,
+		fontSize: normalize(12),
 		fontWeight: 'bold',
 		textDecorationLine: 'line-through'
 	},
 	priceBy: {
-		fontSize: 20,
+		fontSize: normalize(20),
 		color: material.colorTomato,
 		fontFamily: 'Roboto',
 		fontWeight: 'bold'
@@ -50,7 +50,7 @@ export default StyleSheet.create({
 	},
 	title: {
 		fontWeight: 'bold',
-		fontSize: 18,
+		fontSize: normalize(18),
 		marginLeft: 15,
 		marginTop: 15,
 		color: material.colorDark
