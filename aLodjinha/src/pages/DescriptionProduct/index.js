@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Text, View, StatusBar, Image, ScrollView, Alert } from 'react-native';
+import { View, StatusBar, ScrollView, Alert } from 'react-native';
 
 import api from '../../services/api';
 import FloatingButton from '../../components/FloatingButton';
-import { replacePonitForComma } from '../../utils/Utils';
 
-import styles from './styles';
 import Loading from '../../components/Loading';
+import ProductDescription from '../../components/PoductDescription';
 
 function DescriptionProductScreen({ navigation }) {
 	const id = navigation.getParam('id');
@@ -26,23 +25,7 @@ function DescriptionProductScreen({ navigation }) {
 		<View style={{ flex: 1 }}>
 			{product !== undefined ? (
 				<ScrollView>
-					<View style={styles.productDescription}>
-						<Image
-							source={{
-								uri: product.urlImagem
-							}}
-							style={styles.productImage}
-						/>
-						<Text style={styles.nameDescription}>{product.nome}</Text>
-						<View style={styles.containerPrices}>
-							<Text style={styles.priceOf}>{`De: ${replacePonitForComma(product.precoDe)}`}</Text>
-							<Text style={styles.priceBy}>{`Por ${replacePonitForComma(product.precoPor)}`}</Text>
-						</View>
-						<View style={styles.containerDescription}>
-							<Text style={styles.title}>Descrição</Text>
-							<Text style={styles.description}>{product.descricao.replace(/<br\/>+/g, '\n')}</Text>
-						</View>
-					</View>
+					<ProductDescription product={product} />
 				</ScrollView>
 			) : (
 				<Loading />
