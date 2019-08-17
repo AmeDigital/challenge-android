@@ -5,6 +5,7 @@ import api from '../../services/api';
 
 import styles from './styles';
 import Loading from '../Loading';
+import Category from '../Category';
 
 export default function Categories({ navigation }) {
 	const [ categories, setCategories ] = useState([]);
@@ -35,12 +36,7 @@ export default function Categories({ navigation }) {
 				>
 					{categories.map((item, index) => (
 						<TouchableOpacity key={index} onPress={() => goPageCategories(item.descricao)}>
-							<View style={styles.category}>
-								<Image style={styles.image} source={{ uri: item.urlImagem }} />
-								<Text style={styles.description} numberOfLines={1}>
-									{item.descricao}
-								</Text>
-							</View>
+							<Category item={item} />
 						</TouchableOpacity>
 					))}
 				</ScrollView>
