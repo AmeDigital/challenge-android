@@ -12,28 +12,39 @@ function CategoriesScreen({ navigation }) {
 	const [ offset, setOffset ] = useState(0);
 	const [ load, setLoad ] = useState(false);
 	const [ showEmotion, setShowEmotion ] = useState(false);
+	const [ isTotal, setIsTotal ] = useState(false);
+
+	const id = navigation.getParam('id');
 
 	useEffect(() => {
-		if (navigation.getParam('descricao') !== 'Games') {
-			setShowEmotion(true);
-		} else {
-			loadProducts();
-		}
+		loadProducts();
 	}, []);
 
 	async function loadProducts() {
 		if (load) return;
 
-		if (listFinished()) return;
+		if (isTotal) return;
 
 		setLoad(true);
 
 		try {
-			const response = await api.get(`/produto?offset=${offset}`);
+			const response = await api.get(`/produto?limit=20&offset=${offset}&categoriaId=${id}`);
 
 			setProducts([ ...products, ...response.data.data ]);
-			setOffset(offset + 1);
+
+			if (response.data.data.length === 0) {
+				setShowEmotion(true);
+				return;
+			}
+
+			/**Logica para limitar o tamanho da lista */
+			if (response.data.data.length < 20) {
+				setIsTotal(true);
+			}
+
+			setOffset(offset + 2);
 			setLoad(false);
+			console.log('Tamanho', products.length);
 		} catch (e) {
 			console.error(e);
 		}
@@ -43,10 +54,6 @@ function CategoriesScreen({ navigation }) {
 		navigation.navigate('DescriptionProduct', { id, descricao });
 	}
 
-	function listFinished() {
-		return products.length > 75;
-	}
-
 	function listCategories() {
 		return (
 			<View style={styles.container}>
@@ -54,7 +61,7 @@ function CategoriesScreen({ navigation }) {
 					<FlatList
 						data={products}
 						renderItem={({ item }) => <Product key={item.id} funcPage={funcPage} item={item} />}
-						keyExtractor={(item) => String(item.id + Math.floor(Math.random() * 198541))}
+						keyExtractor={(item) => String(item.id + Math.floor(Math.random() * 1985419652))}
 						onEndReached={loadProducts}
 						onEndReachedThreshold={0.1}
 						ListFooterComponent={

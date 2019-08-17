@@ -17,8 +17,8 @@ export default function Categories({ navigation }) {
 		})();
 	}, []);
 
-	function goPageCategories(descricao) {
-		navigation.navigate('Categories', { descricao });
+	function goPageCategories(id, descricao) {
+		navigation.navigate('Categories', { id, descricao });
 	}
 
 	return (
@@ -30,7 +30,7 @@ export default function Categories({ navigation }) {
 			{categories.length > 0 ? (
 				<ScrollView showsHorizontalScrollIndicator={false} horizontal={true} style={styles.categoryContent}>
 					{categories.map((item, index) => (
-						<TouchableOpacity key={index} onPress={() => goPageCategories(item.descricao)}>
+						<TouchableOpacity key={index} onPress={() => goPageCategories(item.id, item.descricao)}>
 							<Category item={item} />
 						</TouchableOpacity>
 					))}

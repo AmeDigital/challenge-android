@@ -10,16 +10,11 @@ export default StyleSheet.create({
 	},
 	image: {
 		resizeMode: 'contain',
-		width: 300
+		width: 150
 	},
 	description: {
-		fontSize: 16,
-		color: material.colorDark
-	},
-	title: {
-		fontSize: 24,
+		fontSize: 18,
 		fontWeight: 'bold',
-		color: material.colorDark,
-		margin: 15
+		color: material.colorDark
 	}
 });
