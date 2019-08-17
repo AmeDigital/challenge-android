@@ -6,8 +6,9 @@ export default StyleSheet.create({
 	produto: {
 		flexDirection: 'row',
 		justifyContent: 'space-between',
-		padding: 15,
-		borderBottomColor: '#ccc',
+		paddingVertical: 15,
+		paddingHorizontal: 5,
+		borderBottomColor: material.colorGreyish,
 		borderBottomWidth: 1
 	},
 	image: {
@@ -20,7 +21,7 @@ export default StyleSheet.create({
 		padding: 10
 	},
 	textName: {
-		fontSize: 17,
+		fontSize: 18,
 		fontWeight: 'bold',
 		color: material.colorDark,
 		fontFamily: 'Roboto'

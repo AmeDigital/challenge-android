@@ -1,20 +1,21 @@
 import { StyleSheet } from 'react-native';
+import MaterialDesign from '../../utils/MaterialDesign';
 
 export default StyleSheet.create({
 	container: {
 		height: 200,
-		borderBottomColor: '#ccc',
+		borderBottomColor: MaterialDesign.colorGreyish,
 		borderBottomWidth: 1
 	},
 	categoryHeader: {
-		paddingHorizontal: 8,
+		paddingHorizontal: 15,
 		paddingVertical: 15,
 		borderBottomWidth: 1,
-		borderColor: '#ccc'
+		borderColor: MaterialDesign.colorGreyish
 	},
 	categoryTitle: {
 		fontSize: 18,
-		color: '#333',
+		color: MaterialDesign.colorDark,
 		fontWeight: 'bold'
 	},
 	categoryContent: {}

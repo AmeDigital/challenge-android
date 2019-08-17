@@ -21,9 +21,9 @@ export default StyleSheet.create({
 		margin: 15
 	},
 	containerPrices: {
-		borderTopColor: '#ccc',
+		borderTopColor: material.colorGreyish,
 		borderTopWidth: 1,
-		borderBottomColor: '#ccc',
+		borderBottomColor: material.colorGreyish,
 		borderBottomWidth: 1,
 		paddingHorizontal: 15,
 		paddingVertical: 30,
@@ -34,14 +34,14 @@ export default StyleSheet.create({
 		height: 40
 	},
 	priceOf: {
-		color: '#aaaaaa',
+		color: material.colorWhite,
 		fontSize: 12,
 		fontWeight: 'bold',
 		textDecorationLine: 'line-through'
 	},
 	priceBy: {
 		fontSize: 20,
-		color: '#f15025',
+		color: material.colorTomato,
 		fontFamily: 'Roboto',
 		fontWeight: 'bold'
 	},

@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native';
 
+import material from '../../utils/MaterialDesign';
+
 export default StyleSheet.create({
 	TouchableOpacityStyle: {
 		position: 'absolute',
@@ -7,9 +9,9 @@ export default StyleSheet.create({
 		height: 50,
 		alignItems: 'center',
 		justifyContent: 'center',
-		right: 20,
-		bottom: 20,
-		backgroundColor: '#5e2a84',
+		right: 18,
+		bottom: 18,
+		backgroundColor: material.colorWarmPurple,
 		padding: 30,
 		borderRadius: 50,
 		elevation: 4
