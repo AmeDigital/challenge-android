@@ -10,7 +10,7 @@ export default StyleSheet.create({
 	},
 	textTile: {
 		color: material.colorWhiteTwo,
-		fontSize: normalize(24),
+		fontSize: 24,
 		letterSpacing: 0.6,
 		fontFamily: material.fontPacificoRegular
 	}

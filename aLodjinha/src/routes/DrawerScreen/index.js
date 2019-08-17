@@ -36,21 +36,21 @@ export default class DrawerScreen extends React.Component {
 								</Text>
 								<View
 									style={{
-										height: 80,
-										width: 80,
+										height: 60,
+										width: 60,
 										backgroundColor: '#ff0000',
 										borderRadius: 50,
 										position: 'absolute',
-										top: -210,
-										left: 9
+										bottom: 120,
+										right: 220
 									}}
 								/>
 								<Image
 									source={require('../../images/logo_menu.png')}
 									style={{
 										position: 'absolute',
-										top: -200,
-										left: 20
+										right: 232,
+										bottom: 130
 									}}
 								/>
 								<Text style={styles.menuText} onPress={this.navigateToScreen('Home')}>
