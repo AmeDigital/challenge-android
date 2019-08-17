@@ -48,10 +48,26 @@ function DescriptionProductScreen({ navigation }) {
 				<Loading />
 			)}
 			<FloatingButton
-				onPress={() =>
-					Alert.alert(null, 'Produto reservado com sucesso', [
-						{ text: 'OK', onPress: () => console.log('OK Pressed'), style: '#5e2a84' }
-					])}
+				onPress={() => {
+					api
+						.post(`/produto/${product.id}`)
+						.then((response) => {
+							response.status === 200
+								? Alert.alert(null, 'Produto reservado com sucesso', [
+										{
+											text: 'OK'
+										}
+									])
+								: Alert.alert(null, 'Não foi possivel fazer a reserva', [
+										{
+											text: 'OK'
+										}
+									]);
+						})
+						.catch((error) => {
+							Alert.alert(null, `Tivemos um problema ao fazer a reserva ${error}`, [ { text: 'OK' } ]);
+						});
+				}}
 			/>
 		</View>
 	);
