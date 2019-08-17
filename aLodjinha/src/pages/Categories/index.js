@@ -44,7 +44,6 @@ function CategoriesScreen({ navigation }) {
 
 			setOffset(offset + 2);
 			setLoad(false);
-			console.log('Tamanho', products.length);
 		} catch (e) {
 			console.error(e);
 		}
