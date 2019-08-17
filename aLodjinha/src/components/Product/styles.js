@@ -47,8 +47,5 @@ export default StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center'
 	},
-	imageRow: {
-		height: 10,
-		width: 10
-	}
+	imageRow: {}
 });

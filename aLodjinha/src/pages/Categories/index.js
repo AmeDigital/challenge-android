@@ -39,8 +39,8 @@ function CategoriesScreen({ navigation }) {
 		}
 	}
 
-	function funcPage(id) {
-		navigation.navigate('DescriptionProduct', { id });
+	function funcPage(id, descricao) {
+		navigation.navigate('DescriptionProduct', { id, descricao });
 	}
 
 	function listFinished() {

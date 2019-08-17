@@ -3,7 +3,8 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
 	productDescription: {
 		flex: 1,
-		alignItems: 'center'
+		alignItems: 'center',
+		marginTop: 20
 	},
 	productImage: {
 		height: 200,
@@ -23,7 +24,7 @@ export default StyleSheet.create({
 		borderBottomColor: '#ccc',
 		borderBottomWidth: 1,
 		paddingHorizontal: 15,
-		paddingVertical: 20,
+		paddingVertical: 30,
 		flexDirection: 'row',
 		alignSelf: 'stretch',
 		justifyContent: 'space-between',
@@ -32,12 +33,12 @@ export default StyleSheet.create({
 	},
 	priceOf: {
 		color: '#aaaaaa',
-		fontSize: 15,
+		fontSize: 12,
 		fontWeight: 'bold',
 		textDecorationLine: 'line-through'
 	},
 	priceBy: {
-		fontSize: 23,
+		fontSize: 20,
 		color: '#f15025',
 		fontFamily: 'Roboto',
 		fontWeight: 'bold'

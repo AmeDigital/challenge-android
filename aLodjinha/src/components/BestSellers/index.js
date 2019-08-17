@@ -15,8 +15,8 @@ export default function BestSellers({ navigation }) {
 		})();
 	}, []);
 
-	function funcPage(id) {
-		navigation.navigate('DescriptionProduct', { id });
+	function funcPage(id, descricao) {
+		navigation.navigate('DescriptionProduct', { id, descricao });
 	}
 
 	return (
@@ -24,13 +24,13 @@ export default function BestSellers({ navigation }) {
 			<View style={styles.bestHeader}>
 				<Text style={styles.bestTitle}>Mais Vendidos</Text>
 			</View>
-			<ScrollView>
+			<View>
 				{best.length > 0 ? (
 					best.map((item) => <Product key={item.id} item={item} funcPage={funcPage} />)
 				) : (
 					<Loading />
 				)}
-			</ScrollView>
+			</View>
 		</View>
 	);
 }

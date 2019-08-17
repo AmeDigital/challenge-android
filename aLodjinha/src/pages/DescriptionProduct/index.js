@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 import { Text, View, StatusBar, Image, ScrollView, Alert } from 'react-native';
 
 import api from '../../services/api';
@@ -26,17 +25,8 @@ function DescriptionProductScreen({ navigation }) {
 	return (
 		<View style={{ flex: 1 }}>
 			{product !== undefined ? (
-				<ScrollView
-					onScroll={(event) => {
-						if (event.nativeEvent.contentOffset.y > 0) {
-							console.log(navigation);
-						} else {
-							console.log('Top');
-						}
-					}}
-				>
+				<ScrollView>
 					<View style={styles.productDescription}>
-						<StatusBar backgroundColor="#aaaaaa" />
 						<Image
 							source={{
 								uri: product.urlImagem
@@ -69,13 +59,12 @@ function DescriptionProductScreen({ navigation }) {
 
 DescriptionProductScreen.navigationOptions = ({ navigation }) => {
 	return {
-		headerTitle: '',
+		title: navigation.getParam('descricao'),
 		headerStyle: {
-			backgroundColor: '#fff',
-			marginTop: StatusBar.currentHeight,
-			elevation: 0
+			backgroundColor: '#5e2a84',
+			marginTop: StatusBar.currentHeight
 		},
-		headerTintColor: '#333'
+		headerTintColor: '#fff'
 	};
 };
 

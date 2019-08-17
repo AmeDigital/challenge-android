@@ -7,17 +7,15 @@ export default StyleSheet.create({
 		height: 50,
 		alignItems: 'center',
 		justifyContent: 'center',
-		right: 30,
-		bottom: 30,
+		right: 20,
+		bottom: 20,
 		backgroundColor: '#5e2a84',
-		padding: 40,
+		padding: 30,
 		borderRadius: 50,
 		elevation: 4
 	},
 
 	FloatingButtonStyle: {
-		resizeMode: 'contain',
-		width: 40,
-		height: 40
+		resizeMode: 'contain'
 	}
 });

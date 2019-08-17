@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, ScrollView } from 'react-native';
 
 import styles from './styles';
 
@@ -10,11 +10,13 @@ import BestSellers from '../../components/BestSellers';
 
 function HomeScreen({ navigation }) {
 	return (
-		<View style={styles.container}>
-			<Banners />
-			<Categories navigation={navigation} />
-			<BestSellers navigation={navigation} />
-		</View>
+		<ScrollView>
+			<View style={styles.container}>
+				<Banners />
+				<Categories navigation={navigation} />
+				<BestSellers navigation={navigation} />
+			</View>
+		</ScrollView>
 	);
 }
 

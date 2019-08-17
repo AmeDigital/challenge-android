@@ -6,7 +6,7 @@ import { replacePonitForComma } from '../../utils/Utils';
 
 export default function Product({ item, funcPage }) {
 	return (
-		<View style={styles.produto}>
+		<TouchableOpacity style={styles.produto} onPress={() => funcPage(item.id, item.categoria.descricao)}>
 			<Image
 				style={styles.image}
 				source={{
@@ -14,7 +14,7 @@ export default function Product({ item, funcPage }) {
 				}}
 			/>
 			<View style={styles.containerDescription}>
-				<Text style={styles.textDescription} onPress={() => funcPage(item.id)} numberOfLines={2}>
+				<Text style={styles.textDescription} numberOfLines={2}>
 					{item.descricao}
 				</Text>
 				<View style={styles.containerPrices}>
@@ -23,10 +23,8 @@ export default function Product({ item, funcPage }) {
 				</View>
 			</View>
 			<View style={styles.containerImageRow}>
-				<TouchableOpacity onPress={() => funcPage(item.id)}>
-					<Image style={styles.imageRow} source={require('../../images/disclosure_indicator.png')} />
-				</TouchableOpacity>
+				<Image style={styles.imageRow} source={require('../../images/disclosure_indicator.png')} />
 			</View>
-		</View>
+		</TouchableOpacity>
 	);
 }
