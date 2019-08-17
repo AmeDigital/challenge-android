@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native';
 
+import material from '../../utils/MaterialDesign';
+
 export default StyleSheet.create({
 	productDescription: {
 		flex: 1,
@@ -13,10 +15,10 @@ export default StyleSheet.create({
 	nameDescription: {
 		alignSelf: 'stretch',
 		fontSize: 20,
+		fontFamily: 'Roboto',
 		fontWeight: 'bold',
 		color: '#2d3142',
-		padding: 15,
-		height: 100
+		margin: 15
 	},
 	containerPrices: {
 		borderTopColor: '#ccc',
@@ -48,12 +50,14 @@ export default StyleSheet.create({
 	},
 	title: {
 		fontWeight: 'bold',
-		fontSize: 20,
-		padding: 15,
-		color: '#333'
+		fontSize: 18,
+		marginLeft: 15,
+		marginTop: 15,
+		color: material.colorDark
 	},
 	description: {
-		padding: 15,
-		color: '#333'
+		padding: 17,
+		color: material.colorDark,
+		letterSpacing: 0.4
 	}
 });

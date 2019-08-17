@@ -36,7 +36,7 @@ export default function Banners() {
 	return (
 		<View style={styles.container}>
 			{banners.length > 0 ? (
-				<Carousel autoplay autoplayTimeout={5000} loop index={0} pageSize={BannerWidth}>
+				<Carousel autoplay={false} index={0} pageSize={BannerWidth}>
 					{banners.map((image, index) => renderPage(image, index))}
 				</Carousel>
 			) : (

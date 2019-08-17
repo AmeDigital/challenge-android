@@ -12,7 +12,7 @@ function AboutScreen() {
 				<Text style={styles.logoText}>a Lodjinha</Text>
 			</View>
 			<View style={styles.footer}>
-				<Text style={styles.nameDev}>Washington Developer</Text>
+				<Text style={styles.nameDev}>Washington Martins da Silva</Text>
 				<Text style={styles.dataDev}>16 de Agosto 2019</Text>
 			</View>
 		</View>

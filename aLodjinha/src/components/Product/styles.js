@@ -11,8 +11,8 @@ export default StyleSheet.create({
 		borderBottomWidth: 1
 	},
 	image: {
-		width: 80,
-		height: 90,
+		width: 100,
+		height: 100,
 		marginRight: 5
 	},
 	containerDescription: {

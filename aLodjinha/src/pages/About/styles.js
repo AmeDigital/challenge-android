@@ -13,7 +13,7 @@ export default StyleSheet.create({
 		alignItems: 'center'
 	},
 	logo: {
-		marginTop: 20
+		marginTop: 50
 	},
 	logoText: {
 		fontFamily: material.fontPacificoRegular,

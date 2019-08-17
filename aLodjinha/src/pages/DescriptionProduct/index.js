@@ -39,7 +39,7 @@ function DescriptionProductScreen({ navigation }) {
 							<Text style={styles.priceBy}>{`Por ${replacePonitForComma(product.precoPor)}`}</Text>
 						</View>
 						<View style={styles.containerDescription}>
-							<Text style={styles.title}>{product.categoria.descricao}</Text>
+							<Text style={styles.title}>Descrição</Text>
 							<Text style={styles.description}>{product.descricao.replace(/<br\/>+/g, '\n')}</Text>
 						</View>
 					</View>
