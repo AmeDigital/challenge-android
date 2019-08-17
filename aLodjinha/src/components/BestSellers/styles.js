@@ -5,7 +5,8 @@ export default StyleSheet.create({
 		flex: 1
 	},
 	bestHeader: {
-		padding: 8,
+		paddingHorizontal: 8,
+		paddingVertical: 15,
 		borderBottomWidth: 1,
 		borderColor: '#ccc'
 	},

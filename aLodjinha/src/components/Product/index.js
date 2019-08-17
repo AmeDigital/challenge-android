@@ -15,8 +15,8 @@ export default function Product({ item, funcPage }) {
 		<TouchableOpacity style={styles.produto} onPress={() => funcPage(item.id, item.categoria.descricao)}>
 			<Image style={styles.image} source={urlDefault} onError={onError} />
 			<View style={styles.containerDescription}>
-				<Text style={styles.textDescription} numberOfLines={2}>
-					{item.descricao}
+				<Text style={styles.textName} numberOfLines={2}>
+					{item.nome}
 				</Text>
 				<View style={styles.containerPrices}>
 					<Text style={styles.priceOf}>{`De: ${replacePonitForComma(item.precoDe)}`}</Text>

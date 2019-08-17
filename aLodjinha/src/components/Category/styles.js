@@ -1,16 +1,21 @@
 import { StyleSheet } from 'react-native';
 
+import material from '../../utils/MaterialDesign';
+
 export default StyleSheet.create({
 	image: {
-		height: 60,
-		width: 70
+		height: 100,
+		width: 100
 	},
 	category: {
 		justifyContent: 'center',
 		alignItems: 'center',
-		marginRight: 3,
-		height: 100,
-		width: 100
+		marginRight: 15,
+		marginTop: 15,
+		height: 120
 	},
-	description: {}
+	description: {
+		padding: 10,
+		color: material.colorDark
+	}
 });

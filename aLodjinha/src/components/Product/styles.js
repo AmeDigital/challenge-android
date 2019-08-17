@@ -19,8 +19,9 @@ export default StyleSheet.create({
 		flex: 1,
 		padding: 10
 	},
-	textDescription: {
+	textName: {
 		fontSize: 17,
+		fontWeight: 'bold',
 		color: material.colorDark,
 		fontFamily: 'Roboto'
 	},

@@ -28,12 +28,7 @@ export default function Categories({ navigation }) {
 			</View>
 
 			{categories.length > 0 ? (
-				<ScrollView
-					showsHorizontalScrollIndicator={false}
-					horizontal={true}
-					contentContainerStyle={{ padding: 8 }}
-					style={styles.categoryContent}
-				>
+				<ScrollView showsHorizontalScrollIndicator={false} horizontal={true} style={styles.categoryContent}>
 					{categories.map((item, index) => (
 						<TouchableOpacity key={index} onPress={() => goPageCategories(item.descricao)}>
 							<Category item={item} />

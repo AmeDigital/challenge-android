@@ -2,12 +2,13 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
 	container: {
-		height: 150,
+		height: 200,
 		borderBottomColor: '#ccc',
 		borderBottomWidth: 1
 	},
 	categoryHeader: {
-		padding: 8,
+		paddingHorizontal: 8,
+		paddingVertical: 15,
 		borderBottomWidth: 1,
 		borderColor: '#ccc'
 	},
