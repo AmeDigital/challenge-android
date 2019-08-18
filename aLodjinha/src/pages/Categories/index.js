@@ -21,7 +21,6 @@ function CategoriesScreen({ navigation }) {
 	}, []);
 
 	async function loadProducts() {
-		console.log('1 Tamanho', products.length);
 		if (load) return;
 
 		if (isTotal) return;
@@ -45,7 +44,6 @@ function CategoriesScreen({ navigation }) {
 
 			setOffset(offset + 2);
 			setLoad(false);
-			console.log('2 Tamanho', products.length);
 		} catch (e) {
 			console.error(e);
 		}

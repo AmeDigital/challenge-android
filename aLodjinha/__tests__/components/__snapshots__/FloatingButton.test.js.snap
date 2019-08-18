@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component FloatingButton should render without erros 1`] = `
+<View
+  accessible={true}
+  isTVSelectable={true}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#5e2a84",
+      "borderRadius": 50,
+      "bottom": 18,
+      "elevation": 4,
+      "height": 50,
+      "justifyContent": "center",
+      "opacity": 1,
+      "padding": 30,
+      "position": "absolute",
+      "right": 18,
+      "width": 50,
+    }
+  }
+>
+  <Image
+    source={
+      Object {
+        "testUri": "../../../src/images/check_button.png",
+      }
+    }
+    style={
+      Object {
+        "resizeMode": "contain",
+      }
+    }
+  />
+</View>
+`;

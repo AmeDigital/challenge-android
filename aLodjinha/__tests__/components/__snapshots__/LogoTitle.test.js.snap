@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component LogoTitle should render without erros 1`] = `
+Array [
+  <Text
+    allowFontScaling={false}
+    onPress={[Function]}
+    style={
+      Array [
+        Object {
+          "color": "#fff",
+          "fontSize": 24,
+        },
+        Object {
+          "marginLeft": 15,
+        },
+        Object {
+          "fontFamily": "Material Icons",
+          "fontStyle": "normal",
+          "fontWeight": "normal",
+        },
+        Object {},
+      ]
+    }
+  >
+    
+  </Text>,
+  <Image
+    source={
+      Object {
+        "testUri": "../../../src/images/logo_navbar.png",
+      }
+    }
+    style={
+      Object {
+        "height": 30,
+        "marginHorizontal": 15,
+        "width": 30,
+      }
+    }
+  />,
+  <Text
+    style={
+      Object {
+        "color": "#fcfcfc",
+        "fontFamily": "Pacifico-Regular",
+        "fontSize": 47,
+        "letterSpacing": 0.6,
+      }
+    }
+  >
+    a Lodjinha
+  </Text>,
+]
+`;

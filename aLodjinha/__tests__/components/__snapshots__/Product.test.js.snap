@@ -1,0 +1,114 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component Product should render without erros 1`] = `
+<View
+  accessible={true}
+  isTVSelectable={true}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "borderBottomColor": "#aaaaaa",
+      "borderBottomWidth": 1,
+      "flexDirection": "row",
+      "justifyContent": "space-between",
+      "opacity": 1,
+      "paddingHorizontal": 5,
+      "paddingVertical": 15,
+    }
+  }
+>
+  <Image
+    onError={[Function]}
+    source={
+      Object {
+        "uri": "",
+      }
+    }
+    style={
+      Object {
+        "height": 100,
+        "marginRight": 5,
+        "width": 100,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "padding": 10,
+      }
+    }
+  >
+    <Text
+      numberOfLines={2}
+      style={
+        Object {
+          "color": "#2d3142",
+          "fontFamily": "Roboto",
+          "fontSize": 35,
+          "fontWeight": "bold",
+        }
+      }
+    />
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "height": 40,
+          "justifyContent": "space-between",
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#aaaaaa",
+            "fontSize": 24,
+            "fontWeight": "bold",
+            "textDecorationLine": "line-through",
+          }
+        }
+      >
+        De: undefined
+      </Text>
+      <Text
+        style={
+          Object {
+            "color": "#f15025",
+            "fontFamily": "Roboto",
+            "fontSize": 39,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Por undefined
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "justifyContent": "center",
+        "width": 20,
+      }
+    }
+  >
+    <Image
+      source={
+        Object {
+          "testUri": "../../../src/images/disclosure_indicator.png",
+        }
+      }
+      style={Object {}}
+    />
+  </View>
+</View>
+`;

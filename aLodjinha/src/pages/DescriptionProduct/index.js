@@ -5,7 +5,7 @@ import api from '../../services/api';
 import FloatingButton from '../../components/FloatingButton';
 
 import Loading from '../../components/Loading';
-import ProductDescription from '../../components/PoductDescription';
+import ProductDescription from '../../components/ProductDescription';
 
 function DescriptionProductScreen({ navigation }) {
 	const id = navigation.getParam('id');
