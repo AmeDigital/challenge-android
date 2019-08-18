@@ -1,6 +1,8 @@
 import { StyleSheet } from 'react-native';
 
-import material, { normalize } from '../../utils/MaterialDesign';
+import { RFValue } from 'react-native-responsive-fontsize';
+
+import material from '../../utils/MaterialDesign';
 
 export default StyleSheet.create({
 	container: {
@@ -17,7 +19,7 @@ export default StyleSheet.create({
 	},
 	logoText: {
 		fontFamily: material.fontPacificoRegular,
-		fontSize: 64,
+		fontSize: RFValue(64),
 		letterSpacing: 1.5,
 		color: material.colorDark
 	},
@@ -28,7 +30,7 @@ export default StyleSheet.create({
 	},
 	nameDev: {
 		fontWeight: 'bold',
-		fontSize: normalize(14),
+		fontSize: RFValue(14),
 		letterSpacing: 0.3,
 		color: material.colorDark
 	},
@@ -36,6 +38,6 @@ export default StyleSheet.create({
 		color: material.colorDark,
 		letterSpacing: 0.3,
 		margin: 10,
-		fontSize: normalize(12)
+		fontSize: RFValue(12)
 	}
 });

@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
+import { RFValue } from 'react-native-responsive-fontsize';
 
-import material, { normalize } from '../../utils/MaterialDesign';
+import material from '../../utils/MaterialDesign';
 
 export default StyleSheet.create({
 	produto: {
@@ -21,7 +22,7 @@ export default StyleSheet.create({
 		padding: 10
 	},
 	textName: {
-		fontSize: normalize(18),
+		fontSize: RFValue(18),
 		fontWeight: 'bold',
 		color: material.colorDark,
 		fontFamily: 'Roboto'
@@ -34,12 +35,12 @@ export default StyleSheet.create({
 	},
 	priceOf: {
 		color: material.colorGreyish,
-		fontSize: normalize(12),
+		fontSize: RFValue(12),
 		fontWeight: 'bold',
 		textDecorationLine: 'line-through'
 	},
 	priceBy: {
-		fontSize: normalize(20),
+		fontSize: RFValue(20),
 		color: material.colorTomato,
 		fontFamily: 'Roboto',
 		fontWeight: 'bold'

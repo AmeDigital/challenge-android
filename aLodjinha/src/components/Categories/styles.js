@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
-import MaterialDesign, { normalize } from '../../utils/MaterialDesign';
+import { RFValue } from 'react-native-responsive-fontsize';
+import MaterialDesign from '../../utils/MaterialDesign';
 
 export default StyleSheet.create({
 	container: {
@@ -14,7 +15,7 @@ export default StyleSheet.create({
 		borderColor: MaterialDesign.colorGreyish
 	},
 	categoryTitle: {
-		fontSize: normalize(18),
+		fontSize: RFValue(18),
 		color: MaterialDesign.colorDark,
 		fontWeight: 'bold'
 	},

@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { RFValue } from 'react-native-responsive-fontsize';
 
 import material from '../../utils/MaterialDesign';
 
@@ -10,7 +11,7 @@ export default StyleSheet.create({
 	},
 	textTile: {
 		color: material.colorWhiteTwo,
-		fontSize: 23,
+		fontSize: RFValue(24),
 		letterSpacing: 0.6,
 		fontFamily: material.fontPacificoRegular
 	}

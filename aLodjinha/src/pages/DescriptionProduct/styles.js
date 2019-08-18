@@ -1,6 +1,8 @@
 import { StyleSheet } from 'react-native';
 
-import material, { normalize } from '../../utils/MaterialDesign';
+import { RFValue } from 'react-native-responsive-fontsize';
+
+import material from '../../utils/MaterialDesign';
 
 export default StyleSheet.create({
 	productDescription: {
@@ -14,7 +16,7 @@ export default StyleSheet.create({
 	},
 	nameDescription: {
 		alignSelf: 'stretch',
-		fontSize: normalize(20),
+		fontSize: RFValue(20),
 		fontFamily: 'Roboto',
 		fontWeight: 'bold',
 		color: material.colorDark,
@@ -35,7 +37,7 @@ export default StyleSheet.create({
 	},
 	priceOf: {
 		color: material.colorWhite,
-		fontSize: normalize(12),
+		fontSize: RFValue(12),
 		fontWeight: 'bold',
 		textDecorationLine: 'line-through'
 	},
@@ -50,7 +52,7 @@ export default StyleSheet.create({
 	},
 	title: {
 		fontWeight: 'bold',
-		fontSize: normalize(18),
+		fontSize: RFValue(18),
 		marginLeft: 15,
 		marginTop: 15,
 		color: material.colorDark
