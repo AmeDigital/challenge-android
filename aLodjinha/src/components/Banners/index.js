@@ -50,6 +50,7 @@ export default function Banners() {
 
 const styles = StyleSheet.create({
 	container: {
+		width: BannerWidth,
 		height: BannerHeight,
 		backgroundColor: '#ccc',
 		justifyContent: 'center',

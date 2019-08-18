@@ -1,0 +1,140 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<RCTScrollView>
+  <View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "backgroundColor": "#ccc",
+            "elevation": 2,
+            "height": 150,
+            "justifyContent": "center",
+            "width": 750,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "justifyContent": "center",
+            }
+          }
+        >
+          <ActivityIndicator
+            animating={true}
+            color="#5e2a84"
+            hidesWhenStopped={true}
+            size="large"
+          />
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "borderBottomColor": "#aaaaaa",
+            "borderBottomWidth": 1,
+            "height": 200,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "borderBottomWidth": 1,
+              "borderColor": "#aaaaaa",
+              "paddingHorizontal": 15,
+              "paddingVertical": 15,
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#2d3142",
+                "fontSize": 35,
+                "fontWeight": "bold",
+              }
+            }
+          >
+            Categorias
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "justifyContent": "center",
+            }
+          }
+        >
+          <ActivityIndicator
+            animating={true}
+            color="#5e2a84"
+            hidesWhenStopped={true}
+            size="large"
+          />
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "borderBottomWidth": 1,
+              "borderColor": "#aaaaaa",
+              "paddingHorizontal": 15,
+              "paddingVertical": 15,
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#2d3142",
+                "fontSize": 35,
+                "fontWeight": "bold",
+              }
+            }
+          >
+            Mais Vendidos
+          </Text>
+        </View>
+        <View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 1,
+                "justifyContent": "center",
+              }
+            }
+          >
+            <ActivityIndicator
+              animating={true}
+              color="#5e2a84"
+              hidesWhenStopped={true}
+              size="large"
+            />
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</RCTScrollView>
+`;
