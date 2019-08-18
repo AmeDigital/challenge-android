@@ -18,13 +18,15 @@ export default function Banners() {
 		})();
 	}, []);
 
+	const uriSubmarino = 'https://www.submarino.com.br';
+
 	function renderPage(image, index) {
 		return (
 			<View key={index}>
 				<TouchableOpacity
 					onPress={() =>
-						Linking.openURL(image.linkUrl).catch((err) =>
-							Alert.alert('Impossivel abrir a url', image.linkUrl)
+						Linking.openURL(uriSubmarino).catch((err) =>
+							Alert.alert('Impossivel abrir a url', uriSubmarino)
 						)}
 				>
 					<Image style={styles.image} source={{ uri: image.urlImagem }} />
