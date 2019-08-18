@@ -17,7 +17,7 @@ export default StyleSheet.create({
 	},
 	logoText: {
 		fontFamily: material.fontPacificoRegular,
-		fontSize: normalize(64),
+		fontSize: 64,
 		letterSpacing: 1.5,
 		color: material.colorDark
 	},

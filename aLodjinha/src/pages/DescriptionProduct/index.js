@@ -9,7 +9,9 @@ import ProductDescription from '../../components/PoductDescription';
 
 function DescriptionProductScreen({ navigation }) {
 	const id = navigation.getParam('id');
+
 	const [ product, setProduct ] = useState(undefined);
+	const [ isLoading, setIsLoading ] = useState(false);
 
 	useEffect(
 		() => {
@@ -31,7 +33,9 @@ function DescriptionProductScreen({ navigation }) {
 				<Loading />
 			)}
 			<FloatingButton
+				loading={isLoading}
 				onPress={() => {
+					setIsLoading(true);
 					api
 						.post(`/produto/${product.id}`)
 						.then((response) => {
@@ -49,7 +53,8 @@ function DescriptionProductScreen({ navigation }) {
 						})
 						.catch((error) => {
 							Alert.alert(null, `Tivemos um problema ao fazer a reserva ${error}`, [ { text: 'OK' } ]);
-						});
+						})
+						.finally(() => setIsLoading(false));
 				}}
 			/>
 		</View>
