@@ -11,7 +11,11 @@
   yarn install
   yarn react-native run-android
 ```
-## Versão de release
+## Gerar uma versão de release
+```
+  yarn build:release
+```
+ir em:
 ```
   /release/app-release.apk
 ```
