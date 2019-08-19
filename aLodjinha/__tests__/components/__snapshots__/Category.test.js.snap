@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component Category should render without erros 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "height": 120,
+      "justifyContent": "center",
+      "marginRight": 15,
+      "marginTop": 15,
+    }
+  }
+>
+  <Image
+    onError={[Function]}
+    source={
+      Object {
+        "uri": "urlimagem",
+      }
+    }
+    style={
+      Object {
+        "height": 100,
+        "width": 100,
+      }
+    }
+  />
+  <Text
+    numberOfLines={1}
+    style={
+      Object {
+        "color": "#2d3142",
+        "padding": 10,
+      }
+    }
+  />
+</View>
+`;

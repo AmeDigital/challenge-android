@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "justifyContent": "space-between",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "justifyContent": "center",
+      }
+    }
+  >
+    <Image
+      source={
+        Object {
+          "testUri": "../../../src/images/logo_sobre.png",
+        }
+      }
+      style={
+        Object {
+          "marginTop": 50,
+        }
+      }
+    />
+    <Text
+      style={
+        Object {
+          "color": "#2d3142",
+          "fontFamily": "Pacifico-Regular",
+          "fontSize": 126,
+          "letterSpacing": 1.5,
+        }
+      }
+    >
+      a Lodjinha
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "justifyContent": "center",
+        "marginBottom": 20,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#2d3142",
+          "fontSize": 27,
+          "fontWeight": "bold",
+          "letterSpacing": 0.3,
+        }
+      }
+    >
+      Washington Martins da Silva
+    </Text>
+    <Text
+      style={
+        Object {
+          "color": "#2d3142",
+          "fontSize": 24,
+          "letterSpacing": 0.3,
+          "margin": 10,
+        }
+      }
+    >
+      16 de Agosto 2019
+    </Text>
+  </View>
+</View>
+`;

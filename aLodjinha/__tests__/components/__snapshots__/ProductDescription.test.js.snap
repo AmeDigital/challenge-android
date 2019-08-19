@@ -1,0 +1,114 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component ProductDescription should render without erros 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "marginTop": 20,
+    }
+  }
+>
+  <Image
+    onError={[Function]}
+    source={
+      Object {
+        "uri": "",
+      }
+    }
+    style={
+      Object {
+        "height": 200,
+        "width": 200,
+      }
+    }
+  />
+  <Text
+    style={
+      Object {
+        "alignSelf": "stretch",
+        "color": "#2d3142",
+        "fontFamily": "Roboto",
+        "fontSize": 39,
+        "fontWeight": "bold",
+        "margin": 15,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "alignSelf": "stretch",
+        "borderBottomColor": "#aaaaaa",
+        "borderBottomWidth": 1,
+        "borderTopColor": "#aaaaaa",
+        "borderTopWidth": 1,
+        "flexDirection": "row",
+        "height": 40,
+        "justifyContent": "space-between",
+        "paddingHorizontal": 15,
+        "paddingVertical": 30,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#d5d5d5",
+          "fontSize": 24,
+          "fontWeight": "bold",
+          "textDecorationLine": "line-through",
+        }
+      }
+    >
+      De: undefined
+    </Text>
+    <Text
+      style={
+        Object {
+          "color": "#f15025",
+          "fontFamily": "Roboto",
+          "fontSize": 39,
+          "fontWeight": "bold",
+        }
+      }
+    >
+      Por undefined
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "alignSelf": "stretch",
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#2d3142",
+          "fontSize": 35,
+          "fontWeight": "bold",
+          "marginLeft": 15,
+          "marginTop": 15,
+        }
+      }
+    >
+      Descrição
+    </Text>
+    <Text
+      style={
+        Object {
+          "color": "#2d3142",
+          "letterSpacing": 0.4,
+          "padding": 17,
+        }
+      }
+    >
+      &lt;br /&gt;
+    </Text>
+  </View>
+</View>
+`;

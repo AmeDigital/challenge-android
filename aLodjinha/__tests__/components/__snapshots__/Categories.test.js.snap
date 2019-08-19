@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component Categories should render without erros 1`] = `
+<View
+  style={
+    Object {
+      "borderBottomColor": "#aaaaaa",
+      "borderBottomWidth": 1,
+      "height": 200,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "borderBottomWidth": 1,
+        "borderColor": "#aaaaaa",
+        "paddingHorizontal": 15,
+        "paddingVertical": 15,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#2d3142",
+          "fontSize": 35,
+          "fontWeight": "bold",
+        }
+      }
+    >
+      Categorias
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+      }
+    }
+  >
+    <ActivityIndicator
+      animating={true}
+      color="#5e2a84"
+      hidesWhenStopped={true}
+      size="large"
+    />
+  </View>
+</View>
+`;
