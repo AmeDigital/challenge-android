@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, ScrollView, Image, Text, SafeAreaView, Alert } from 'react-native';
+import HTML from 'react-native-render-html';
 import ActionButton from 'react-native-action-button';
 
 import { formatNumber } from '../../helper';
@@ -25,7 +26,9 @@ export default class Product extends Component {
     const body = await response.json();
     
     if(body && body.result === 'success') {
-      Alert.alert('Produto reservado com sucesso!')
+      Alert.alert('', 'Produto reservado com sucesso!', [
+        {text: 'ok' , onPress: () => this.props.navigation.goBack() }
+      ])
     }
   }
     
@@ -46,7 +49,7 @@ export default class Product extends Component {
             <Text style={Styles.currentPrice}>Por {formatNumber(product.precoPor)}</Text>
           </View>
           <View style={Styles.descriptionContainer}>
-            <Text style={Styles.description}>{product.descricao}</Text>
+            <HTML html={product.descricao} />
           </View>
         </ScrollView>
         <ActionButton 
