@@ -7,6 +7,7 @@ const Styles = StyleSheet.create({
   },
   headerTitle: { 
     color: '#FFF', 
+    fontFamily: 'Roboto',
     fontSize: 16
   },
   headerMenu: { 
@@ -21,7 +22,7 @@ const Styles = StyleSheet.create({
     justifyContent: 'center'
   },
   logo: { 
-    color: '#4a4a4a', 
+    color: '#4a4a4a',
     fontFamily: 'Pacifico', 
     fontSize: 66 
   },

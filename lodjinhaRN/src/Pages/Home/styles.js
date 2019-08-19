@@ -11,13 +11,13 @@ export const Styles = StyleSheet.create({
     borderBottomColor: '#d5d5d5'
   },
   bannerContainer: {
-   flex: 1
+    height: 150
   },
   bestSellersContainer: {
-    flex: 3
+    flex: 1
   },
   slideImage:{
-   height: 120
+   height: 150
   },
   titleContainer: {
     borderBottomWidth: 1,
@@ -25,6 +25,7 @@ export const Styles = StyleSheet.create({
     padding: 10
   },
   title: {
+    fontFamily: 'Roboto',
     fontWeight: 'bold',
     fontSize: 16,
     color: '#2d3142'
@@ -41,6 +42,6 @@ export const Styles = StyleSheet.create({
     width: 50
   },
   categoryItemDescription: {
-    
+    fontFamily: 'Roboto'
   }
 })

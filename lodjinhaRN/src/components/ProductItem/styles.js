@@ -18,13 +18,16 @@ const Styles = StyleSheet.create({
     width: 100
   },
   productItemTitle: {
+    fontFamily: 'Roboto',
     fontSize: 18
   },
   productItemOldPrice: {
+    fontFamily: 'Roboto',
     color: '#aaaaaa',
     textDecorationLine: 'line-through'
   },
   productItemCurrentPrice: {
+    fontFamily: 'Roboto',
     fontSize: 20,
     fontWeight: 'bold',
     color: '#f15025'

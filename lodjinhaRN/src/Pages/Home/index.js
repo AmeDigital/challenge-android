@@ -1,12 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import Swiper from 'react-native-swiper';
+import { ImageLoader } from 'react-native-image-fallback';
 
 import { 
   View, 
   FlatList, 
   Text, 
   Image,
-  SafeAreaView, 
+  ScrollView, 
   StatusBar,
   Linking,
   TouchableOpacity
@@ -57,7 +58,10 @@ export default class Home extends Component {
     <TouchableOpacity 
       style={Styles.categoryItemContainer} 
       onPress={() => this.props.navigation.navigate('Category', { category: item })}>
-      <Image style={Styles.categoryItemImage} source={{ uri: item.urlImagem }} />
+      <ImageLoader 
+        style={Styles.categoryItemImage} 
+        fallback={[require('../../assets/images/not_found.png')]} 
+        source={item.urlImagem} />
       <Text style={Styles.categoryItemDescription}>{item.descricao}</Text>
     </TouchableOpacity>
   )
@@ -66,8 +70,8 @@ export default class Home extends Component {
     return (
       <Fragment>
         <StatusBar barStyle="dark-content" />
-          <SafeAreaView style={Styles.container}>
-              <Swiper autoplay={true} style={Styles.bannerContainer}>
+          <ScrollView style={Styles.container}>
+              <Swiper style={Styles.bannerContainer}>
                 {
                   this.state.banners.map((item) => (
                     <TouchableOpacity key={item.id} onPress={() => this.handleClick(item.linkUrl)}>
@@ -94,12 +98,9 @@ export default class Home extends Component {
                 <View style={Styles.titleContainer}>
                   <Text style={Styles.title}>Mais vendidos</Text>
                 </View>
-                <FlatList
-                    data={this.state.bestSells}
-                    keyExtractor={this._keyExtractor}
-                    renderItem={({ item }) => <ProductItem item={item} />} />
+                {this.state.bestSells.map((item) => <ProductItem key={item.id} item={item} />)}
               </View>
-          </SafeAreaView>
+          </ScrollView>
       </Fragment>
     );
   }

@@ -19,11 +19,13 @@ export const Styles = StyleSheet.create({
   },
   title: {
     fontSize: 18,
+    fontFamily: 'Roboto',
     fontWeight: 'bold'
   },
   description: {
     width: 100,
     height: 100,
+    fontFamily: 'Roboto',
     fontSize: 40
   },
   priceContainer: {
@@ -41,10 +43,12 @@ export const Styles = StyleSheet.create({
     marginBottom: 72
   },
   oldPrice: {
+    fontFamily: 'Roboto',
     color: '#aaaaaa',
     textDecorationLine: 'line-through'
   },
   currentPrice: {
+    fontFamily: 'Roboto',
     fontSize: 20,
     fontWeight: 'bold',
     color: '#f15025'

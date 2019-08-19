@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FlatList, SafeAreaView, ActivityIndicator } from 'react-native';
+import { FlatList, SafeAreaView, ActivityIndicator, Text, View } from 'react-native';
 
 import ProductItem from '../../components/ProductItem';
 
@@ -50,6 +50,12 @@ export default class Category extends Component {
     })
   }
 
+  renderEmpty = () => (
+    <View style={{ flex: 1, alignItems:'center', justifyContent: 'center' }}>
+      <Text>Nenhum resultado encontrado.</Text>
+    </View>
+  )
+
   render() {
     return (
       <SafeAreaView>
@@ -58,6 +64,7 @@ export default class Category extends Component {
           keyExtractor={this._keyExtractor}
           onEndReached={() => this.loadProducts()}
           onEndReachedThreshold={0.1}
+          ListEmptyComponent={this.renderEmpty}
           ListFooterComponent={this.state.loading && <ActivityIndicator />}
           renderItem={({ item }) => <ProductItem item={item} />} />
       </SafeAreaView>
