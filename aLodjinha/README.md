@@ -15,8 +15,8 @@
 - - **No Emulador** Execute o emulator por meio do Android Studio ou por meio do [GenyMotion](https://www.genymotion.com/)
 - - E siga os seguintes passos:
 
-- Você pode baixar o [apk](https://github.com/washingtondeveloper/challenge-android/releases), entre na pasta onde esta o apk e execute ```adb install app.apk ``` mas, para isso você precisar ter instalado o [kit](https://facebook.github.io/react-native/docs/getting-started#3-configure-the-android_home-environment-variable) do android na sua maquina, para que esse comando ``` adb ``` possa esta disponivel no seu terminal ou cmd.
-
-- Uma outra forma de executar a aplicação, e por meio de desenvolvimento, você vai precisar ter o [nodejs](https://nodejs.org/en/) instalado na sua maquina e o [kit](https://facebook.github.io/react-native/docs/getting-started#3-configure-the-android_home-environment-variable) previamente configurado.
+- Você vai precisar ter o [nodejs](https://nodejs.org/en/) instalado na sua maquina e o [kit](https://facebook.github.io/react-native/docs/getting-started#3-configure-the-android_home-environment-variable) previamente configurado.
 
 - Tendo tudo configurado, entre na pasta do projeto ``` cd aLodjinha ```, e execute ``` npm i ``` para instalar as dependencias e ``` npx react-native run-android ``` parar executar a aplicação. 
+
+- Lembrando que dessa forma, ficara mais facil verificar o codigo, e aplicação mais de perto.
