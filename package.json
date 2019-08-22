@@ -1,0 +1,47 @@
+{
+  "name": "lodjinha",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "react-native start",
+    "test": "jest",
+    "lint": "eslint .",
+    "postinstall": "npx jetify"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "lottie-ios": "3.0.3",
+    "lottie-react-native": "^3.1.0",
+    "react": "16.8.6",
+    "react-native": "0.60.5",
+    "react-native-banner-carousel": "^1.0.3",
+    "react-native-elements": "^1.1.0",
+    "react-native-eventemitter": "^0.0.1",
+    "react-native-gesture-handler": "^1.1.0",
+    "react-native-orientation-locker": "^1.1.5",
+    "react-native-vector-icons": "^6.4.2",
+    "react-navigation": "^3.8.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/runtime": "^7.5.5",
+    "@react-native-community/eslint-config": "^0.0.5",
+    "babel-jest": "^24.9.0",
+    "eslint": "^6.1.0",
+    "jest": "^24.9.0",
+    "jetifier": "^1.6.4",
+    "metro-react-native-babel-preset": "^0.56.0",
+    "react-test-renderer": "16.8.6"
+  },
+  "rnpm": {
+    "ios": {},
+    "android": {},
+    "assets": [
+      " ./src/assets/fonts/"
+    ]
+  },
+  "jest": {
+    "preset": "react-native"
+  },
+  "isSwift": true
+}
