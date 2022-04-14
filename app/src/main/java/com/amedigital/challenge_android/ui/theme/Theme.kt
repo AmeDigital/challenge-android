@@ -13,10 +13,10 @@ private val DarkColorPalette = darkColors(
 )
 
 private val LightColorPalette = lightColors(
-    primary = Purple500,
-    primaryVariant = Purple700,
-    secondary = Teal200
-
+    primary = ChallengeColors.WarmPurple,
+    primaryVariant = ChallengeColors.WarmPurple,
+    secondary = Teal200,
+    background = ChallengeColors.White,
     /* Other default colors to override
     background = Color.White,
     surface = Color.White,
@@ -33,7 +33,7 @@ fun ChallengeandroidTheme(
     content: @Composable () -> Unit
 ) {
     val colors = if (darkTheme) {
-        DarkColorPalette
+        LightColorPalette /* TODO: DarkColorPalette */
     } else {
         LightColorPalette
     }
