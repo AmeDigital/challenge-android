@@ -1,32 +1,29 @@
-package com.amedigital.challenge_android.ui.theme
+package com.amedigital.coreui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.TextUnit
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.amedigital.challenge_android.R
+import com.amedigital.coreui.R
 
 
 /*
 * font: https://scene.zeplin.io/project/589b3ef2dba1a0801d3f1be1
 */
 
-val pacificoFont = FontFamily(
-    Font(R.font.pacifico_regular, FontWeight.Normal)
-);
-
-val robotoFontNormal = FontFamily(
-    Font(R.font.roboto_regular, FontWeight.Normal)
-);
-
-val robotoFontBold = FontFamily(
-    Font(R.font.roboto_bold, FontWeight.Bold)
-);
+object ChallengeFonts {
+    val pacifico = FontFamily(
+        Font(R.font.pacifico_regular, FontWeight.Normal)
+    )
+    val robotoNormal = FontFamily(
+        Font(R.font.roboto_regular, FontWeight.Normal)
+    )
+    val robotoBold = FontFamily(
+        Font(R.font.roboto_bold, FontWeight.Bold)
+    )
+}
 
 // Set of Material typography styles to start with
 val Typography = Typography(

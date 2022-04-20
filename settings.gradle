@@ -14,3 +14,6 @@ dependencyResolutionManagement {
 }
 rootProject.name = "challenge-android"
 include ':app'
+include ':challenge_home'
+include ':mylibrary'
+include ':coreui'

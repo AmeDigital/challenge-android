@@ -1,4 +1,4 @@
-package com.amedigital.challenge_android.ui.theme
+package com.amedigital.coreui.theme
 
 import androidx.compose.ui.graphics.Color
 
