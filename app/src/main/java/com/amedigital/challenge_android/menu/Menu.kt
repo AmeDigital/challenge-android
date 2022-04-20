@@ -25,12 +25,12 @@ import androidx.compose.ui.text.font.FontWeight
 import com.amedigital.challenge_android.R
 import com.amedigital.coreui.theme.ChallengeColors
 import com.amedigital.coreui.theme.ChallengeFonts
-import com.amedigital.coreui.theme.ChallengeandroidTheme
+import com.amedigital.coreui.theme.ChallengeTheme
 
-class MenuItem(val title: String, val route: String, val imageResourceId: Int) {
+internal class MenuItem(val title: String, val route: String, val imageResourceId: Int) {
 }
 
-val MENUS = listOf(
+internal val MENUS = listOf(
     MenuItem("Home", "home", R.drawable.home_menu),
     MenuItem(
         "Sobre o aplicativo",
@@ -40,12 +40,14 @@ val MENUS = listOf(
 )
 
 @Composable
-fun Menu(
+internal fun Menu(
     menus: List<MenuItem>,
     modifier: Modifier = Modifier,
     onMenuItemClicked: (menuItem: MenuItem) -> Unit
 ) {
-    Column() {
+    Column(
+        modifier = modifier
+    ) {
         Box(
             modifier = Modifier
                 .height(200.dp)
@@ -105,9 +107,9 @@ fun Menu(
 @Preview(backgroundColor = 0xFFD5D5D5)
 @Composable
 fun DrawerPreview() {
-    ChallengeandroidTheme() {
+    ChallengeTheme() {
         Menu(
             MENUS
-        ) {}
+        ){}
     }
 }

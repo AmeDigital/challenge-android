@@ -17,10 +17,10 @@ import com.amedigital.challenge_android.R
 import com.amedigital.coreui.theme.ChallengeFonts
 
 @Composable
-fun TopBar(openDrawer: () -> Unit) {
+fun TopBar(onClickDrawerIcon: () -> Unit) {
     TopAppBar(
         navigationIcon = {
-            IconButton(onClick = { openDrawer() }) {
+            IconButton(onClick = { onClickDrawerIcon() }) {
                 Icon(painterResource(R.drawable.ic_left_menu), contentDescription = "Menu")
             }
         },
