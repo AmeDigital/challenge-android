@@ -55,6 +55,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.1'
     implementation 'androidx.activity:activity-compose:1.4.0'
     implementation "androidx.navigation:navigation-compose:$nav_version"
+    implementation 'com.google.accompanist:accompanist-pager:0.24.7-alpha'
     // async image url load
     implementation("io.coil-kt:coil-compose:2.0.0-rc03")
     // tests
