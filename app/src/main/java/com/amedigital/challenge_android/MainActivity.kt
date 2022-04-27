@@ -1,8 +1,10 @@
 package com.amedigital.challenge_android
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
@@ -10,8 +12,11 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -21,6 +26,7 @@ import com.amedigital.challenge_android.menu.Menu
 import com.amedigital.challenge_android.menu.TopBar
 import com.amedigital.challenge_home.Home
 import com.amedigital.coreui.theme.ChallengeTheme
+import com.amedigital.coreui.views.About
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
@@ -43,11 +49,13 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun MainScaffold() {
     val scaffoldState = rememberScaffoldState()
     val scope = rememberCoroutineScope()
     val navController = rememberNavController()
+    val (currentMenuItem, setCurrentMenuItem) = remember { mutableStateOf(MENUS.first()) }
     val toggleDrawer = {
         scope.launch {
             when (scaffoldState.drawerState.isOpen) {
@@ -58,11 +66,12 @@ fun MainScaffold() {
     }
     Scaffold(
         scaffoldState = scaffoldState,
-        topBar = { TopBar(onClickDrawerIcon = { toggleDrawer() }) },
+        topBar = { TopBar(currentMenuItem, onClickDrawerIcon = { toggleDrawer() }) },
         drawerContent = {
             Menu(
                 MENUS,
                 onMenuItemClicked = { menuItem ->
+                    setCurrentMenuItem(menuItem)
                     toggleDrawer()
                     navController.navigate(menuItem.route) {
                         popUpTo(navController.graph.startDestinationId)
@@ -80,10 +89,24 @@ fun MainScaffold() {
             composable("home") {
                 Home()
             }
-            composable("about") {
-                About()
+            composable("sobre") {
+                AboutLodjinha()
             }
         }
+    }
+}
+
+@Composable
+fun AboutLodjinha() {
+    About(
+        appName = "a Lodjinha",
+        author = "Alexnaldo Santos",
+        description = "27 de abril de 2022"
+    ) {
+        Image(
+            painter = painterResource(R.drawable.logo_sobre),
+            contentDescription = "Logo"
+        )
     }
 }
 
@@ -93,9 +116,4 @@ fun DefaultPreview() {
     ChallengeTheme {
         MainScaffold()
     }
-}
-
-@Composable
-fun About() {
-    Text(text = "Sobre o Lodjinha", style = MaterialTheme.typography.h4)
 }

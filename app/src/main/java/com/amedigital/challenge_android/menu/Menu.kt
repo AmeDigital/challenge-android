@@ -27,14 +27,14 @@ import com.amedigital.coreui.theme.ChallengeColors
 import com.amedigital.coreui.theme.ChallengeFonts
 import com.amedigital.coreui.theme.ChallengeTheme
 
-internal class MenuItem(val title: String, val route: String, val imageResourceId: Int) {
+class MenuItem(val title: String, val route: String, val imageResourceId: Int, val isHome: Boolean = false) {
 }
 
 internal val MENUS = listOf(
-    MenuItem("Home", "home", R.drawable.home_menu),
+    MenuItem("Home", "home", R.drawable.home_menu, isHome = true),
     MenuItem(
         "Sobre o aplicativo",
-        "about",
+        "sobre",
         R.drawable.tag_menu
     )
 )

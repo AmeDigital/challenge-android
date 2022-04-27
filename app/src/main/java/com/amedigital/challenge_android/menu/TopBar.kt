@@ -17,7 +17,7 @@ import com.amedigital.challenge_android.R
 import com.amedigital.coreui.theme.ChallengeFonts
 
 @Composable
-fun TopBar(onClickDrawerIcon: () -> Unit) {
+fun TopBar(currentMenuItem: MenuItem, onClickDrawerIcon: () -> Unit) {
     TopAppBar(
         navigationIcon = {
             IconButton(onClick = { onClickDrawerIcon() }) {
@@ -25,13 +25,17 @@ fun TopBar(onClickDrawerIcon: () -> Unit) {
             }
         },
         title = {
-            Row() {
-                Image(
-                    painter = painterResource(R.drawable.logo_navbar),
-                    contentDescription = "Logo"
-                )
-                Spacer(modifier = Modifier.width(8.dp))
-                Text(text = "a Lodjinha", fontFamily = ChallengeFonts.pacifico)
+            if (currentMenuItem.isHome) {
+                Row() {
+                    Image(
+                        painter = painterResource(R.drawable.logo_navbar),
+                        contentDescription = "Logo"
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text(text = "a Lodjinha", fontFamily = ChallengeFonts.pacifico)
+                }
+            } else {
+                Text(text = currentMenuItem.route)
             }
         },
         backgroundColor = MaterialTheme.colors.primaryVariant
