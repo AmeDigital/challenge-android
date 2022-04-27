@@ -17,6 +17,6 @@ object ChallengeColors {
     val Greyish = Color(0xFFAAAAAA)
     val Dark = Color(0xFF2D3142)
     val GreyishBrown = Color(0xFF4A4A4A)
-    val White = Color(0xFFD5D5D5)
+    val White = Color.White
     val WhiteTwo = Color(0xFFFCFCFC)
 }

@@ -1,7 +1,12 @@
 package com.amedigital.challenge_home
 
 import android.util.Log
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import com.amedigital.challenge_model.fakeCategorias
 import com.amedigital.coreui.widgets.Banner
 
 val fakeImages = listOf(
@@ -12,7 +17,16 @@ val fakeImages = listOf(
 
 @Composable
 fun Home() {
-    Banner(fakeImages, onImageClick = { image ->
-        Log.d("CORE.UI", image)
-    })
+    val homeTag = "HOME"
+
+    Column(
+        modifier = Modifier.fillMaxSize()
+    ) {
+        Banner(fakeImages, onImageClick = { image ->
+            Log.d(homeTag, image)
+        })
+        CategoriasWidget(fakeCategorias, onCategoriaClick = { categoria ->
+            Log.d(homeTag, categoria.toString())
+        })
+    }
 }
