@@ -21,12 +21,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.amedigital.challenge_model.Categoria
 import com.amedigital.challenge_model.Produto
+import com.amedigital.coreui.extensions.toMoneyBR
+import com.amedigital.coreui.theme.ChallengeColors
 
 @Composable
 fun ListaProdutos(
@@ -40,35 +44,54 @@ fun ListaProdutos(
             contentAlignment = Alignment.CenterEnd
         ) {
             val constraints = this
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp)
-                .clickable { onProdutoClick(produto) }
-        ) {
             Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp)
+                    .clickable { onProdutoClick(produto) }
             ) {
-                AsyncImage(
-                    modifier = Modifier
-                        .size(64.dp),
-                    model = produto.urlImagem,
-                    contentDescription = produto.descricao,
-                    fallback = painterResource(R.drawable.no_image),
-                )
-                Spacer(modifier = Modifier.width(8.dp))
-                Text(
-                    modifier = Modifier.width(constraints.maxWidth - 100.dp),
-                    text = produto.descricao, maxLines = 3,
-                    overflow = TextOverflow.Ellipsis
+                Row(
+                ) {
+                    AsyncImage(
+                        modifier = Modifier
+                            .size(64.dp),
+                        model = produto.urlImagem,
+                        contentDescription = produto.descricao,
+                        fallback = painterResource(R.drawable.no_image),
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Column() {
+                        Text(
+                            modifier = Modifier.width(constraints.maxWidth - 100.dp),
+                            text = produto.descricao, maxLines = 3,
+                            overflow = TextOverflow.Ellipsis
+                        )
+                        Row(
+                        ) {
+                            Text(
+                                text = "De: ${produto.precoDe.toMoneyBR()}",
+                                style = MaterialTheme.typography.body1,
+                                color = ChallengeColors.GreyishBrown,
+                                textDecoration = TextDecoration.LineThrough
+                            )
+                            Spacer(modifier = Modifier.width(16.dp))
+                            Text(
+                                text = "Por: ${produto.precoPor.toMoneyBR()}",
+                                fontWeight = FontWeight.Bold,
+                                style = MaterialTheme.typography.body2,
+                                color = ChallengeColors.Tomato
+                            )
+                        }
+                    }
+                }
+
+                Image(
+                    modifier = Modifier.size(16.dp),
+                    painter = painterResource(R.drawable.disclosure_indicator),
+                    contentDescription = ""
                 )
             }
-            Image(
-                modifier = Modifier.size(16.dp),
-                painter = painterResource(R.drawable.disclosure_indicator),
-                contentDescription = ""
-            )
         }
-    }
     }
 }
