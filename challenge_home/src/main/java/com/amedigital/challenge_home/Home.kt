@@ -1,7 +1,6 @@
 package com.amedigital.challenge_home
 
 import android.util.Log
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.rememberScrollState
@@ -11,6 +10,8 @@ import androidx.compose.ui.Modifier
 import com.amedigital.challenge_model.fakeBanners
 import com.amedigital.challenge_model.fakeCategorias
 import com.amedigital.challenge_model.fakeProdutos
+import com.amedigital.challenge_produto.ListaCategorias
+import com.amedigital.challenge_produto.ListaProdutos
 import com.amedigital.coreui.widgets.Banner
 
 @Composable
