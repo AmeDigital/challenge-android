@@ -54,7 +54,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.1'
     implementation 'androidx.activity:activity-compose:1.4.0'
     implementation("io.coil-kt:coil-compose:2.0.0-rc03")
-    implementation project(path: ':coreui')
+    implementation project(path: ':challenge_coreui')
     implementation project(path: ':challenge_model')
     implementation project(path: ':challenge_produto')
     testImplementation 'junit:junit:4.13.2'

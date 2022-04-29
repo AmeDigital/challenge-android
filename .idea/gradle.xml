@@ -11,11 +11,10 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/challenge_coreui" />
             <option value="$PROJECT_DIR$/challenge_home" />
             <option value="$PROJECT_DIR$/challenge_model" />
             <option value="$PROJECT_DIR$/challenge_produto" />
-            <option value="$PROJECT_DIR$/coreui" />
-            <option value="$PROJECT_DIR$/mylibrary" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

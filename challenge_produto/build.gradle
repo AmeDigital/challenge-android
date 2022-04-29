@@ -55,7 +55,7 @@ dependencies {
     implementation 'androidx.activity:activity-compose:1.4.0'
     implementation "androidx.navigation:navigation-compose:$nav_version"
     implementation("io.coil-kt:coil-compose:2.0.0-rc03")
-    implementation project(path: ':coreui')
+    implementation project(path: ':challenge_coreui')
     implementation project(path: ':challenge_model')
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
