@@ -4,5 +4,5 @@ import com.amedigital.challenge_model.Banner
 import com.amedigital.challenge_model.api.Resource
 
 interface BannerRepository {
-    suspend fun getBanner(): Resource<List<Banner>>
+    suspend fun getBanners(): Resource<List<Banner>>
 }

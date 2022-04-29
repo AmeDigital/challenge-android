@@ -1,5 +1,6 @@
 package com.amedigital.challenge_produto.widgets
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -20,6 +21,9 @@ import com.amedigital.coreui.theme.ChallengeColors
 
 @Composable
 fun LogAndShowErrorPanel(error: Throwable) {
+
+    Log.d("LODJINHA", error.toString())
+
     val scrollState = rememberScrollState()
     Box(
         contentAlignment = Alignment.Center,

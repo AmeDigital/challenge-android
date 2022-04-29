@@ -1,15 +1,15 @@
 package com.amedigital.challenge_model.repositories
 
-import com.amedigital.challenge_model.Banner
+import com.amedigital.challenge_model.Categoria
 import com.amedigital.challenge_model.api.LodjinhaApi
 import com.amedigital.challenge_model.api.Resource
 import com.amedigital.challenge_model.api.SafeApi
 
-open class BannerRepositoryImpl(val api: LodjinhaApi) : BannerRepository {
+open class CategoriaRepositoryImpl(val api: LodjinhaApi) : CategoriaRepository {
 
-    override suspend fun getBanners(): Resource<List<Banner>> {
+    override suspend fun getCategorias(): Resource<List<Categoria>> {
         val call = SafeApi.safeCall {
-            api.getBanners()
+            api.getCategorias()
         }
         return when (call) {
             is Resource.Success -> Resource.Success(call.value.data)
