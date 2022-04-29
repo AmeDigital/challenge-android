@@ -6,30 +6,30 @@ import com.amedigital.challenge_model.Produto
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.Path
 
 interface LodjinhaApi {
 
     @GET("/banner")
     suspend fun getBanners(
-    ): ApiResponse<List<Banner>>
+    ): ApiDataResponse<List<Banner>>
 
     @GET("/categoria")
     suspend fun getCategorias(
-    ): ApiResponse<List<Categoria>>
+    ): ApiDataResponse<List<Categoria>>
 
     @GET("/produto/maisvendidos")
     suspend fun getMaisVendidos(
-    ): ApiResponse<List<Produto>>
+    ): ApiDataResponse<List<Produto>>
 
     @GET("/produto/{produtoId}")
     suspend fun getProduto(
-        @Query("produtoId") produtoId: Int
-    ): ApiResponse<Produto>
+        @Path("produtoId") produtoId: Long
+    ): Produto
 
     @POST("/produto/{produtoId}")
     suspend fun reservarProduto(
-        @Query("produtoId") produtoId: Long, @Body produto: Produto
-    ): ApiResult
+        @Path("produtoId") produtoId: Long
+    ): ApiResultResponse
 
 }

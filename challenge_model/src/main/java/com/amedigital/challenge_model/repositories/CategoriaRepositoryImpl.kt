@@ -7,7 +7,7 @@ import com.amedigital.challenge_model.api.Resource
 open class CategoriaRepositoryImpl(val api: LodjinhaApi) : BaseRepositoryImpl(), CategoriaRepository {
 
     override suspend fun getCategorias(): Resource<List<Categoria>> {
-        return safeCallForApiResponse {
+        return safeCallForApiDataResponse {
             api.getCategorias()
         }
     }

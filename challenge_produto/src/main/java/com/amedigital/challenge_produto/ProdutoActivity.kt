@@ -3,10 +3,8 @@ package com.amedigital.challenge_produto
 import android.content.Context
 import android.content.Intent
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -25,22 +23,27 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.HorizontalAlignmentLine
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.amedigital.challenge_model.Produto
+import com.amedigital.challenge_model.api.Resource
+import com.amedigital.challenge_produto.widgets.LogAndShowErrorPanel
 import com.amedigital.challenge_produto.widgets.TextValorDe
 import com.amedigital.challenge_produto.widgets.TextValorPor
 import com.amedigital.coreui.R
 import com.amedigital.coreui.views.BaseActivity
 import com.amedigital.coreui.widgets.TopBarNavigator
+import com.amedigital.coreui.widgets.WaitingIndicator
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.ParametersHolder
 
 class ProdutoActivity : BaseActivity() {
 
@@ -57,8 +60,25 @@ class ProdutoActivity : BaseActivity() {
     private val produto: Produto
         get() = intent.getParcelableExtra(PARAM_PRODUTO)!!
 
+    private fun getParameters(): ParametersHolder {
+        return ParametersHolder(mutableListOf(produto.id))
+    }
+
+    private val viewModel: ProdutoViewModel by viewModel(parameters = { getParameters() })
+
     @Composable
     override fun activityContent() {
+        val produtoState = viewModel.produto.observeAsState()
+
+        when (val produtoValue = produtoState.value) {
+            is Resource.Requesting -> WaitingIndicator()
+            is Resource.Failure -> LogAndShowErrorPanel(produtoValue.throwable)
+            is Resource.Success -> ShowProdutoView(produtoValue.value)
+        }
+    }
+
+    @Composable
+    private fun ShowProdutoView(produto: Produto) {
         val scrollState = rememberScrollState()
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -114,18 +134,22 @@ class ProdutoActivity : BaseActivity() {
     @Composable
     override fun floatingActionButton() {
         val reservedDialogState = remember { mutableStateOf(false) }
+        val reserveState = viewModel.reservado.observeAsState()
+
         FloatingActionButton(
             backgroundColor = MaterialTheme.colors.primaryVariant,
-            onClick = { reserveProduto(reservedDialogState) }
+            onClick = { viewModel.reservarProduto() }
         ) {
             Icon(painterResource(id = R.drawable.check_button), "")
         }
-        showProdutoReserved(reservedDialogState = reservedDialogState)
-    }
-
-    private fun reserveProduto(reservedDialogState: MutableState<Boolean>) {
-        //TODO: Reservar o produto
-        reservedDialogState.value = true
+        when (val reserved = reserveState.value) {
+            is Resource.Requesting -> WaitingIndicator()
+            is Resource.Failure -> LogAndShowErrorPanel(reserved.throwable)
+            is Resource.Success -> {
+                reservedDialogState.value = reserved.value == "success"
+                showProdutoReserved(reservedDialogState)
+            }
+        }
     }
 
     @Composable
