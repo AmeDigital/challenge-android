@@ -53,7 +53,7 @@ fun ListaCategorias(
                             .size(64.dp),
                         model = categoria.urlImagem,
                         contentDescription = categoria.descricao,
-                        fallback = painterResource(R.drawable.no_image),
+                        fallback = painterResource(com.amedigital.coreui.R.drawable.ic_broken_image),
                     )
                     Text(
                         text = categoria.descricao, fontWeight = FontWeight.Bold, maxLines = 1,

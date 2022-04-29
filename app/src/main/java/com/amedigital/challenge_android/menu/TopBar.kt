@@ -9,6 +9,8 @@ import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -21,7 +23,7 @@ fun TopBar(currentMenuItem: MenuItem, onClickDrawerIcon: () -> Unit) {
     TopAppBar(
         navigationIcon = {
             IconButton(onClick = { onClickDrawerIcon() }) {
-                Icon(painterResource(R.drawable.ic_left_menu), contentDescription = "Menu")
+                Icon(Icons.Default.Menu, contentDescription = "Menu")
             }
         },
         title = {

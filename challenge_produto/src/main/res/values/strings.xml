@@ -1,3 +1,4 @@
 <resources>
-    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_activity_categoria">Categoria</string>
+    <string name="title_activity_produto">Produto</string>
 </resources>

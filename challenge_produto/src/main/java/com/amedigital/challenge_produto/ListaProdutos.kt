@@ -23,6 +23,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.amedigital.challenge_model.Produto
+import com.amedigital.challenge_produto.widgets.ProdutoListItem
 import com.amedigital.coreui.extensions.toMoneyBR
 import com.amedigital.coreui.theme.ChallengeColors
 
@@ -34,59 +35,6 @@ fun ListaProdutos(
     Text(text = "Mais vendidos", fontWeight = FontWeight.Bold, style = MaterialTheme.typography.h6)
     produtos.forEach { produto ->
         Divider()
-        BoxWithConstraints(
-            contentAlignment = Alignment.CenterEnd
-        ) {
-            val constraints = this
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp)
-                    .clickable { onProdutoClick(produto) }
-            ) {
-                Row(
-                ) {
-                    AsyncImage(
-                        modifier = Modifier
-                            .size(64.dp),
-                        model = produto.urlImagem,
-                        contentDescription = produto.descricao,
-                        fallback = painterResource(R.drawable.no_image),
-                    )
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Column() {
-                        Text(
-                            modifier = Modifier
-                                .width(constraints.maxWidth - 100.dp)
-                                .padding(end = 8.dp),
-                            text = produto.descricao, maxLines = 3,
-                            overflow = TextOverflow.Ellipsis
-                        )
-                        Row(
-                        ) {
-                            Text(
-                                text = "De: ${produto.precoDe.toMoneyBR()}",
-                                style = MaterialTheme.typography.body1,
-                                color = ChallengeColors.GreyishBrown,
-                                textDecoration = TextDecoration.LineThrough
-                            )
-                            Spacer(modifier = Modifier.width(16.dp))
-                            Text(
-                                text = "Por: ${produto.precoPor.toMoneyBR()}",
-                                fontWeight = FontWeight.Bold,
-                                style = MaterialTheme.typography.body2,
-                                color = ChallengeColors.Tomato
-                            )
-                        }
-                    }
-                }
-                Image(
-                    modifier = Modifier.size(16.dp),
-                    painter = painterResource(R.drawable.disclosure_indicator),
-                    contentDescription = ""
-                )
-            }
-        }
+        ProdutoListItem(produto, onProdutoClick = { onProdutoClick(produto) })
     }
 }
