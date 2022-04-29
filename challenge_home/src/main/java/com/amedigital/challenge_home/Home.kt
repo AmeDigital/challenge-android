@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import com.amedigital.challenge_model.Banner
 import com.amedigital.challenge_model.Categoria
+import com.amedigital.challenge_model.Produto
 import com.amedigital.challenge_model.api.Resource
 import com.amedigital.challenge_model.fakeCategorias
 import com.amedigital.challenge_model.fakeProdutos
@@ -29,16 +30,21 @@ fun Home() {
     val viewModel = getViewModel<HomeViewModel>()
     val bannerState = viewModel.banners.observeAsState()
     val categoriaState = viewModel.categorias.observeAsState()
+    val maisVendidosState = viewModel.maisVendidos.observeAsState()
 
     when (val banner = bannerState.value) {
         is Resource.Requesting -> WaitingIndicator()
         is Resource.Failure -> LogAndShowErrorPanel(banner.throwable)
-        is Resource.Success -> HomeView(banner.value, categoriaState.value)
+        is Resource.Success -> HomeView(banner.value, categoriaState.value, maisVendidosState.value)
     }
 }
 
 @Composable
-private fun HomeView(images: List<Banner>, categorias: Resource<List<Categoria>>?) {
+private fun HomeView(
+    images: List<Banner>,
+    categorias: Resource<List<Categoria>>?,
+    maisVendidos: Resource<List<Produto>>?
+) {
     val context = LocalContext.current
     val scrollState = rememberScrollState()
     Column(
@@ -53,12 +59,14 @@ private fun HomeView(images: List<Banner>, categorias: Resource<List<Categoria>>
         when (categorias) {
             is Resource.Requesting -> WaitingIndicator()
             is Resource.Failure -> LogAndShowErrorPanel(categorias.throwable)
-            is Resource.Success -> CategoriasView(categorias = categorias.value)
+            is Resource.Success -> CategoriasView(categorias.value)
         }
 
-        ListaProdutos(fakeProdutos, onProdutoClick = { produto ->
-            ProdutoActivity.gotoProduto(context, produto)
-        })
+        when (maisVendidos) {
+            is Resource.Requesting -> WaitingIndicator()
+            is Resource.Failure -> LogAndShowErrorPanel(maisVendidos.throwable)
+            is Resource.Success -> MaisVendidosView(maisVendidos.value)
+        }
     }
 }
 
@@ -67,5 +75,13 @@ private fun CategoriasView(categorias: List<Categoria>) {
     val context = LocalContext.current
     ListaCategorias(categorias, onCategoriaClick = { categoria ->
         CategoriaActivity.gotoCategoria(context, categoria)
+    })
+}
+
+@Composable
+private fun MaisVendidosView(produtos: List<Produto>) {
+    val context = LocalContext.current
+    ListaProdutos(produtos, onProdutoClick = { produto ->
+        ProdutoActivity.gotoProduto(context, produto)
     })
 }

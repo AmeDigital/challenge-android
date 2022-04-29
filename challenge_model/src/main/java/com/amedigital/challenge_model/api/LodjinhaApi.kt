@@ -18,7 +18,7 @@ interface LodjinhaApi {
     suspend fun getCategorias(
     ): ApiResponse<List<Categoria>>
 
-    @GET("/maisvendidos")
+    @GET("/produto/maisvendidos")
     suspend fun getMaisVendidos(
     ): ApiResponse<List<Produto>>
 
@@ -29,7 +29,7 @@ interface LodjinhaApi {
 
     @POST("/produto/{produtoId}")
     suspend fun reservarProduto(
-        @Query("produtoId") produtoId: Int, @Body produto: Produto
+        @Query("produtoId") produtoId: Long, @Body produto: Produto
     ): ApiResult
 
 }

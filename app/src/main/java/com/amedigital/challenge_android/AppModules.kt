@@ -7,11 +7,14 @@ import com.amedigital.challenge_model.repositories.BannerRepository
 import com.amedigital.challenge_model.repositories.BannerRepositoryImpl
 import com.amedigital.challenge_model.repositories.CategoriaRepository
 import com.amedigital.challenge_model.repositories.CategoriaRepositoryImpl
+import com.amedigital.challenge_model.repositories.ProdutoRepository
+import com.amedigital.challenge_model.repositories.ProdutoRepositoryImpl
 import org.koin.androidx.viewmodel.dsl.viewModel
 
 val appModules = module {
     single<BannerRepository> { BannerRepositoryImpl(get()) }
     single<CategoriaRepository> { CategoriaRepositoryImpl(get()) }
+    single<ProdutoRepository> { ProdutoRepositoryImpl(get()) }
     single { NetworkUtils.createApiService() }
-    viewModel { HomeViewModel(get(), get()) }
+    viewModel { HomeViewModel(get(), get(), get()) }
 }
