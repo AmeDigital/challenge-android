@@ -22,9 +22,9 @@ object NetworkUtils {
     private fun okHttpClientLog(): OkHttpClient {
         val client = Builder()
         client.addInterceptor(createInterceptor())
-            .connectTimeout(10, TimeUnit.SECONDS)
-            .writeTimeout(10, TimeUnit.SECONDS)
-            .readTimeout(10, TimeUnit.SECONDS)
+            .connectTimeout(60, TimeUnit.SECONDS)
+            .writeTimeout(60, TimeUnit.SECONDS)
+            .readTimeout(60, TimeUnit.SECONDS)
         return client.build()
     }
 

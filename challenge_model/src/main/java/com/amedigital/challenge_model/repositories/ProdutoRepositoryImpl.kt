@@ -1,6 +1,7 @@
 package com.amedigital.challenge_model.repositories
 
 import com.amedigital.challenge_model.Produto
+import com.amedigital.challenge_model.api.ApiDataResponse
 import com.amedigital.challenge_model.api.LodjinhaApi
 import com.amedigital.challenge_model.api.Resource
 import com.amedigital.challenge_model.api.SafeApi
@@ -11,6 +12,20 @@ open class ProdutoRepositoryImpl(val api: LodjinhaApi) : BaseRepositoryImpl(),
     override suspend fun getMaisVendidos(): Resource<List<Produto>> {
         return safeCallForApiDataResponse {
             api.getMaisVendidos()
+        }
+    }
+
+    override suspend fun getProdutos(): Resource<List<Produto>> {
+        return safeCallForApiDataResponse {
+            api.getProdutos()
+        }
+    }
+
+    override suspend fun getByCategoria(categoriaId: Long): Resource<List<Produto>> {
+        return safeCallForApiDataResponse {
+            ApiDataResponse(
+                api.getProdutos().data.takeWhile { produto -> produto.categoria.id == categoriaId }
+            )
         }
     }
 

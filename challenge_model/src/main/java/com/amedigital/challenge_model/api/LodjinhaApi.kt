@@ -18,6 +18,10 @@ interface LodjinhaApi {
     suspend fun getCategorias(
     ): ApiDataResponse<List<Categoria>>
 
+    @GET("/produto")
+    suspend fun getProdutos(
+    ): ApiDataResponse<List<Produto>>
+
     @GET("/produto/maisvendidos")
     suspend fun getMaisVendidos(
     ): ApiDataResponse<List<Produto>>
@@ -31,5 +35,4 @@ interface LodjinhaApi {
     suspend fun reservarProduto(
         @Path("produtoId") produtoId: Long
     ): ApiResultResponse
-
 }
