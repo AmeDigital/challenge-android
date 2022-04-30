@@ -21,21 +21,24 @@ open class ProdutoRepositoryImpl(val api: LodjinhaApi) : BaseRepositoryImpl(),
         }
     }
 
-    override suspend fun getByCategoria(categoriaId: Long): Resource<List<Produto>> {
+    override suspend fun getByCategoria(categoriaId: Int): Resource<List<Produto>> {
         return safeCallForApiDataResponse {
-            ApiDataResponse(
+            //TODO: retornar direto da api
+            val itemsFiltered =
                 api.getProdutos().data.takeWhile { produto -> produto.categoria.id == categoriaId }
+            ApiDataResponse(
+                itemsFiltered, 0, itemsFiltered.size
             )
         }
     }
 
-    override suspend fun getProduto(produtoId: Long): Resource<Produto> {
+    override suspend fun getProduto(produtoId: Int): Resource<Produto> {
         return safeCallForApiDirectResponse {
             api.getProduto(produtoId)
         }
     }
 
-    override suspend fun reservarProduto(produtoId: Long): Resource<String> {
+    override suspend fun reservarProduto(produtoId: Int): Resource<String> {
         val call = SafeApi.safeCall {
             api.reservarProduto(produtoId)
         }

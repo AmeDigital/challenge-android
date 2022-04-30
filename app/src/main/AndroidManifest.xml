@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.amedigital.challenge_android">
+    package="com.amedigital.challenge_android"
+    xmlns:tools="http://schemas.android.com/tools">
     <uses-permission android:name="android.permission.INTERNET" />
-    <application
+    <application tools:replace="android:name"
         android:name=".CustomApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"

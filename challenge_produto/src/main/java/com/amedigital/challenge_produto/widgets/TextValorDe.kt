@@ -8,7 +8,7 @@ import com.amedigital.coreui.extensions.toMoneyBR
 import com.amedigital.coreui.theme.ChallengeColors
 
 @Composable
-fun TextValorDe(valor: Long) {
+fun TextValorDe(valor: Double) {
     Text(
         text = "De: ${valor.toMoneyBR()}",
         style = MaterialTheme.typography.body1,

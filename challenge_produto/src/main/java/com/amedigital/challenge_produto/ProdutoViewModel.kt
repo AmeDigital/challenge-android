@@ -14,7 +14,7 @@ import com.amedigital.challenge_model.repositories.ProdutoRepository
 import kotlinx.coroutines.launch
 
 class ProdutoViewModel(
-    private val produtoId: Long,
+    private val produtoId: Int,
     private val produtoRepository: ProdutoRepository
 ) : ViewModel() {
     private val _produto: MutableLiveData<Resource<Produto>> = MutableLiveData()

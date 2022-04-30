@@ -3,7 +3,6 @@ package com.amedigital.challenge_model.api
 import com.amedigital.challenge_model.Banner
 import com.amedigital.challenge_model.Categoria
 import com.amedigital.challenge_model.Produto
-import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
@@ -28,11 +27,11 @@ interface LodjinhaApi {
 
     @GET("/produto/{produtoId}")
     suspend fun getProduto(
-        @Path("produtoId") produtoId: Long
+        @Path("produtoId") produtoId: Int
     ): Produto
 
     @POST("/produto/{produtoId}")
     suspend fun reservarProduto(
-        @Path("produtoId") produtoId: Long
+        @Path("produtoId") produtoId: Int
     ): ApiResultResponse
 }

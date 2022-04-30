@@ -1,11 +1,11 @@
 package com.amedigital.challenge_model
 
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Categoria(
-    val id: Long,
+    val id: Int,
     val descricao: String,
     val urlImagem: String
 ) : Parcelable

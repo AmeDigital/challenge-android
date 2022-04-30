@@ -11,10 +11,6 @@ private fun formatMoneyBR(value: Double, withSymbol: Boolean): String {
     return currencyBR.format(value).replace("R$", symbol)
 }
 
-fun Long.toMoneyBR(withSymbol: Boolean = false): String {
-    return formatMoneyBR(this.toDouble(), withSymbol)
-}
-
 fun Double.toMoneyBR(withSymbol: Boolean = false): String {
     return formatMoneyBR(this, withSymbol)
 }
