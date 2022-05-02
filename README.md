@@ -8,10 +8,13 @@
 * ComposeUI para interfaces
 * Arquitetura MVVM 
 
-- Exemplos de testes unitários da API e Repositório estão no módulo  "challenge_model"
-- Exemplos de testes de interface estão estão no módulo "challenge_home"
+- Exemplos de testes unitários e instrumentais estão nos módulos :   
+  -- "challenge_model" - Testa o uso de api retrofit
+  -- "challenge_home" - Testa o uso de tela de função
+  -- "challenge_coreui" - Testa o uso de widgets
+  -- "challenge_produto" - Testa o uso de tela de activity
 
-** Segue abaixo as especificações do projeto ***
+** Agora, segue abaixo as especificações do projeto ***
 
 # o Lodjinha
 

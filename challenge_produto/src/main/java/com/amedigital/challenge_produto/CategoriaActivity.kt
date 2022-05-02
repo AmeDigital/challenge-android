@@ -57,11 +57,11 @@ class CategoriaActivity : BaseActivity() {
         val produtosState = viewModel.produtos.observeAsState()
 
         when (val produtoValue = produtosState.value) {
-            is Resource.Requesting -> WaitingIndicator()
             is Resource.Failure -> LogAndShowErrorPanel(produtoValue.throwable)
             is Resource.Success -> listProdutos(produtoValue.value, onProdutoClick = { produto ->
                 ProdutoActivity.gotoProduto(context, produto)
             })
+            else -> WaitingIndicator()
         }
     }
 

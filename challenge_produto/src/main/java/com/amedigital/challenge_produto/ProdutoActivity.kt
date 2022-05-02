@@ -71,9 +71,9 @@ class ProdutoActivity : BaseActivity() {
         val produtoState = viewModel.produto.observeAsState()
 
         when (val produtoValue = produtoState.value) {
-            is Resource.Requesting -> WaitingIndicator()
             is Resource.Failure -> LogAndShowErrorPanel(produtoValue.throwable)
             is Resource.Success -> ShowProdutoView(produtoValue.value)
+            else -> WaitingIndicator()
         }
     }
 
@@ -143,12 +143,12 @@ class ProdutoActivity : BaseActivity() {
             Icon(painterResource(id = R.drawable.check_button), "")
         }
         when (val reserved = reserveState.value) {
-            is Resource.Requesting -> WaitingIndicator()
             is Resource.Failure -> LogAndShowErrorPanel(reserved.throwable)
             is Resource.Success -> {
                 reservedDialogState.value = reserved.value == "success"
                 showProdutoReserved(reservedDialogState)
             }
+            else -> WaitingIndicator()
         }
     }
 
