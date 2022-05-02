@@ -48,10 +48,6 @@ class ProdutoTest : KoinBaseTest() {
     @get:Rule
     val rule = createEmptyComposeRule()
 
-    class EmptyTestRule : TestRule {
-        override fun apply(base: Statement, description: Description) = base
-    }
-
     fun setupMocks() {
         val anyValue = slot<Int>()
         coEvery {
