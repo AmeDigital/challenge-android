@@ -5,6 +5,7 @@ import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.junit4.AndroidComposeTestRule
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.test.junit4.createEmptyComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.ApplicationProvider
@@ -38,22 +39,14 @@ class ProdutoTest : KoinBaseTest() {
 
     override fun getKoinModules(): Module = module(override = true) {
         single { mockk<LodjinhaApi>(relaxed = true) }
-        single<BannerRepository> { BannerRepositoryImpl(get()) }
-        single<CategoriaRepository> { CategoriaRepositoryImpl(get()) }
         single<ProdutoRepository> { ProdutoRepositoryImpl(get()) }
         viewModel { ProdutoViewModel(get(), get()) }
     }
 
     private val api by inject<LodjinhaApi>()
 
-    private lateinit var activityScenario: ActivityScenario<ProdutoActivity>
-
     @get:Rule
-    val rule = AndroidComposeTestRule(EmptyTestRule()) {
-        var activity: ProdutoActivity? = null
-        activityScenario.onActivity { activity = it }
-        checkNotNull(activity) { "Activity didn't launch" }
-    }
+    val rule = createEmptyComposeRule()
 
     class EmptyTestRule : TestRule {
         override fun apply(base: Statement, description: Description) = base
@@ -79,7 +72,6 @@ class ProdutoTest : KoinBaseTest() {
                 putExtra(ProdutoActivity.PARAM_PRODUTO, produto)
             }
         ).use {
-            activityScenario = it
             // then
             rule.onNode(hasText(produto.nome)).assertExists()
             rule.onNode(hasText(produto.descricao)).assertExists()
