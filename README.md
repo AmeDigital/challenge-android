@@ -7,6 +7,7 @@
 * Koin para injeção de dependência
 * ComposeUI para interfaces
 * Arquitetura MVVM 
+* Navegação via função e activity, com e sem passagem de parâmetro
 
 - Exemplos de testes unitários e instrumentais estão nos módulos :   
   -- "challenge_model" - Testa o uso de api retrofit
@@ -16,7 +17,7 @@
 
 ** Agora, segue abaixo as especificações do projeto ***
 
-# o Lodjinha
+# O PROJETO - A Lodjinha
 
 Minimo SDK: API 15</br>
 Linguagem: Java ou Kotlin</br>
