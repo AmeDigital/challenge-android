@@ -73,7 +73,7 @@ class ProdutoActivity : BaseActivity() {
         when (val produtoValue = produtoState.value) {
             is Resource.Failure -> LogAndShowErrorPanel(produtoValue.throwable)
             is Resource.Success -> ShowProdutoView(produtoValue.value)
-            else -> WaitingIndicator()
+            else  -> WaitingIndicator()
         }
     }
 
@@ -148,7 +148,7 @@ class ProdutoActivity : BaseActivity() {
                 reservedDialogState.value = reserved.value == "success"
                 showProdutoReserved(reservedDialogState)
             }
-            else -> WaitingIndicator()
+            is Resource.Requesting -> WaitingIndicator()
         }
     }
 
