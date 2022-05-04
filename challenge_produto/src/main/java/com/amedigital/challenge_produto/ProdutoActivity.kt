@@ -136,11 +136,13 @@ class ProdutoActivity : BaseActivity() {
         val reservedDialogState = remember { mutableStateOf(false) }
         val reserveState = viewModel.reservado.observeAsState()
 
-        FloatingActionButton(
-            backgroundColor = MaterialTheme.colors.primaryVariant,
-            onClick = { viewModel.reservarProduto() }
-        ) {
-            Icon(painterResource(id = R.drawable.check_button), "")
+        if( (reserveState.value is Resource.Requesting).not() ) {
+            FloatingActionButton(
+                backgroundColor = MaterialTheme.colors.primaryVariant,
+                onClick = { viewModel.reservarProduto() }
+            ) {
+                Icon(painterResource(id = R.drawable.check_button), "")
+            }
         }
         when (val reserved = reserveState.value) {
             is Resource.Failure -> LogAndShowErrorPanel(reserved.throwable)
