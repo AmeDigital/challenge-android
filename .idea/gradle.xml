@@ -17,7 +17,6 @@
             <option value="$PROJECT_DIR$/challenge_produto" />
           </set>
         </option>
-        <option name="resolveModulePerSourceSet" value="false" />
       </GradleProjectSettings>
     </option>
   </component>

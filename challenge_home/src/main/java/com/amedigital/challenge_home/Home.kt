@@ -45,7 +45,6 @@ private fun HomeView(
     categorias: Resource<List<Categoria>>?,
     maisVendidos: Resource<List<Produto>>?
 ) {
-    val context = LocalContext.current
     val scrollState = rememberScrollState()
     Column(
         modifier = Modifier

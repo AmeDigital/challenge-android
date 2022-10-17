@@ -14,9 +14,20 @@
             android:theme="@style/Theme.Challengeandroid" />
         <activity
             android:name=".ProdutoActivity"
-            android:exported="false"
+            android:exported="true"
             android:label="@string/title_activity_produto"
-            android:theme="@style/Theme.Challengeandroid" />
+            android:theme="@style/Theme.Challengeandroid">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "lodjinha://produto?id=” -->
+                <data
+                    android:host="produto"
+                    android:scheme="lodjinha" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
