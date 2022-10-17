@@ -48,20 +48,33 @@ import org.koin.core.parameter.ParametersHolder
 class ProdutoActivity : BaseActivity() {
 
     companion object {
-        const val PARAM_PRODUTO = "produto"
+        const val PARAM_PRODUTO = "id"
+        const val NO_PRODUTO = 0
 
         fun gotoProduto(context: Context, produto: Produto) {
+            gotoProduto(context, produto.id)
+        }
+
+        fun gotoProduto(context: Context, produtoId: Int) {
             val intent = Intent(context, ProdutoActivity::class.java)
-                .putExtra(PARAM_PRODUTO, produto)
+                .putExtra(PARAM_PRODUTO, produtoId)
             context.startActivity(intent)
         }
     }
 
-    private val produto: Produto
-        get() = intent.getParcelableExtra(PARAM_PRODUTO)!!
+    private val produtoId: Int
+        get() {
+            val value = intent.getIntExtra(PARAM_PRODUTO, NO_PRODUTO)
+            if (value != NO_PRODUTO) {
+                return value
+            }
+            // make accessible from deeplink lodjinha://produto?id=
+            // example local: adb shell am start -W -a android.intent.action.VIEW -d "lodjinha://produto?id=7
+            return intent.data?.getQueryParameter(PARAM_PRODUTO)?.toInt() ?: NO_PRODUTO
+        }
 
     private fun getParameters(): ParametersHolder {
-        return ParametersHolder(mutableListOf(produto.id))
+        return ParametersHolder(mutableListOf(produtoId))
     }
 
     private val viewModel: ProdutoViewModel by viewModel(parameters = { getParameters() })
@@ -73,7 +86,7 @@ class ProdutoActivity : BaseActivity() {
         when (val produtoValue = produtoState.value) {
             is Resource.Failure -> LogAndShowErrorPanel(produtoValue.throwable)
             is Resource.Success -> ShowProdutoView(produtoValue.value)
-            else  -> WaitingIndicator()
+            else -> WaitingIndicator()
         }
     }
 
@@ -136,7 +149,7 @@ class ProdutoActivity : BaseActivity() {
         val reservedDialogState = remember { mutableStateOf(false) }
         val reserveState = viewModel.reservado.observeAsState()
 
-        if( (reserveState.value is Resource.Requesting).not() ) {
+        if ((reserveState.value is Resource.Requesting).not()) {
             FloatingActionButton(
                 backgroundColor = MaterialTheme.colors.primaryVariant,
                 onClick = { viewModel.reservarProduto() }
