@@ -6,16 +6,16 @@ import java.lang.StringBuilder
 
 interface RouterManager {
     fun route(context: Context, route: String, parameters: Map<String, String>)
-    fun process(context: Context, deepLink: Uri)
+    fun process(context: Context, uri: Uri)
 }
 
 abstract class DefaultRouterManager : RouterManager {
 
     abstract val schema: String
-    private var deepLinkProcessorChain: DeepLinkProcessorChain? = null
+    private var routerProcessorChain: RouterProcessorChain? = null
 
-    protected open fun register(processor: DeepLinkProcessor) {
-        deepLinkProcessorChain = DeepLinkProcessorChain(processor, deepLinkProcessorChain)
+    protected open fun register(processor: RouterProcessor) {
+        routerProcessorChain = RouterProcessorChain(processor, routerProcessorChain)
     }
 
     override fun route(context: Context, route: String, parameters: Map<String, String>) {
@@ -23,8 +23,8 @@ abstract class DefaultRouterManager : RouterManager {
         process(context, uri)
     }
 
-    override fun process(context: Context, deepLink: Uri) {
-        deepLinkProcessorChain?.next(this, context, deepLink)
+    override fun process(context: Context, uri: Uri) {
+        routerProcessorChain?.next(this, context, uri)
     }
 
     protected open fun buildParameters(parameters: Map<String, String>): String {

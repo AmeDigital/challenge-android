@@ -1,6 +1,7 @@
 package com.amedigital.challenge_produto
 
 import android.content.Context
+import android.net.Uri
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -10,6 +11,8 @@ import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
@@ -71,12 +74,25 @@ class CategoriaActivity : BaseActivity() {
         val context = LocalContext.current
         val routerManager = get<RouterManager>()
         val produtosState = viewModel.produtos.observeAsState()
+        val startedProdutoActivity = remember { mutableStateOf(false) }
 
         when (val produtoValue = produtosState.value) {
             is Resource.Success -> listProdutos(produtoValue.value, onProdutoClick = { produto ->
                 ProdutoActivity.route(routerManager, context, produto.id)
             })
             else -> WaitingIndicator()
+        }
+
+        //i.e lodjinha://categoria?id=&description=&produto="
+        if (!startedProdutoActivity.value && intent.data?.getQueryParameter(ProdutoActivity.HOST) != null) {
+            intent.data?.let {
+                ProdutoActivity.route(
+                    routerManager,
+                    context,
+                    it.getQueryParameter(ProdutoActivity.HOST).toString().toInt()
+                )
+            }
+            startedProdutoActivity.value = true
         }
     }
 

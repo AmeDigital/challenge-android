@@ -64,10 +64,6 @@ class ProdutoActivity : BaseActivity() {
 
     private val produtoId: Int
         get() {
-            val value = intent.getIntExtra(PARAM_PRODUTO, NO_PRODUTO)
-            if (value != NO_PRODUTO) {
-                return value
-            }
             // make accessible from deeplink lodjinha://produto?id=
             // example local: adb shell am start -W -a android.intent.action.VIEW -d "lodjinha://produto?id=7
             return intent.data?.getQueryParameter(PARAM_PRODUTO)?.toInt() ?: NO_PRODUTO

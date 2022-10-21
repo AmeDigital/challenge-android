@@ -81,10 +81,10 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun onMainCreate(context: Context, routerManager: RouterManager) {
-        processDeeplink(context, routerManager)
+        setupRouterManager(context, routerManager)
     }
 
-    private fun processDeeplink(context: Context, routerManager: RouterManager) {
+    private fun setupRouterManager(context: Context, routerManager: RouterManager) {
         intent.data?.let {
             routerManager.process(context, it)
         }
