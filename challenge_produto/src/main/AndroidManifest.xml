@@ -11,18 +11,23 @@
             android:name=".CategoriaActivity"
             android:exported="false"
             android:label="@string/title_activity_categoria"
-            android:theme="@style/Theme.Challengeandroid" />
+            android:theme="@style/Theme.Challengeandroid">
+            <intent-filter>
+                <action android:name="categoria" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="categoria"
+                    android:scheme="lodjinha" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ProdutoActivity"
-            android:exported="true"
+            android:exported="false"
             android:label="@string/title_activity_produto"
             android:theme="@style/Theme.Challengeandroid">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
+                <action android:name="produto" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <!-- Accepts URIs that begin with "lodjinha://produto?id=” -->
                 <data
                     android:host="produto"
                     android:scheme="lodjinha" />

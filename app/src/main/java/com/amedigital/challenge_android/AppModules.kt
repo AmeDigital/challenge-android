@@ -11,9 +11,11 @@ import com.amedigital.challenge_model.repositories.ProdutoRepository
 import com.amedigital.challenge_model.repositories.ProdutoRepositoryImpl
 import com.amedigital.challenge_produto.CategoriaViewModel
 import com.amedigital.challenge_produto.ProdutoViewModel
+import com.amedigital.coreui.RouterManager
 import org.koin.androidx.viewmodel.dsl.viewModel
 
 val appModules = module {
+    single<RouterManager> { RouterManagerApp() }
     single<BannerRepository> { BannerRepositoryImpl(get()) }
     single<CategoriaRepository> { CategoriaRepositoryImpl(get()) }
     single<ProdutoRepository> { ProdutoRepositoryImpl(get()) }
