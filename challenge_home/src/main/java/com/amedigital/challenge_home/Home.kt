@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -14,15 +13,15 @@ import com.amedigital.challenge_model.Banner
 import com.amedigital.challenge_model.Categoria
 import com.amedigital.challenge_model.Produto
 import com.amedigital.challenge_model.api.Resource
-import com.amedigital.challenge_model.fakeCategorias
-import com.amedigital.challenge_model.fakeProdutos
 import com.amedigital.challenge_produto.CategoriaActivity
 import com.amedigital.challenge_produto.ListaCategorias
 import com.amedigital.challenge_produto.ListaProdutos
 import com.amedigital.challenge_produto.ProdutoActivity
 import com.amedigital.challenge_produto.widgets.LogAndShowErrorPanel
+import com.amedigital.coreui.RouterManager
 import com.amedigital.coreui.widgets.Banner
 import com.amedigital.coreui.widgets.WaitingIndicator
+import org.koin.androidx.compose.get
 import org.koin.androidx.compose.getViewModel
 
 @Composable
@@ -72,15 +71,19 @@ private fun HomeView(
 @Composable
 private fun CategoriasView(categorias: List<Categoria>) {
     val context = LocalContext.current
+    val routerManager = get<RouterManager>()
     ListaCategorias(categorias, onCategoriaClick = { categoria ->
-        CategoriaActivity.gotoCategoria(context, categoria)
+        CategoriaActivity.route(
+            routerManager, context, categoria.id, categoria.descricao
+        )
     })
 }
 
 @Composable
 private fun MaisVendidosView(produtos: List<Produto>) {
     val context = LocalContext.current
+    val routerManager = get<RouterManager>()
     ListaProdutos(produtos, onProdutoClick = { produto ->
-        ProdutoActivity.gotoProduto(context, produto)
+        ProdutoActivity.route(routerManager, context, produto.id)
     })
 }

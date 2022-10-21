@@ -39,6 +39,7 @@ import com.amedigital.challenge_produto.widgets.LogAndShowErrorPanel
 import com.amedigital.challenge_produto.widgets.TextValorDe
 import com.amedigital.challenge_produto.widgets.TextValorPor
 import com.amedigital.coreui.R
+import com.amedigital.coreui.RouterManager
 import com.amedigital.coreui.views.BaseActivity
 import com.amedigital.coreui.widgets.TopBarNavigator
 import com.amedigital.coreui.widgets.WaitingIndicator
@@ -48,17 +49,16 @@ import org.koin.core.parameter.ParametersHolder
 class ProdutoActivity : BaseActivity() {
 
     companion object {
+        const val HOST = "produto"
         const val PARAM_PRODUTO = "id"
         const val NO_PRODUTO = 0
 
-        fun gotoProduto(context: Context, produto: Produto) {
-            gotoProduto(context, produto.id)
-        }
-
-        fun gotoProduto(context: Context, produtoId: Int) {
-            val intent = Intent(context, ProdutoActivity::class.java)
-                .putExtra(PARAM_PRODUTO, produtoId)
-            context.startActivity(intent)
+        fun route(routerManager: RouterManager, context: Context, id: Int) {
+            routerManager.route(
+                context,
+                HOST,
+                mapOf(Pair(PARAM_PRODUTO, id.toString()))
+            )
         }
     }
 
