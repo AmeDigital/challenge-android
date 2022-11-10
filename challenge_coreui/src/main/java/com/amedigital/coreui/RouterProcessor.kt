@@ -8,7 +8,7 @@ interface RouterProcessor {
     fun process(
         router: RouterManager,
         context: Context,
-        deeplink: Uri,
+        uri: Uri,
         chain: RouterProcessorChain?
     )
 }
