@@ -1,4 +1,23 @@
-# o Lodjinha
+# A SOLUÇÃO - LODJINHA
+
+## Este branch é a solução sobre o projeto Lodjinha, com as seguintes implementações:
+
+* Modularização (App, CoreUI, Model, e demais módulos por funcionalidade agrupada)
+* Retrofit para acesso às APIs
+* Koin para injeção de dependência
+* ComposeUI para interfaces
+* Arquitetura MVVM 
+* Navegação via função e activity, com e sem passagem de parâmetro
+
+- Exemplos de testes unitários e instrumentais estão nos módulos :   
+  -- "challenge_model" - Testa o uso de api retrofit
+  -- "challenge_home" - Testa o uso de tela de função
+  -- "challenge_coreui" - Testa o uso de widgets
+  -- "challenge_produto" - Testa o uso de tela de activity
+
+** Agora, segue abaixo as especificações do projeto ***
+
+# O PROJETO - A Lodjinha
 
 Minimo SDK: API 15</br>
 Linguagem: Java ou Kotlin</br>
